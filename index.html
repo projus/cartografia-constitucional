@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cartografia do Contencioso Constitucional · ICONS · PROJUS</title>
+<style>
+:root {
+  --bg:     #090909;
+  --bg2:    #111;
+  --bg3:    #1a1a1a;
+  --text:   #e8e4dc;
+  --muted:  #5a5550;
+  --border: #222;
+  --T1: #3d6e50; --T2: #b85a34; --T3: #3d5f8f;
+  --T4: #6b4e96; --T5: #8b3a3a; --T6: #8b7220;
+  --T7: #3a6e80; --T8: #7a6235; --T9: #505050;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; }
+body { background:var(--bg); color:var(--text); font-family:'Garamond','Georgia',serif; overflow-x:hidden; }
+
+/* CANVAS */
+#cv { position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+
+/* HERO */
+.hero {
+  position:relative; z-index:1;
+  min-height:100vh;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:0 5vw 5vh;
+}
+.eyebrow {
+  font-size:.7rem; letter-spacing:.22em; color:var(--muted);
+  text-transform:uppercase; margin-bottom:1.2rem;
+}
+h1 {
+  font-size:clamp(2.8rem,6.5vw,5.5rem);
+  font-weight:normal; line-height:1.0; margin-bottom:.8rem;
+}
+h1 em { color:#a8d5b5; font-style:italic; }
+.sub {
+  font-size:clamp(.95rem,1.8vw,1.2rem); color:var(--muted);
+  font-style:italic; line-height:1.7; max-width:560px; margin-bottom:2.4rem;
+}
+.stats { display:flex; gap:3rem; flex-wrap:wrap; }
+.stat-n { font-size:2.2rem; color:#a8d5b5; line-height:1; }
+.stat-l { font-size:.65rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:.2rem; }
+
+/* CARTOGRAFIA */
+.wrap { position:relative; z-index:1; max-width:1360px; margin:0 auto; padding:5rem 5vw 8rem; }
+.slabel { font-size:.65rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:.4rem; }
+h2 { font-size:clamp(1.6rem,3vw,2.4rem); font-weight:normal; margin-bottom:.4rem; }
+h2 em { color:#a8d5b5; font-style:italic; }
+.desc { color:var(--muted); font-style:italic; font-size:.95rem; line-height:1.7; max-width:580px; margin-bottom:2.4rem; }
+
+/* LEGENDA */
+.leg { display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; margin-bottom:1.6rem; }
+.leg-i { display:flex; align-items:center; gap:.35rem; font-size:.65rem; color:var(--muted); letter-spacing:.05em; cursor:pointer; transition:color .2s; }
+.leg-i:hover { color:var(--text); }
+.leg-d { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+
+/* GRADE */
+.grade {
+  display:grid;
+  grid-template-columns:repeat(25,1fr);
+  gap:3px;
+  margin-bottom:.6rem;
+}
+.cell {
+  aspect-ratio:1; border-radius:3px; cursor:pointer;
+  transition:transform .12s, filter .12s, opacity .2s;
+  position:relative;
+}
+.cell:hover { transform:scale(1.8); z-index:50; filter:brightness(1.5); }
+.cell.zero { opacity:.12; }
+.cell.fade { opacity:.15; }
+
+/* EIXO */
+.eixo { display:flex; justify-content:space-between; font-size:.6rem; color:var(--muted); padding:0 1px; }
+
+/* TOOLTIP */
+#tip {
+  position:fixed; display:none; z-index:999;
+  background:var(--bg2); border:1px solid #2a2a2a;
+  border-left:3px solid #4a7c59;
+  padding:.8rem 1rem; font-size:.78rem;
+  max-width:240px; pointer-events:none;
+  line-height:1.6;
+}
+#tip strong { display:block; font-size:.9rem; margin-bottom:.3rem; color:#a8d5b5; }
+#tip .tip-cat { font-size:.65rem; color:var(--muted); margin-top:.4rem; }
+#tip .tip-cat span { display:block; }
+
+/* BARRAS CATEGORIA */
+.barra-wrap { margin-top:2.5rem; }
+.barra-titulo { font-size:.65rem; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-bottom:1rem; }
+.barras { display:flex; flex-direction:column; gap:.5rem; max-width:700px; }
+.barra-row { display:flex; align-items:center; gap:.8rem; }
+.barra-label { font-size:.7rem; color:var(--muted); width:160px; flex-shrink:0; text-align:right; }
+.barra-track { flex:1; height:4px; background:var(--border); border-radius:2px; overflow:hidden; }
+.barra-fill { height:100%; border-radius:2px; transition:width 1s cubic-bezier(.16,1,.3,1); }
+.barra-n { font-size:.7rem; color:var(--muted); width:40px; }
+
+/* LINHA */
+hr.div { border:none; border-top:1px solid var(--border); margin:4rem 0; }
+
+/* RODAPÉ */
+footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2rem 5vw; }
+.footer-inner { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+.footer-l { font-size:.7rem; color:var(--muted); line-height:1.8; }
+.footer-r { font-size:.65rem; color:var(--muted); letter-spacing:.1em; text-align:right; }
+</style>
+</head>
+<body>
+
+<canvas id="cv"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">ICONS · Instituto Constituição Aberta · PROJUS · Projeto Justiça Aberta</div>
+  <h1>Cartografia do <em>Contencioso</em><br>Constitucional</h1>
+  <p class="sub">A Constituição Federal de 1988 como espinha dorsal de placas tectônicas em tensão constante. Cada decisão do STF, um pulso. Cada artigo, um campo de força.</p>
+  <div class="stats">
+    <div><div class="stat-n">9.014</div><div class="stat-l">decisões mapeadas</div></div>
+    <div><div class="stat-n">250</div><div class="stat-l">artigos da CF/88</div></div>
+    <div><div class="stat-n">37</div><div class="stat-l">anos de amplitude</div></div>
+    <div><div class="stat-n">36</div><div class="stat-l">artigos nunca litigados</div></div>
+  </div>
+</section>
+
+<!-- CARTOGRAFIA -->
+<div class="wrap">
+  <div class="slabel">Mapa do contencioso</div>
+  <h2>250 artigos · <em>intensidade decisória</em></h2>
+  <p class="desc">Cada quadrado é um artigo da CF/88. A intensidade da cor indica o volume de decisões do STF. Os 36 artigos sem nenhuma decisão revelam o <em>silêncio constitucional</em> — zonas ainda inexploradas pelo contencioso.</p>
+
+  <div class="leg" id="leg"></div>
+  <div class="grade" id="grade"></div>
+  <div class="eixo"><span>Art. 1</span><span>Art. 50</span><span>Art. 100</span><span>Art. 150</span><span>Art. 200</span><span>Art. 250</span></div>
+
+  <div id="tip"></div>
+
+  <hr class="div">
+
+  <div class="slabel">Índice de decidibilidade por bloco</div>
+  <h2>Três centros de <em>gravidade</em></h2>
+  <p class="desc">A distribuição do contencioso revela que o conflito constitucional não se concentra nos direitos — concentra-se nas competências. Quem pode julgar, quem pode legislar, quem pode tributar.</p>
+
+  <div class="barra-wrap">
+    <div class="barra-titulo">Decisões por bloco constitucional</div>
+    <div class="barras" id="barras"></div>
+  </div>
+
+  <hr class="div">
+
+  <div class="slabel">Distribuição por categoria</div>
+  <h2>Como o STF <em>decide</em></h2>
+  <p class="desc">Cada decisão foi classificada pelo tipo de provocação que a originou — revelando o perfil do contencioso constitucional brasileiro.</p>
+  <div class="barras" id="barras-cat"></div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-l">
+      ICONS · Instituto Constituição Aberta<br>
+      PROJUS · Projeto Justiça Aberta · Coord. Damares Medina<br>
+      Fonte: Constituição Federal Comentada pelas Decisões do STF · 1988–2026
+    </div>
+    <div class="footer-r">
+      Cartografia do<br>Contencioso Constitucional<br>v1.0 · 2026
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── DADOS ──────────────────────────────────────────────────────
+const BLOCOS = [
+  { id:'T1', titulo:'Princípios Fundamentais',          inicio:1,   fim:4,   cor:'#3d6e50' },
+  { id:'T2', titulo:'Direitos e Garantias Fundamentais',inicio:5,   fim:17,  cor:'#b85a34' },
+  { id:'T3', titulo:'Organização do Estado',            inicio:18,  fim:43,  cor:'#3d5f8f' },
+  { id:'T4', titulo:'Organização dos Poderes',          inicio:44,  fim:135, cor:'#6b4e96' },
+  { id:'T5', titulo:'Defesa do Estado',                 inicio:136, fim:144, cor:'#8b3a3a' },
+  { id:'T6', titulo:'Tributação e Orçamento',           inicio:145, fim:169, cor:'#8b7220' },
+  { id:'T7', titulo:'Ordem Econômica',                  inicio:170, fim:192, cor:'#3a6e80' },
+  { id:'T8', titulo:'Ordem Social',                     inicio:193, fim:232, cor:'#7a6235' },
+  { id:'T9', titulo:'Disposições Gerais',               inicio:233, fim:250, cor:'#505050' },
+];
+
+const ARTIGOS = [{"art":1,"total":207,"bloco":"T1","titulo":"Princípios Fundamentais","cats":{"julgado_correlato":7,"repercussao_geral":35,"sem_categoria":160,"sumula":5},"tipos":{"ARE":12,"RE":92,"ADPF":1,"ADI":62,"MS":1,"ACO":6,"Rcl":2,"HC":1}},{"art":2,"total":222,"bloco":"T1","titulo":"Princípios Fundamentais","cats":{"sem_categoria":140,"repercussao_geral":42,"julgado_correlato":36,"sumula":4},"tipos":{"ADI":93,"RE":67,"MS":13,"ARE":5,"Rcl":2,"MI":9,"HC":2}},{"art":3,"total":47,"bloco":"T1","titulo":"Princípios Fundamentais","cats":{"sem_categoria":28,"repercussao_geral":6,"sumula":13},"tipos":{"ADPF":3,"ADI":21,"ACO":1,"ARE":1,"RE":13}},{"art":4,"total":349,"bloco":"T1","titulo":"Princípios Fundamentais","cats":{"sem_categoria":297,"repercussao_geral":47,"sumula_vinculante":3,"julgado_correlato":2},"tipos":{"ADI":106,"ARE":29,"RE":100,"MS":30,"ACO":2,"Rcl":19,"HC":2,"ADPF":2,"MI":4}},{"art":5,"total":369,"bloco":"T2","titulo":"Direitos e Garantias Fundamentais","cats":{"sem_categoria":369},"tipos":{"ARE":26,"ADI":87,"RE":96,"ADPF":32,"MS":28,"HC":41,"Rcl":8,"RHC":6,"MI":2}},{"art":6,"total":465,"bloco":"T2","titulo":"Direitos e Garantias Fundamentais","cats":{"sem_categoria":460,"sumula_vinculante":1,"repercussao_geral":4},"tipos":{"HC":209,"RE":41,"RHC":20,"ADI":24,"ADPF":2,"ARE":7,"MS":51,"Rcl":3,"MI":29,"ACO":2}},{"art":7,"total":147,"bloco":"T2","titulo":"Direitos e Garantias Fundamentais","cats":{"sem_categoria":90,"julgado_correlato":29,"repercussao_geral":20,"sumula":7,"sumula_vinculante":1},"tipos":{"ADI":41,"RE":54,"ARE":10,"ADPF":9,"MS":1,"MI":5}},{"art":8,"total":7,"bloco":"T2","titulo":"Direitos e Garantias Fundamentais","cats":{"sem_categoria":3,"sumula":4},"tipos":{"ADI":4,"ADPF":1,"ARE":1}},{"art":9,"total":12,"bloco":"T2","titulo":"Direitos e Garantias Fundamentais","cats":{"sumula":1,"julgado_correlato":9,"repercussao_geral":1,"sem_categoria":1},"tipos":{"RE":2,"ARE":1,"MI":1,"ADI":5,"ADPF":1}},{"art":10,"total":14,"bloco":"T2","titulo":"Direitos e Garantias Fundamentais","cats":{"sem_categoria":8,"julgado_correlato":3,"sumula":1,"repercussao_geral":2},"tipos":{"ADI":5,"MI":1,"RE":5,"MS":1}},{"art":11,"total":9,"bloco":"T2","titulo":"Direitos e Garantias Fundamentais","cats":{"sem_categoria":9},"tipos":{"ADI":7,"RE":2}},{"art":12,"total":14,"bloco":"T2","titulo":"Direitos e Garantias Fundamentais","cats":{"sem_categoria":9,"julgado_correlato":5},"tipos":{"HC":4,"RE":2,"ACO":3,"Rcl":1}},{"art":13,"total":6,"bloco":"T2","titulo":"Direitos e Garantias Fundamentais","cats":{"sem_categoria":5,"julgado_correlato":1},"tipos":{"ADPF":1,"HC":1,"ADI":4}},{"art":14,"total":57,"bloco":"T2","titulo":"Direitos e Garantias Fundamentais","cats":{"sem_categoria":30,"repercussao_geral":5,"julgado_correlato":21,"sumula_vinculante":1},"tipos":{"ADI":23,"RE":20,"ADPF":1,"MS":3,"ACO":1}},{"art":15,"total":4,"bloco":"T2","titulo":"Direitos e Garantias Fundamentais","cats":{"sem_categoria":4},"tipos":{"ADI":1,"RE":1}},{"art":16,"total":11,"bloco":"T2","titulo":"Direitos e Garantias Fundamentais","cats":{"sem_categoria":10,"repercussao_geral":1},"tipos":{"ADI":10,"RE":1}},{"art":17,"total":39,"bloco":"T2","titulo":"Direitos e Garantias Fundamentais","cats":{"sem_categoria":25,"julgado_correlato":14},"tipos":{"ADI":20,"MS":2,"ACO":1,"RE":14}},{"art":18,"total":681,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":665,"julgado_correlato":16},"tipos":{"Rcl":12,"RE":142,"MS":49,"ACO":7,"HC":204,"ADI":60,"ADPF":6,"ARE":26,"RHC":20,"MI":3}},{"art":19,"total":72,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":65,"julgado_correlato":5,"repercussao_geral":2},"tipos":{"ADI":19,"RE":40,"ARE":8,"MS":1,"ADPF":2}},{"art":20,"total":27,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":16,"sumula":3,"julgado_correlato":5,"repercussao_geral":3},"tipos":{"ADI":4,"RE":11,"ACO":1,"MS":2,"ARE":1}},{"art":21,"total":42,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":33,"julgado_correlato":7,"sumula_vinculante":2},"tipos":{"ADI":28,"RE":5,"ACO":1,"ADPF":3,"ARE":1,"MS":2}},{"art":22,"total":216,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":136,"julgado_correlato":46,"repercussao_geral":34},"tipos":{"ADI":177,"ADPF":9,"ARE":7,"HC":1,"RE":17,"ACO":2,"Rcl":1}},{"art":23,"total":25,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":23,"repercussao_geral":1,"julgado_correlato":1},"tipos":{"ADI":15,"ACO":4,"RE":2,"Rcl":1,"ARE":1,"ADPF":1,"MI":1}},{"art":24,"total":110,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":36,"julgado_correlato":50,"repercussao_geral":24},"tipos":{"ADI":91,"RE":11,"ARE":3,"ACO":2,"MI":1}},{"art":25,"total":230,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":171,"julgado_correlato":12,"repercussao_geral":47},"tipos":{"ADI":58,"ADPF":3,"RE":94,"MS":15,"ARE":15,"Rcl":10}},{"art":26,"total":2,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":2},"tipos":{"ADI":1,"ADPF":1}},{"art":27,"total":24,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":22,"julgado_correlato":2},"tipos":{"ADI":8,"HC":1,"RE":5,"RHC":2}},{"art":28,"total":3,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":3},"tipos":{"ADI":2,"ADPF":1}},{"art":29,"total":35,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":19,"julgado_correlato":15,"repercussao_geral":1},"tipos":{"ADI":11,"ARE":1,"RE":10,"HC":5,"Rcl":1,"RHC":1,"MS":1}},{"art":30,"total":39,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":22,"repercussao_geral":5,"julgado_correlato":12},"tipos":{"RE":14,"ADI":12,"ARE":7}},{"art":31,"total":11,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":9,"repercussao_geral":1,"julgado_correlato":1},"tipos":{"ADI":6,"RE":3,"Rcl":1,"MS":1}},{"art":32,"total":27,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":25,"julgado_correlato":2},"tipos":{"ADI":11,"MS":7,"RE":3,"Rcl":1}},{"art":33,"total":7,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":7},"tipos":{"RE":5,"ADI":1}},{"art":34,"total":47,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":38,"julgado_correlato":8,"repercussao_geral":1},"tipos":{"ACO":1,"MS":3,"RE":13,"ADI":17}},{"art":35,"total":11,"bloco":"T3","titulo":"Organização do Estado","cats":{"sumula":4,"sem_categoria":7},"tipos":{"ADI":5,"Rcl":1}},{"art":36,"total":34,"bloco":"T3","titulo":"Organização do Estado","cats":{"julgado_correlato":3,"sem_categoria":25,"sumula":2,"repercussao_geral":4},"tipos":{"Rcl":1,"ADI":13,"RE":6,"MS":6,"ACO":1,"ARE":1}},{"art":37,"total":21,"bloco":"T3","titulo":"Organização do Estado","cats":{"sumula_vinculante":21},"tipos":{"ADI":13,"ADPF":4}},{"art":38,"total":8,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":5,"julgado_correlato":3},"tipos":{"ADI":7,"RE":1}},{"art":39,"total":51,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":22,"repercussao_geral":18,"sumula":3,"julgado_correlato":8},"tipos":{"ADI":16,"RE":15,"MS":1,"ARE":3}},{"art":40,"total":9,"bloco":"T3","titulo":"Organização do Estado","cats":{"sumula":4,"sem_categoria":3,"repercussao_geral":2},"tipos":{"ADI":4,"ADPF":1,"ARE":1,"RE":1,"ACO":1}},{"art":41,"total":42,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":33,"julgado_correlato":9},"tipos":{"ADI":9,"RE":10,"MS":8}},{"art":42,"total":5,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":4,"repercussao_geral":1},"tipos":{"RE":2,"ACO":1,"ARE":1}},{"art":43,"total":40,"bloco":"T3","titulo":"Organização do Estado","cats":{"sem_categoria":23,"repercussao_geral":17},"tipos":{"ADI":7,"RE":12,"ARE":2,"Rcl":1,"ADPF":2,"MI":14}},{"art":44,"total":1,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"julgado_correlato":1},"tipos":{"MS":1}},{"art":45,"total":8,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":7,"julgado_correlato":1},"tipos":{"ADI":5,"MS":2,"RE":1}},{"art":46,"total":3,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":1,"julgado_correlato":2},"tipos":{"ADI":1,"RE":2}},{"art":47,"total":104,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":99,"sumula":1,"repercussao_geral":1,"julgado_correlato":3},"tipos":{"ADI":16,"RE":61,"MI":2,"Rcl":2,"MS":2,"ARE":2}},{"art":48,"total":5,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":1,"julgado_correlato":4},"tipos":{"ADI":4,"ADPF":1}},{"art":49,"total":14,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":1,"julgado_correlato":13},"tipos":{"ADI":9,"ADPF":1,"ACO":1}},{"art":50,"total":5,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":4,"julgado_correlato":1},"tipos":{"ADI":4}},{"art":51,"total":6,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"julgado_correlato":3,"sem_categoria":3},"tipos":{"MS":1,"ADI":4,"ADPF":1}},{"art":52,"total":17,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":11,"julgado_correlato":6},"tipos":{"ADPF":1,"MS":1,"ADI":10,"Rcl":1,"RE":2}},{"art":53,"total":47,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sumula":2,"sem_categoria":38,"julgado_correlato":7},"tipos":{"RE":8,"ADPF":5,"Rcl":1,"HC":3,"ADI":1}},{"art":54,"total":2,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"julgado_correlato":1,"sem_categoria":1},"tipos":{"MS":1,"ADI":1}},{"art":55,"total":15,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":14,"julgado_correlato":1},"tipos":{"ADI":2,"MS":9}},{"art":56,"total":10,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":6,"julgado_correlato":2,"sumula":2},"tipos":{"MS":2,"ADI":1,"RE":4}},{"art":57,"total":12,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"julgado_correlato":12},"tipos":{"ADPF":3,"ADI":6,"MS":2}},{"art":58,"total":10,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":9,"julgado_correlato":1},"tipos":{"ADPF":1,"MS":1,"RE":6}},{"art":59,"total":17,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":16,"julgado_correlato":1},"tipos":{"ADI":1,"ADPF":1,"MS":2,"HC":1,"ARE":2,"RE":5,"MI":1}},{"art":60,"total":21,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":3,"julgado_correlato":18},"tipos":{"ADI":15,"MS":3,"ADPF":1,"HC":1}},{"art":61,"total":6,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":2,"repercussao_geral":2,"julgado_correlato":2},"tipos":{"ADI":2,"RE":3,"ADPF":1}},{"art":62,"total":39,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":25,"repercussao_geral":1,"julgado_correlato":13},"tipos":{"ADI":27,"RE":6,"ADPF":4,"MS":1}},{"art":63,"total":6,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":4,"julgado_correlato":2},"tipos":{"ADI":5,"RE":1}},{"art":64,"total":2,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":2},"tipos":{"ADI":2}},{"art":65,"total":4,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":4},"tipos":{"ADI":4}},{"art":66,"total":8,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":2,"julgado_correlato":5,"repercussao_geral":1},"tipos":{"ADPF":2,"ADI":1,"Rcl":2,"MS":2,"RE":1}},{"art":67,"total":4,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":3,"julgado_correlato":1},"tipos":{"ADI":3,"MS":1}},{"art":68,"total":7,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":6,"julgado_correlato":1},"tipos":{"ADI":4,"HC":1,"ARE":1,"RE":1}},{"art":69,"total":3,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":3},"tipos":{"ADI":3}},{"art":70,"total":10,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":9,"repercussao_geral":1},"tipos":{"ADI":4,"MS":4}},{"art":71,"total":81,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sumula":7,"sem_categoria":68,"repercussao_geral":3,"julgado_correlato":3},"tipos":{"ADI":15,"MS":50,"ADPF":3,"RE":6,"Rcl":1,"ACO":2}},{"art":72,"total":1,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"repercussao_geral":1},"tipos":{"RE":1}},{"art":73,"total":25,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":12,"julgado_correlato":13},"tipos":{"ADI":22,"MS":1,"RE":1}},{"art":74,"total":4,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"julgado_correlato":2,"sem_categoria":2},"tipos":{"ADI":1,"RE":2}},{"art":75,"total":36,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":30,"repercussao_geral":2,"sumula":4},"tipos":{"ADI":29,"ADPF":1,"RE":3,"ARE":1}},{"art":76,"total":1,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":1},"tipos":{"ADI":1}},{"art":77,"total":4,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":3,"repercussao_geral":1},"tipos":{"ADI":1,"RE":2}},{"art":78,"total":0,"bloco":"T4","titulo":"Organização dos Poderes","cats":{},"tipos":{}},{"art":79,"total":1,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":1},"tipos":{"ADI":1}},{"art":80,"total":1,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":1},"tipos":{"ADPF":1}},{"art":81,"total":7,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":7},"tipos":{"ADI":5,"MI":2}},{"art":82,"total":6,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":6},"tipos":{"ADI":1,"ARE":1,"RE":2,"ACO":1}},{"art":83,"total":2,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":2},"tipos":{"ADI":2}},{"art":84,"total":49,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":30,"julgado_correlato":18,"sumula":1},"tipos":{"HC":7,"ADI":22,"RE":5,"ARE":2,"MS":4,"Rcl":1,"RHC":1}},{"art":85,"total":30,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":23,"julgado_correlato":7},"tipos":{"ADPF":1,"ADI":15,"MS":2,"RE":4,"HC":4}},{"art":86,"total":139,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":133,"julgado_correlato":5,"repercussao_geral":1},"tipos":{"ADPF":14,"RE":27,"ARE":5,"MS":11,"Rcl":2,"ADI":37,"RHC":1,"HC":2}},{"art":87,"total":14,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"julgado_correlato":3,"sem_categoria":10,"repercussao_geral":1},"tipos":{"ADI":4,"HC":1,"MS":2,"ADPF":1,"RE":2}},{"art":88,"total":0,"bloco":"T4","titulo":"Organização dos Poderes","cats":{},"tipos":{}},{"art":89,"total":2,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":2},"tipos":{"ADI":1,"ARE":1}},{"art":90,"total":0,"bloco":"T4","titulo":"Organização dos Poderes","cats":{},"tipos":{}},{"art":91,"total":2,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":1,"julgado_correlato":1},"tipos":{"RE":1,"MS":1}},{"art":92,"total":6,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":2,"repercussao_geral":3,"julgado_correlato":1},"tipos":{"ADI":3,"HC":1,"ARE":1}},{"art":93,"total":16,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":16},"tipos":{"ADI":12,"MS":2,"ARE":1}},{"art":94,"total":22,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":22},"tipos":{"ADI":10,"MS":9,"RE":1,"Rcl":1}},{"art":95,"total":14,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":6,"repercussao_geral":2,"julgado_correlato":6},"tipos":{"RE":2,"ADI":7,"MS":4}},{"art":96,"total":23,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":23},"tipos":{"ADI":12,"MS":4,"HC":1,"Rcl":1,"RE":2}},{"art":97,"total":33,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":31,"repercussao_geral":2},"tipos":{"ADPF":1,"ARE":4,"Rcl":6,"RE":11,"HC":1,"ADI":4}},{"art":98,"total":20,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sumula_vinculante":2,"sem_categoria":12,"repercussao_geral":6},"tipos":{"ADI":9,"HC":3,"RE":4,"MS":1,"ARE":1}},{"art":99,"total":11,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":11},"tipos":{"ADI":11}},{"art":100,"total":32,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sumula":8,"sem_categoria":21,"julgado_correlato":1,"repercussao_geral":2},"tipos":{"ADI":9,"ADPF":1,"RE":13}},{"art":101,"total":0,"bloco":"T4","titulo":"Organização dos Poderes","cats":{},"tipos":{}},{"art":102,"total":759,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":671,"julgado_correlato":7,"repercussao_geral":6,"sumula":75},"tipos":{"MS":62,"Rcl":94,"HC":78,"ADI":122,"RE":82,"ADPF":18,"RHC":6,"ARE":5,"ACO":23,"MI":7}},{"art":103,"total":96,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":45,"julgado_correlato":51},"tipos":{"ADI":51,"ADPF":6,"ACO":1,"Rcl":7,"RE":1,"MI":1,"MS":24}},{"art":104,"total":117,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":113,"julgado_correlato":2,"repercussao_geral":2},"tipos":{"ADI":26,"RE":21,"RHC":2,"HC":30,"Rcl":4,"MS":4,"ARE":4,"ADPF":4,"MI":2,"ACO":1}},{"art":105,"total":71,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"repercussao_geral":1,"sem_categoria":63,"julgado_correlato":7},"tipos":{"RE":13,"HC":24,"ADI":3,"MS":2,"Rcl":4,"RHC":1,"MI":4,"ARE":1}},{"art":106,"total":0,"bloco":"T4","titulo":"Organização dos Poderes","cats":{},"tipos":{}},{"art":107,"total":5,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":5},"tipos":{"MS":5}},{"art":108,"total":11,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":7,"repercussao_geral":2,"julgado_correlato":2},"tipos":{"HC":2,"RHC":1,"RE":5}},{"art":109,"total":109,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":104,"repercussao_geral":3,"julgado_correlato":1,"sumula":1},"tipos":{"ADI":2,"RE":46,"RHC":8,"MI":1,"ARE":2,"Rcl":4,"ACO":3,"HC":25,"MS":1}},{"art":110,"total":0,"bloco":"T4","titulo":"Organização dos Poderes","cats":{},"tipos":{}},{"art":111,"total":3,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":3},"tipos":{"RE":1,"MS":1}},{"art":112,"total":0,"bloco":"T4","titulo":"Organização dos Poderes","cats":{},"tipos":{}},{"art":113,"total":7,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sumula":2,"julgado_correlato":1,"sem_categoria":4},"tipos":{"ADI":5,"Rcl":1}},{"art":114,"total":43,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":27,"sumula":2,"repercussao_geral":8,"sumula_vinculante":1,"julgado_correlato":5},"tipos":{"ADI":4,"ARE":3,"RE":15,"Rcl":6}},{"art":115,"total":6,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":4,"julgado_correlato":2},"tipos":{"Rcl":1,"MS":4,"ADI":1}},{"art":116,"total":0,"bloco":"T4","titulo":"Organização dos Poderes","cats":{},"tipos":{}},{"art":117,"total":0,"bloco":"T4","titulo":"Organização dos Poderes","cats":{},"tipos":{}},{"art":118,"total":0,"bloco":"T4","titulo":"Organização dos Poderes","cats":{},"tipos":{}},{"art":119,"total":0,"bloco":"T4","titulo":"Organização dos Poderes","cats":{},"tipos":{}},{"art":120,"total":3,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":3},"tipos":{"MS":1}},{"art":121,"total":16,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":12,"julgado_correlato":4},"tipos":{"ADI":2,"MS":3,"RE":2,"HC":2}},{"art":122,"total":1,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"julgado_correlato":1},"tipos":{"HC":1}},{"art":123,"total":3,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"julgado_correlato":3},"tipos":{"MS":3}},{"art":124,"total":18,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":18},"tipos":{"ARE":1,"RHC":2,"HC":10,"RE":2}},{"art":125,"total":49,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":36,"repercussao_geral":11,"julgado_correlato":1,"sumula":1},"tipos":{"ADI":14,"RE":13,"Rcl":1,"MS":1,"HC":4,"ACO":1,"ARE":3}},{"art":126,"total":2,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":1,"julgado_correlato":1},"tipos":{"ADI":1,"MS":1}},{"art":127,"total":34,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":33,"repercussao_geral":1},"tipos":{"ADI":11,"ARE":3,"RE":6,"HC":7,"ADPF":1,"Rcl":1,"ACO":1,"MS":2}},{"art":128,"total":46,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"julgado_correlato":13,"sem_categoria":33},"tipos":{"MS":9,"ADI":26,"Rcl":2,"HC":3,"ACO":1,"RE":3,"ADPF":1,"ARE":1}},{"art":129,"total":87,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":73,"julgado_correlato":5,"sumula":4,"repercussao_geral":5},"tipos":{"ADI":16,"RE":27,"HC":13,"RHC":3,"ARE":1,"MS":13,"ACO":1,"Rcl":2,"ADPF":1}},{"art":130,"total":22,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":22},"tipos":{"ADI":9,"Rcl":1,"MS":8,"ACO":2}},{"art":131,"total":14,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sumula":3,"repercussao_geral":1,"sem_categoria":10},"tipos":{"ADI":3,"RE":4,"Rcl":1,"MS":2}},{"art":132,"total":17,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":15,"repercussao_geral":2},"tipos":{"ADI":12,"RE":3,"ARE":1}},{"art":133,"total":30,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":28,"repercussao_geral":2},"tipos":{"ADI":4,"RE":4,"HC":7,"RHC":5,"Rcl":3,"MS":2}},{"art":134,"total":7,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":7},"tipos":{"ADI":5}},{"art":135,"total":15,"bloco":"T4","titulo":"Organização dos Poderes","cats":{"sem_categoria":7,"julgado_correlato":1,"repercussao_geral":7},"tipos":{"ADI":9,"RE":4,"ARE":1}},{"art":136,"total":0,"bloco":"T5","titulo":"Defesa do Estado","cats":{},"tipos":{}},{"art":137,"total":0,"bloco":"T5","titulo":"Defesa do Estado","cats":{},"tipos":{}},{"art":138,"total":6,"bloco":"T5","titulo":"Defesa do Estado","cats":{"sem_categoria":4,"julgado_correlato":2},"tipos":{"ADI":5,"ACO":1}},{"art":139,"total":0,"bloco":"T5","titulo":"Defesa do Estado","cats":{},"tipos":{}},{"art":140,"total":0,"bloco":"T5","titulo":"Defesa do Estado","cats":{},"tipos":{}},{"art":141,"total":0,"bloco":"T5","titulo":"Defesa do Estado","cats":{},"tipos":{}},{"art":142,"total":24,"bloco":"T5","titulo":"Defesa do Estado","cats":{"sem_categoria":18,"julgado_correlato":6},"tipos":{"RE":10,"HC":3,"ADI":1,"ARE":1,"MS":1,"Rcl":1,"ACO":1}},{"art":143,"total":5,"bloco":"T5","titulo":"Defesa do Estado","cats":{"sem_categoria":5},"tipos":{"ADI":1,"HC":2,"RE":1}},{"art":144,"total":38,"bloco":"T5","titulo":"Defesa do Estado","cats":{"sem_categoria":13,"repercussao_geral":7,"julgado_correlato":13,"sumula":5},"tipos":{"ADPF":2,"ADI":16,"ARE":1,"RE":7,"ACO":1,"HC":7,"MI":1,"RHC":1}},{"art":145,"total":74,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":70,"repercussao_geral":4},"tipos":{"ADI":28,"ARE":4,"RE":28,"HC":1}},{"art":146,"total":36,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":18,"repercussao_geral":12,"julgado_correlato":6},"tipos":{"ADI":14,"RE":17}},{"art":147,"total":0,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{},"tipos":{}},{"art":148,"total":5,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":5},"tipos":{"ADI":3,"RE":2}},{"art":149,"total":30,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":20,"repercussao_geral":10},"tipos":{"ADI":4,"RE":20,"ARE":3,"ACO":1,"MS":1}},{"art":150,"total":30,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":17,"julgado_correlato":9,"repercussao_geral":4},"tipos":{"ADI":9,"RE":14,"ADPF":1,"ARE":3}},{"art":151,"total":13,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":12,"sumula":1},"tipos":{"ADI":2,"RE":8}},{"art":152,"total":10,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":9,"repercussao_geral":1},"tipos":{"ADI":6,"RE":3,"HC":1}},{"art":153,"total":47,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":20,"julgado_correlato":9,"repercussao_geral":14,"sumula":4},"tipos":{"RE":30,"ADI":6,"ARE":2,"HC":1}},{"art":154,"total":5,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"repercussao_geral":2,"sem_categoria":3},"tipos":{"RE":2}},{"art":155,"total":108,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sumula":2,"repercussao_geral":24,"sumula_vinculante":10,"sem_categoria":68,"julgado_correlato":4},"tipos":{"RE":60,"ADI":22,"ARE":1,"ACO":1}},{"art":156,"total":27,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sumula":2,"repercussao_geral":7,"sem_categoria":16,"julgado_correlato":2},"tipos":{"ARE":2,"RE":14,"Rcl":1}},{"art":157,"total":1,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":1},"tipos":{"RE":1}},{"art":158,"total":0,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{},"tipos":{}},{"art":159,"total":0,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{},"tipos":{}},{"art":160,"total":5,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":2,"julgado_correlato":2,"repercussao_geral":1},"tipos":{"ADI":2,"MS":1,"ACO":1,"RE":1}},{"art":161,"total":5,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":5},"tipos":{"ADI":1,"MS":4}},{"art":162,"total":0,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{},"tipos":{}},{"art":163,"total":3,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":3},"tipos":{"ADI":3}},{"art":164,"total":3,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":2,"julgado_correlato":1},"tipos":{"ADI":2,"Rcl":1}},{"art":165,"total":5,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"repercussao_geral":5},"tipos":{"ARE":1,"ADI":4}},{"art":166,"total":5,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":5},"tipos":{"ADI":4,"ADPF":1}},{"art":167,"total":14,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"julgado_correlato":3,"sem_categoria":11},"tipos":{"ADI":12,"ACO":1}},{"art":168,"total":8,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":3,"repercussao_geral":3,"julgado_correlato":2},"tipos":{"ADPF":1,"ADI":2,"RE":4,"ARE":1}},{"art":169,"total":10,"bloco":"T6","titulo":"Tributação e Orçamento","cats":{"sem_categoria":3,"repercussao_geral":7},"tipos":{"RE":2,"ADI":5,"ADPF":3}},{"art":170,"total":9,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sem_categoria":9},"tipos":{"ADI":7,"ADPF":2}},{"art":171,"total":67,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sem_categoria":48,"repercussao_geral":16,"julgado_correlato":3},"tipos":{"ADI":29,"ADPF":3,"ARE":8,"RE":14,"Rcl":2,"HC":1}},{"art":172,"total":0,"bloco":"T7","titulo":"Ordem Econômica","cats":{},"tipos":{}},{"art":173,"total":29,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sem_categoria":18,"julgado_correlato":1,"sumula":6,"repercussao_geral":4},"tipos":{"ADI":8,"RE":11,"MS":2,"ACO":1}},{"art":174,"total":5,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sem_categoria":2,"repercussao_geral":3},"tipos":{"ADI":3,"ARE":2}},{"art":175,"total":27,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sem_categoria":15,"repercussao_geral":4,"julgado_correlato":8},"tipos":{"ADI":17,"ADPF":1,"RE":6,"MS":2}},{"art":176,"total":7,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sem_categoria":5,"julgado_correlato":2},"tipos":{"ADI":2,"RE":4,"MI":1}},{"art":177,"total":4,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sem_categoria":1,"julgado_correlato":3},"tipos":{"ADI":2,"RE":2}},{"art":178,"total":5,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sem_categoria":5},"tipos":{"RE":4,"ARE":1}},{"art":179,"total":5,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sem_categoria":3,"repercussao_geral":1,"julgado_correlato":1},"tipos":{"ADI":3,"RE":1,"MI":1}},{"art":180,"total":0,"bloco":"T7","titulo":"Ordem Econômica","cats":{},"tipos":{}},{"art":181,"total":0,"bloco":"T7","titulo":"Ordem Econômica","cats":{},"tipos":{}},{"art":182,"total":12,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sem_categoria":8,"julgado_correlato":2,"sumula":2},"tipos":{"ARE":2,"RE":6,"ADI":2}},{"art":183,"total":3,"bloco":"T7","titulo":"Ordem Econômica","cats":{"repercussao_geral":1,"julgado_correlato":2},"tipos":{"RE":3}},{"art":184,"total":18,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sumula":1,"sem_categoria":14,"julgado_correlato":3},"tipos":{"MS":10,"RE":3,"Rcl":2,"ADI":1}},{"art":185,"total":13,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sem_categoria":13},"tipos":{"MS":12,"ADI":1}},{"art":186,"total":2,"bloco":"T7","titulo":"Ordem Econômica","cats":{"julgado_correlato":2},"tipos":{"MS":2}},{"art":187,"total":24,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sem_categoria":24},"tipos":{"ADI":4,"MS":15,"HC":4,"ADPF":1}},{"art":188,"total":1,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sem_categoria":1},"tipos":{"ADI":1}},{"art":189,"total":0,"bloco":"T7","titulo":"Ordem Econômica","cats":{},"tipos":{}},{"art":190,"total":0,"bloco":"T7","titulo":"Ordem Econômica","cats":{},"tipos":{}},{"art":191,"total":1,"bloco":"T7","titulo":"Ordem Econômica","cats":{"julgado_correlato":1},"tipos":{}},{"art":192,"total":4,"bloco":"T7","titulo":"Ordem Econômica","cats":{"sem_categoria":3,"julgado_correlato":1},"tipos":{"ADI":2}},{"art":193,"total":1,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":1},"tipos":{"ADI":1}},{"art":194,"total":7,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":6,"repercussao_geral":1},"tipos":{"ADI":2,"RE":3}},{"art":195,"total":117,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":73,"repercussao_geral":35,"julgado_correlato":9},"tipos":{"ADI":21,"RE":72,"ARE":6}},{"art":196,"total":39,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":18,"repercussao_geral":21},"tipos":{"ADI":9,"ADPF":6,"RE":10,"ARE":1,"ACO":3,"Rcl":3,"MS":1,"HC":1}},{"art":197,"total":7,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":5,"repercussao_geral":2},"tipos":{"ADI":3,"RE":2,"ARE":1}},{"art":198,"total":10,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":7,"julgado_correlato":3},"tipos":{"ADI":2,"RE":3}},{"art":199,"total":7,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":7},"tipos":{"ADI":4,"RE":2,"ADPF":1}},{"art":200,"total":1,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":1},"tipos":{"ADI":1}},{"art":201,"total":55,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":36,"repercussao_geral":14,"julgado_correlato":4,"sumula":1},"tipos":{"ADI":3,"RE":39,"ACO":1,"MS":2,"ARE":2}},{"art":202,"total":42,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":34,"julgado_correlato":6,"repercussao_geral":2},"tipos":{"ADI":27,"ACO":1,"RE":7,"ADPF":3,"ARE":1}},{"art":203,"total":7,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":5,"julgado_correlato":1,"repercussao_geral":1},"tipos":{"RE":6,"ARE":1}},{"art":204,"total":2,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":2},"tipos":{"ADPF":1,"ADI":1}},{"art":205,"total":4,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":4},"tipos":{"ADI":3,"ADPF":1}},{"art":206,"total":22,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":21,"julgado_correlato":1},"tipos":{"ADI":7,"RE":3,"ADPF":9,"Rcl":1}},{"art":207,"total":21,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":21},"tipos":{"ADI":11,"ADPF":2,"MS":1,"RE":4}},{"art":208,"total":10,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":8,"repercussao_geral":2},"tipos":{"RE":6,"ADI":3,"ADPF":1}},{"art":209,"total":3,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":2,"julgado_correlato":1},"tipos":{"ADPF":1,"ADI":1}},{"art":210,"total":1,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":1},"tipos":{"ADI":1}},{"art":211,"total":5,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":3,"julgado_correlato":2},"tipos":{"ADPF":1,"ADI":3,"RE":1}},{"art":212,"total":7,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":5,"sumula":2},"tipos":{"ADI":4,"ACO":2}},{"art":213,"total":1,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":1},"tipos":{"ADI":1}},{"art":214,"total":0,"bloco":"T8","titulo":"Ordem Social","cats":{},"tipos":{}},{"art":215,"total":0,"bloco":"T8","titulo":"Ordem Social","cats":{},"tipos":{}},{"art":216,"total":7,"bloco":"T8","titulo":"Ordem Social","cats":{"julgado_correlato":4,"sem_categoria":3},"tipos":{"ADI":2,"RE":2,"ARE":2,"ACO":1}},{"art":217,"total":0,"bloco":"T8","titulo":"Ordem Social","cats":{},"tipos":{}},{"art":218,"total":3,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":3},"tipos":{"ADI":2}},{"art":219,"total":0,"bloco":"T8","titulo":"Ordem Social","cats":{},"tipos":{}},{"art":220,"total":22,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":14,"julgado_correlato":8},"tipos":{"ADI":9,"ADPF":4,"RE":6,"Rcl":1}},{"art":221,"total":2,"bloco":"T8","titulo":"Ordem Social","cats":{"julgado_correlato":1,"repercussao_geral":1},"tipos":{"RE":2}},{"art":222,"total":0,"bloco":"T8","titulo":"Ordem Social","cats":{},"tipos":{}},{"art":223,"total":2,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":2},"tipos":{"ADPF":1,"ADI":1}},{"art":224,"total":2,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":2},"tipos":{"ADI":2}},{"art":225,"total":19,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":19},"tipos":{"ADI":13,"ADPF":6}},{"art":226,"total":22,"bloco":"T8","titulo":"Ordem Social","cats":{"repercussao_geral":8,"sumula":4,"sem_categoria":10},"tipos":{"RE":11,"MS":2,"ADI":3,"ARE":2,"HC":3}},{"art":227,"total":44,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":34,"repercussao_geral":7,"julgado_correlato":3},"tipos":{"ADI":12,"ADPF":2,"RE":12,"ARE":1,"MS":1,"HC":16}},{"art":228,"total":0,"bloco":"T8","titulo":"Ordem Social","cats":{},"tipos":{}},{"art":229,"total":0,"bloco":"T8","titulo":"Ordem Social","cats":{},"tipos":{}},{"art":230,"total":9,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":9},"tipos":{"ADI":4,"RE":1,"MS":1,"HC":2,"Rcl":1}},{"art":231,"total":19,"bloco":"T8","titulo":"Ordem Social","cats":{"sem_categoria":15,"julgado_correlato":4},"tipos":{"ADPF":1,"MS":2,"HC":2,"RE":2,"MI":2,"ACO":2}},{"art":232,"total":14,"bloco":"T8","titulo":"Ordem Social","cats":{"julgado_correlato":4,"repercussao_geral":9,"sem_categoria":1},"tipos":{"RE":4,"ARE":4,"ADI":5}},{"art":233,"total":0,"bloco":"T9","titulo":"Disposições Gerais","cats":{},"tipos":{}},{"art":234,"total":0,"bloco":"T9","titulo":"Disposições Gerais","cats":{},"tipos":{}},{"art":235,"total":8,"bloco":"T9","titulo":"Disposições Gerais","cats":{"sem_categoria":5,"julgado_correlato":3},"tipos":{"ADI":3,"MS":1,"RE":2}},{"art":236,"total":8,"bloco":"T9","titulo":"Disposições Gerais","cats":{"sem_categoria":8},"tipos":{"ADI":8}},{"art":237,"total":4,"bloco":"T9","titulo":"Disposições Gerais","cats":{"sem_categoria":4},"tipos":{"ADPF":1,"RE":2}},{"art":238,"total":1,"bloco":"T9","titulo":"Disposições Gerais","cats":{"sem_categoria":1},"tipos":{"ADI":1}},{"art":239,"total":5,"bloco":"T9","titulo":"Disposições Gerais","cats":{"sem_categoria":5},"tipos":{"ADI":1,"RE":3,"ACO":1}},{"art":240,"total":4,"bloco":"T9","titulo":"Disposições Gerais","cats":{"sem_categoria":4},"tipos":{"ADI":1,"ACO":1,"RE":2}},{"art":241,"total":1,"bloco":"T9","titulo":"Disposições Gerais","cats":{"sem_categoria":1},"tipos":{"ACO":1}},{"art":242,"total":1,"bloco":"T9","titulo":"Disposições Gerais","cats":{"julgado_correlato":1},"tipos":{}},{"art":243,"total":3,"bloco":"T9","titulo":"Disposições Gerais","cats":{"repercussao_geral":1,"sem_categoria":1,"julgado_correlato":1},"tipos":{"RE":1,"ACO":1}},{"art":244,"total":2,"bloco":"T9","titulo":"Disposições Gerais","cats":{"sem_categoria":1,"julgado_correlato":1},"tipos":{"ADI":1,"RE":1}},{"art":245,"total":2,"bloco":"T9","titulo":"Disposições Gerais","cats":{"sem_categoria":2},"tipos":{"ADI":1}},{"art":246,"total":9,"bloco":"T9","titulo":"Disposições Gerais","cats":{"sem_categoria":7,"repercussao_geral":2},"tipos":{"ADI":4,"RE":4}},{"art":247,"total":2,"bloco":"T9","titulo":"Disposições Gerais","cats":{"sem_categoria":2},"tipos":{"ADI":2}},{"art":248,"total":0,"bloco":"T9","titulo":"Disposições Gerais","cats":{},"tipos":{}},{"art":249,"total":0,"bloco":"T9","titulo":"Disposições Gerais","cats":{},"tipos":{}},{"art":250,"total":1,"bloco":"T9","titulo":"Disposições Gerais","cats":{"sem_categoria":1},"tipos":{"ADI":1}}];
+
+const TOTAL  = 7695;
+const MAXIMO = 759;
+
+const CAT_LABEL = {
+  controle_concentrado: 'Controle concentrado',
+  repercussao_geral:    'Repercussão geral',
+  julgado_correlato:    'Julgado correlato',
+  sumula_vinculante:    'Súmula Vinculante',
+  sumula:               'Súmula',
+  sem_categoria:        'Sem categoria',
+};
+const CAT_COR = {
+  controle_concentrado: '#b85a34',
+  repercussao_geral:    '#3d6e50',
+  julgado_correlato:    '#6b4e96',
+  sumula_vinculante:    '#8b7220',
+  sumula:               '#3d5f8f',
+  sem_categoria:        '#404040',
+};
+
+// ── CANVAS FUNDO (placas tectônicas) ───────────────────────────
+const cv = document.getElementById('cv');
+const ctx = cv.getContext('2d');
+let W, H, pulsos = [];
+
+function resize() {
+  W = cv.width  = window.innerWidth;
+  H = cv.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// Linhas de tensão (estrutura das placas)
+const LINHAS = [
+  { x1:.02, y1:.15, x2:.98, y2:.18, op:.12 },
+  { x1:.0,  y1:.42, x2:1,   y2:.38, op:.08 },
+  { x1:.0,  y1:.7,  x2:1,   y2:.65, op:.06 },
+  { x1:.15, y1:0,   x2:.18, y2:1,   op:.07 },
+  { x1:.48, y1:0,   x2:.52, y2:1,   op:.06 },
+  { x1:.82, y1:0,   x2:.78, y2:1,   op:.05 },
+];
+
+// Nós de tensão (artigos mais litigiosos)
+const NOS = ARTIGOS.filter(a => a.total > 100).map(a => {
+  const b = BLOCOS.find(b => b.id === a.bloco);
+  return {
+    art: a.art, total: a.total, cor: b ? b.cor : '#555',
+    x: null, y: null,
+    vx: (Math.random()-.5)*.0002,
+    vy: (Math.random()-.5)*.0002,
+  };
+});
+
+// Posições iniciais espalhadas pelo canvas
+NOS.forEach((n, i) => {
+  n.x = .05 + (n.art / 250) * .9;
+  n.y = .2 + (i / NOS.length) * .6 + (Math.random()-.5)*.08;
+});
+
+function hexToRgb(hex) {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  return `${r},${g},${b}`;
+}
+
+let frame = 0;
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  frame++;
+
+  // Fundo quase preto
+  ctx.fillStyle = '#090909';
+  ctx.fillRect(0,0,W,H);
+
+  // Linhas de tensão (placas)
+  LINHAS.forEach(l => {
+    const grad = ctx.createLinearGradient(l.x1*W, l.y1*H, l.x2*W, l.y2*H);
+    grad.addColorStop(0,   `rgba(74,124,89,0)`);
+    grad.addColorStop(0.3, `rgba(74,124,89,${l.op})`);
+    grad.addColorStop(0.7, `rgba(74,124,89,${l.op})`);
+    grad.addColorStop(1,   `rgba(74,124,89,0)`);
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(l.x1*W, l.y1*H);
+    ctx.lineTo(l.x2*W, l.y2*H);
+    ctx.stroke();
+  });
+
+  // Pulsos espontâneos
+  if (frame % 40 === 0 && NOS.length > 0) {
+    const n = NOS[Math.floor(Math.random()*NOS.length)];
+    pulsos.push({ x: n.x*W, y: n.y*H, r: 0, max: 60 + n.total/10, op: .6, cor: n.cor });
+  }
+
+  // Desenhar pulsos
+  pulsos = pulsos.filter(p => p.r < p.max);
+  pulsos.forEach(p => {
+    p.r += 0.8;
+    p.op = .5 * (1 - p.r/p.max);
+    const rgb = hexToRgb(p.cor);
+    ctx.strokeStyle = `rgba(${rgb},${p.op})`;
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+    ctx.stroke();
+  });
+
+  // Nós de tensão
+  NOS.forEach(n => {
+    n.x += n.vx;
+    n.y += n.vy;
+    if (n.x < .02 || n.x > .98) n.vx *= -1;
+    if (n.y < .05 || n.y > .95) n.vy *= -1;
+
+    const r = 2 + (n.total / MAXIMO) * 8;
+    const rgb = hexToRgb(n.cor);
+    const pulse = .4 + .15 * Math.sin(frame * .03 + n.art);
+    ctx.beginPath();
+    ctx.arc(n.x*W, n.y*H, r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(${rgb},${pulse})`;
+    ctx.fill();
+
+    // Halo
+    ctx.beginPath();
+    ctx.arc(n.x*W, n.y*H, r*2.5, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(${rgb},.04)`;
+    ctx.fill();
+  });
+
+  // Conexões entre nós próximos
+  for (let i = 0; i < NOS.length; i++) {
+    for (let j = i+1; j < NOS.length; j++) {
+      const dx = (NOS[i].x - NOS[j].x)*W;
+      const dy = (NOS[i].y - NOS[j].y)*H;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 180) {
+        const op = (1 - dist/180) * .06;
+        ctx.strokeStyle = `rgba(168,213,181,${op})`;
+        ctx.lineWidth = .5;
+        ctx.beginPath();
+        ctx.moveTo(NOS[i].x*W, NOS[i].y*H);
+        ctx.lineTo(NOS[j].x*W, NOS[j].y*H);
+        ctx.stroke();
+      }
+    }
+  }
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+// ── LEGENDA ────────────────────────────────────────────────────
+const legEl = document.getElementById('leg');
+let filtroBloco = null;
+
+BLOCOS.forEach(b => {
+  const el = document.createElement('div');
+  el.className = 'leg-i';
+  el.innerHTML = `<div class="leg-d" style="background:${b.cor}"></div>${b.titulo}`;
+  el.addEventListener('click', () => {
+    filtroBloco = filtroBloco === b.id ? null : b.id;
+    renderGrade();
+    el.style.color = filtroBloco === b.id ? '#e8e4dc' : '';
+  });
+  legEl.appendChild(el);
+});
+
+// ── GRADE ──────────────────────────────────────────────────────
+const gradeEl = document.getElementById('grade');
+const tip = document.getElementById('tip');
+
+function intensidade(total, max) {
+  if (total === 0) return 0;
+  // escala logarítmica para não esmagar os menores
+  return Math.log(total + 1) / Math.log(max + 1);
+}
+
+function corBloco(blocoId, intens) {
+  const b = BLOCOS.find(x => x.id === blocoId);
+  if (!b) return '#333';
+  const hex = b.cor;
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const blue = parseInt(hex.slice(5,7),16);
+  const f = 0.15 + intens * 0.85;
+  return `rgb(${Math.round(r*f)},${Math.round(g*f)},${Math.round(blue*f)})`;
+}
+
+function renderGrade() {
+  gradeEl.innerHTML = '';
+  ARTIGOS.forEach(a => {
+    const intens = intensidade(a.total, MAXIMO);
+    const cell = document.createElement('div');
+    cell.className = 'cell' + (a.total === 0 ? ' zero' : '');
+    if (filtroBloco && a.bloco !== filtroBloco) cell.classList.add('fade');
+    cell.style.background = a.total === 0 ? '#1a1a1a' : corBloco(a.bloco, intens);
+    cell.title = `Art. ${a.art}`;
+
+    cell.addEventListener('mouseenter', e => mostrarTip(e, a));
+    cell.addEventListener('mousemove',  e => moverTip(e));
+    cell.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
+    gradeEl.appendChild(cell);
+  });
+}
+renderGrade();
+
+function mostrarTip(e, a) {
+  const b = BLOCOS.find(x => x.id === a.bloco);
+  const cats = Object.entries(a.cats).sort((x,y) => y[1]-x[1]);
+  const catsHtml = cats.map(([k,v]) =>
+    `<span>${CAT_LABEL[k] || k}: <b>${v}</b></span>`
+  ).join('');
+  tip.innerHTML = `
+    <strong>Art. ${a.art}${a.total === 0 ? ' — sem decisões' : ''}</strong>
+    ${b ? `<div style="font-size:.65rem;color:${b.cor};margin-bottom:.3rem">${b.titulo}</div>` : ''}
+    ${a.total > 0 ? `<div>${a.total} decisões</div>` : '<div style="color:#5a5550;font-style:italic">silêncio constitucional</div>'}
+    ${cats.length ? `<div class="tip-cat">${catsHtml}</div>` : ''}
+  `;
+  tip.style.display = 'block';
+  moverTip(e);
+}
+
+function moverTip(e) {
+  const x = e.clientX + 14;
+  const y = e.clientY - 10;
+  tip.style.left = (x + 250 > window.innerWidth ? e.clientX - 260 : x) + 'px';
+  tip.style.top  = (y + 200 > window.innerHeight ? e.clientY - 160 : y) + 'px';
+}
+
+// ── BARRAS POR BLOCO ───────────────────────────────────────────
+const barrasEl = document.getElementById('barras');
+const totalPorBloco = BLOCOS.map(b => ({
+  ...b,
+  n: ARTIGOS.filter(a => a.bloco === b.id).reduce((s,a) => s+a.total, 0),
+})).sort((a,b) => b.n - a.n);
+
+const maxBloco = totalPorBloco[0].n;
+
+setTimeout(() => {
+  totalPorBloco.forEach(b => {
+    const pct = (b.n / maxBloco * 100).toFixed(1);
+    const row = document.createElement('div');
+    row.className = 'barra-row';
+    row.innerHTML = `
+      <div class="barra-label">${b.titulo}</div>
+      <div class="barra-track">
+        <div class="barra-fill" style="width:0%;background:${b.cor}" data-w="${pct}"></div>
+      </div>
+      <div class="barra-n">${b.n.toLocaleString('pt-BR')}</div>
+    `;
+    barrasEl.appendChild(row);
+  });
+  // Animar
+  setTimeout(() => {
+    document.querySelectorAll('.barra-fill').forEach(el => {
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 100);
+}, 200);
+
+// ── BARRAS POR CATEGORIA ───────────────────────────────────────
+const barrasCatEl = document.getElementById('barras-cat');
+const totalCat = {};
+ARTIGOS.forEach(a => {
+  Object.entries(a.cats).forEach(([k,v]) => {
+    totalCat[k] = (totalCat[k] || 0) + v;
+  });
+});
+const catOrdenadas = Object.entries(totalCat).sort((a,b) => b[1]-a[1]);
+const maxCat = catOrdenadas[0][1];
+
+setTimeout(() => {
+  catOrdenadas.forEach(([k, n]) => {
+    const pct = (n / maxCat * 100).toFixed(1);
+    const pctTotal = (n / TOTAL * 100).toFixed(1);
+    const row = document.createElement('div');
+    row.className = 'barra-row';
+    row.innerHTML = `
+      <div class="barra-label">${CAT_LABEL[k] || k}</div>
+      <div class="barra-track">
+        <div class="barra-fill" style="width:0%;background:${CAT_COR[k]||'#555'}" data-w="${pct}"></div>
+      </div>
+      <div class="barra-n">${n.toLocaleString('pt-BR')} <span style="color:var(--muted);font-size:.6rem">${pctTotal}%</span></div>
+    `;
+    barrasCatEl.appendChild(row);
+  });
+  setTimeout(() => {
+    document.querySelectorAll('#barras-cat .barra-fill').forEach(el => {
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 300);
+}, 400);
+
+// Pulso ao clicar na grade
+gradeEl.addEventListener('click', e => {
+  const cell = e.target.closest('.cell');
+  if (!cell) return;
+  const idx = [...gradeEl.children].indexOf(cell);
+  const a = ARTIGOS[idx];
+  if (!a || a.total === 0) return;
+  const rect = cell.getBoundingClientRect();
+  const cx = rect.left + rect.width/2;
+  const cy = rect.top  + rect.height/2;
+  const b = BLOCOS.find(x => x.id === a.bloco);
+  for (let i = 0; i < 3; i++) {
+    setTimeout(() => {
+      pulsos.push({ x: cx, y: cy, r: 0, max: 40 + a.total/5, op: .8, cor: b ? b.cor : '#4a7c59' });
+    }, i * 120);
+  }
+});
+</script>
+
+</body>
+</html>
