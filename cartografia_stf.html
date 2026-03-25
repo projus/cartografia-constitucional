@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cartografia do Contencioso Constitucional · ICONS · STF 1988–2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root {
+  --ink: #0f0e0d; --paper: #f5f0e8; --paper2: #ede7d9; --paper3: #e2d9c8;
+  --gold: #b8860b; --gold2: #d4a017; --rust: #8b3a1a;
+  --navy: #1a2744; --navy2: #243058; --teal: #0d5c5c;
+  --muted: #6b6355; --border: rgba(15,14,13,0.12); --border2: rgba(15,14,13,0.22);
+  --ff-display: 'Playfair Display', serif;
+  --ff-mono: 'DM Mono', monospace;
+  --ff-body: 'DM Sans', sans-serif;
+  --shadow: 0 2px 24px rgba(15,14,13,0.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--ff-body); background: var(--paper); color: var(--ink); font-size: 14px; line-height: 1.6; min-height: 100vh; }
+
+/* HEADER */
+.site-header { background: var(--navy); color: var(--paper); padding: 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,.3); }
+.header-inner { max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; gap: 2rem; height: 56px; }
+.logo { font-family: var(--ff-display); font-size: 15px; font-weight: 700; letter-spacing: .01em; color: var(--gold2); white-space: nowrap; flex-shrink: 0; text-decoration: none; }
+.logo span { color: rgba(245,240,232,.5); font-weight: 400; font-family: var(--ff-mono); font-size: 10px; display: block; letter-spacing: .08em; }
+.header-badge { margin-left: auto; flex-shrink: 0; font-family: var(--ff-mono); font-size: 9px; color: rgba(245,240,232,.4); letter-spacing: .08em; text-transform: uppercase; }
+.header-back { font-family: var(--ff-mono); font-size: 10px; color: rgba(245,240,232,.5); text-decoration: none; letter-spacing: .05em; transition: color .15s; }
+.header-back:hover { color: var(--gold2); }
+
+/* EIXOS NAV */
+.eixos-bar { background: #fff; border: 1px solid var(--border); border-radius: 6px; box-shadow: var(--shadow); padding: .65rem .9rem; margin-bottom: 1.25rem; display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+.eixos-label { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding-right: 8px; border-right: 1px solid var(--border); margin-right: 4px; white-space: nowrap; flex-shrink: 0; }
+.hnav-btn { font-family: var(--ff-mono); font-size: 10px; font-weight: 400; padding: 4px 10px; border: 1px solid var(--border); background: var(--paper); color: var(--muted); cursor: pointer; border-radius: 4px; transition: all .15s; white-space: nowrap; letter-spacing: .02em; }
+.hnav-btn:hover { background: var(--paper2); color: var(--ink); border-color: var(--border2); }
+.hnav-btn.active { background: var(--navy); color: var(--gold2); border-color: var(--navy); font-weight: 500; }
+
+/* HERO */
+.hero { background: var(--navy); color: var(--paper); padding: 2.5rem 2rem 2rem; border-bottom: 1px solid rgba(184,134,11,.3); }
+.hero-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end; }
+.hero-eyebrow { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--gold2); margin-bottom: .75rem; }
+.hero-title { font-family: var(--ff-display); font-size: clamp(24px, 3.5vw, 42px); font-weight: 900; line-height: 1.1; margin-bottom: .75rem; }
+.hero-title em { color: var(--gold2); font-style: italic; }
+.hero-sub { font-size: 12px; color: rgba(245,240,232,.6); max-width: 520px; line-height: 1.6; }
+.hero-link { display: inline-block; margin-top: .75rem; font-family: var(--ff-mono); font-size: 10px; color: var(--gold2); text-decoration: none; letter-spacing: .05em; }
+.hero-link:hover { text-decoration: underline; }
+.hero-stats { display: flex; flex-direction: column; gap: .75rem; align-items: flex-end; }
+.hero-stat { text-align: right; }
+.hero-stat .n { font-family: var(--ff-display); font-size: 32px; font-weight: 900; color: var(--gold2); line-height: 1; }
+.hero-stat .l { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: rgba(245,240,232,.4); margin-top: 2px; }
+
+/* MAIN LAYOUT */
+.main { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* METRIC CARDS */
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+.mb { margin-bottom: 1.25rem; }
+
+.metric-card { background: var(--navy); color: var(--paper); border-radius: 6px; padding: 1.25rem 1.5rem; position: relative; overflow: hidden; }
+.metric-card::after { content: ''; position: absolute; bottom: 0; right: 0; width: 60px; height: 60px; background: var(--gold); opacity: .08; border-radius: 50% 0 0 0; }
+.metric-card .lbl { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: rgba(245,240,232,.45); margin-bottom: .4rem; }
+.metric-card .val { font-family: var(--ff-display); font-size: 28px; font-weight: 900; color: var(--gold2); line-height: 1; }
+.metric-card .sub { font-size: 10px; color: rgba(245,240,232,.4); margin-top: .3rem; font-family: var(--ff-mono); }
+
+/* CARD */
+.card { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem 1.5rem; box-shadow: var(--shadow); }
+.card-title { font-family: var(--ff-mono); font-size: 9px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
+
+/* BAR LIST */
+.bar-list { display: flex; flex-direction: column; gap: 6px; }
+.bar-row { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+.bar-row .nm { flex-shrink: 0; color: var(--ink); min-width: 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-row .bt { flex: 1; height: 5px; background: var(--paper3); border-radius: 3px; overflow: hidden; }
+.bar-row .bf { height: 100%; border-radius: 3px; background: var(--navy); }
+.bar-row .ct { width: 48px; text-align: right; color: var(--muted); flex-shrink: 0; font-family: var(--ff-mono); font-size: 10px; }
+
+/* HEATMAP */
+.heatrow { display: flex; align-items: center; gap: 3px; margin-bottom: 3px; }
+.hrlbl { width: 120px; flex-shrink: 0; font-size: 9px; color: var(--muted); text-align: right; font-family: var(--ff-mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hcells { display: flex; gap: 2px; }
+.hcell { width: 36px; height: 20px; border-radius: 2px; cursor: pointer; transition: opacity .15s; display: flex; align-items: center; justify-content: center; font-size: 8px; color: rgba(255,255,255,.7); font-family: var(--ff-mono); }
+.hcell:hover { opacity: .75; }
+.dlabels { display: flex; gap: 2px; margin-left: 123px; margin-bottom: 4px; }
+.dlbl { width: 36px; font-size: 8px; color: var(--muted); text-align: center; font-family: var(--ff-mono); }
+
+/* CLUSTER */
+.cluster-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 11px; }
+.cluster-row:last-child { border-bottom: none; }
+.tag { font-size: 9px; padding: 2px 6px; border-radius: 3px; font-family: var(--ff-mono); }
+
+/* INFO NOTE */
+.info-note { background: var(--paper2); border: 1px solid var(--border); border-radius: 6px; padding: 1rem 1.25rem; font-size: 11px; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.5; }
+
+/* LOADING */
+.loading { display: flex; align-items: center; justify-content: center; padding: 3rem; color: var(--muted); font-family: var(--ff-mono); font-size: 12px; gap: .75rem; }
+.spinner { width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--navy); border-radius: 50%; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* NETWORK */
+.network-node { cursor: pointer; transition: r .2s; }
+.network-node:hover circle { opacity: .8; }
+
+/* RADAR */
+.radar-container { position: relative; }
+
+/* PERFIL SELECT */
+.perfil-select { font-family: var(--ff-mono); font-size: 11px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 4px; background: var(--paper); color: var(--ink); cursor: pointer; margin-bottom: 1rem; width: 100%; max-width: 300px; }
+
+footer { background: var(--navy); color: rgba(245,240,232,.5); text-align: center; padding: 1.5rem; font-family: var(--ff-mono); font-size: 10px; line-height: 2; margin-top: 3rem; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">ICONS <span>Instituto Constituição Aberta</span></a>
+    <a href="index.html" class="header-back">← Início</a>
+    <span class="header-badge">ICONS · STF · 1988–2026</span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">ICONS · Instituto Constituição Aberta · Projeto Justiça Aberta</div>
+      <h1 class="hero-title">Cartografia do <em>Contencioso Constitucional</em></h1>
+      <p class="hero-sub">Mapeamento jurisprudencial das decisões do Supremo Tribunal Federal desde a promulgação da Constituição Federal de 1988 até 2026. Padrões de decidibilidade, linhas decisórias, relatores, classes processuais e mudanças de entendimento.</p>
+      <a href="oscilacoes.html" class="hero-link">⤷ Oscilações jurisprudenciais — instabilidade decisória por artigo</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="n" id="h-decisoes">—</span><span class="l">decisões mapeadas</span></div>
+      <div class="hero-stat"><span class="n" id="h-artigos">—</span><span class="l">artigos comentados</span></div>
+      <div class="hero-stat"><span class="n" id="h-anos">37 anos</span><span class="l">amplitude máxima</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <!-- METRICS TOP -->
+  <div class="grid4 mb">
+    <div class="metric-card"><div class="lbl">Decisões mapeadas</div><div class="val" id="m-decisoes">—</div><div class="sub">1988–2026</div></div>
+    <div class="metric-card"><div class="lbl">Artigos da CF/88</div><div class="val" id="m-artigos">250</div><div class="sub" id="m-artigos-sub">214 com decisões · 36 sem disputas</div></div>
+    <div class="metric-card"><div class="lbl">Classes processuais</div><div class="val" id="m-classes">—</div><div class="sub" id="m-classes-sub">ADI lidera</div></div>
+    <div class="metric-card"><div class="lbl">Relatores</div><div class="val" id="m-relatores">—</div><div class="sub">ministros e ex-ministros</div></div>
+  </div>
+
+  <!-- EIXOS NAV -->
+  <div class="eixos-bar">
+    <span class="eixos-label">Eixos analíticos</span>
+    <button class="hnav-btn active" onclick="showPanel('temporal')">① Temporal</button>
+    <button class="hnav-btn" onclick="showPanel('classes')">② Classes</button>
+    <button class="hnav-btn" onclick="showPanel('relatores')">③ Relatores</button>
+    <button class="hnav-btn" onclick="showPanel('artigos')">④ Artigos</button>
+    <button class="hnav-btn" onclick="showPanel('calor')">⑤ Calor</button>
+    <button class="hnav-btn" onclick="showPanel('mudancas')">⑥ Mudanças</button>
+    <button class="hnav-btn" onclick="showPanel('orgao')">⑦ Órgão</button>
+    <button class="hnav-btn" onclick="showPanel('temas')">⑧ Temas</button>
+    <button class="hnav-btn" onclick="showPanel('decidib')">⑨ Decidib.</button>
+    <button class="hnav-btn" onclick="showPanel('tempo')">⑩ Tempo</button>
+    <button class="hnav-btn" onclick="showPanel('rede')">⑪ Rede</button>
+    <button class="hnav-btn" onclick="showPanel('perfil')">⑫ Perfil</button>
+  </div>
+
+  <!-- ① TEMPORAL -->
+  <div id="panel-temporal" class="panel active">
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Decisões por ano · 1988–2026</div>
+        <canvas id="chart-temporal" height="220"></canvas>
+      </div>
+      <div class="card">
+        <div class="card-title">Por década</div>
+        <canvas id="chart-decadas" height="220"></canvas>
+      </div>
+    </div>
+    <div class="card mb">
+      <div class="card-title">Fases do contencioso constitucional</div>
+      <div id="fases-content" class="loading"><div class="spinner"></div> carregando...</div>
+    </div>
+  </div>
+
+  <!-- ② CLASSES -->
+  <div id="panel-classes" class="panel">
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Distribuição por classe processual</div>
+        <canvas id="chart-classes-pie" height="260"></canvas>
+      </div>
+      <div class="card">
+        <div class="card-title">Volume por classe</div>
+        <div id="classes-bar" class="bar-list loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ RELATORES -->
+  <div id="panel-relatores" class="panel">
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Top 20 relatores por volume</div>
+        <div id="rel-bar" class="bar-list loading"><div class="spinner"></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Distribuição por ministro</div>
+        <canvas id="chart-relatores" height="300"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ ARTIGOS -->
+  <div id="panel-artigos" class="panel">
+    <div class="info-note">Artigos ordenados pelo índice de decidibilidade — número de vínculos com decisões do STF. Cada vínculo representa uma citação em um dispositivo constitucional específico.</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">40 artigos mais litigados</div>
+        <div id="arts-bar" class="bar-list loading"><div class="spinner"></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Litigiosidade por artigo</div>
+        <canvas id="chart-artigos" height="320"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ CALOR -->
+  <div id="panel-calor" class="panel">
+    <div class="card mb">
+      <div class="card-title">Mapa de calor · Relator × Período de 5 anos</div>
+      <div id="heatmap-container" class="loading"><div class="spinner"></div> carregando...</div>
+    </div>
+  </div>
+
+  <!-- ⑥ MUDANÇAS -->
+  <div id="panel-mudancas" class="panel">
+    <div class="info-note">Artigos com maior diversidade de relatores ao longo do tempo — indicador proxy de mudança de entendimento. Quanto mais relatores distintos, maior a probabilidade de oscilação jurisprudencial.</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Artigos com maior amplitude temporal</div>
+        <div id="mudancas-list" class="loading"><div class="spinner"></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Amplitude × Volume de decisões</div>
+        <canvas id="chart-mudancas" height="280"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑦ ÓRGÃO -->
+  <div id="panel-orgao" class="panel">
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Distribuição por órgão julgador</div>
+        <canvas id="chart-orgao-pie" height="260"></canvas>
+      </div>
+      <div class="card">
+        <div class="card-title">Plenário vs Turmas</div>
+        <div id="orgao-list" class="loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑧ TEMAS -->
+  <div id="panel-temas" class="panel">
+    <div class="info-note">Os 9 Títulos da CF/88 como blocos temáticos — cada um é uma placa tectônica. O volume de decisões revela onde a litigiosidade constitucional se concentra.</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Blocos constitucionais · Títulos da CF/88</div>
+        <canvas id="chart-temas" height="280"></canvas>
+      </div>
+      <div class="card">
+        <div class="card-title">Volume por bloco</div>
+        <div id="temas-list" class="loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑨ DECIDIBILIDADE -->
+  <div id="panel-decidib" class="panel">
+    <div class="info-note">Índice de decidibilidade: razão entre total de vínculos e artigos cobertos por classe processual. Quanto maior, mais concentrada é a atuação da classe em poucos artigos.</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Decidibilidade por classe processual</div>
+        <div id="decidib-list" class="loading"><div class="spinner"></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Artigos cobertos vs. Volume total</div>
+        <canvas id="chart-decidib" height="280"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑩ TEMPO -->
+  <div id="panel-tempo" class="panel">
+    <div class="info-note">Amplitude temporal: diferença em anos entre a primeira e a última decisão sobre cada artigo. Indica contencioso crônico (amplitude alta) vs. pontual (amplitude baixa).</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">30 artigos com maior amplitude temporal</div>
+        <div id="tempo-list" class="loading"><div class="spinner"></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Amplitude temporal por artigo</div>
+        <canvas id="chart-tempo" height="280"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑪ REDE -->
+  <div id="panel-rede" class="panel">
+    <div class="info-note">Co-citação: artigos frequentemente citados na mesma decisão. Indica conexões temáticas na jurisprudência constitucional.</div>
+    <div class="card mb">
+      <div class="card-title">Artigos mais co-citados</div>
+      <div id="rede-list" class="loading"><div class="spinner"></div></div>
+    </div>
+  </div>
+
+  <!-- ⑫ PERFIL -->
+  <div id="panel-perfil" class="panel">
+    <div class="info-note">Perfil decisório por ministro: distribuição das decisões pelos blocos constitucionais da CF/88. Revela especialização temática de cada relator.</div>
+    <div class="card mb">
+      <select class="perfil-select" id="perfil-select" onchange="renderPerfil()">
+        <option value="">Selecione um ministro...</option>
+      </select>
+      <div id="perfil-content" style="display:none">
+        <canvas id="chart-perfil" height="300"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div><strong style="color:rgba(245,240,232,.8)">ICONS · Instituto Constituição Aberta</strong> · Projeto Justiça Aberta · Coord. Damares Medina</div>
+  <div>Dados extraídos da Constituição Federal Comentada pelas decisões do STF · 1988–2026</div>
+</footer>
+
+<script>
+const SUPA = '%%SUPABASE_URL%%'
+const KEY  = '%%SUPABASE_ANON_KEY%%'
+
+const H = { 'apikey': KEY, 'Authorization': `Bearer ${KEY}`, 'Content-Type': 'application/json' }
+
+async function rpc(fn, args={}) {
+  const r = await fetch(`${SUPA}/rest/v1/rpc/${fn}`, { method:'POST', headers:H, body:JSON.stringify(args) })
+  return r.json()
+}
+
+async function sel(table, qs='') {
+  const r = await fetch(`${SUPA}/rest/v1/${table}?${qs}`, {
+    headers: { ...H, 'Prefer': 'count=exact' }
+  })
+  const count = r.headers.get('content-range')?.split('/')[1]
+  const data = await r.json()
+  return { data: Array.isArray(data) ? data : [], count: count ? +count : 0 }
+}
+
+function fmt(n) { return n ? n.toLocaleString('pt-BR') : '—' }
+function pct(a,b) { return b ? (a/b*100).toFixed(1)+'%' : '—' }
+
+// PANEL SWITCHING
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'))
+  document.querySelectorAll('.hnav-btn').forEach(b => b.classList.remove('active'))
+  document.getElementById('panel-'+id).classList.add('active')
+  event.target.classList.add('active')
+  loadPanel(id)
+}
+
+const loaded = new Set()
+
+function loadPanel(id) {
+  if (loaded.has(id)) return
+  loaded.add(id)
+  const fn = panels[id]
+  if (fn) fn()
+}
+
+// COLORS
+const COLORS = ['#1a2744','#b8860b','#0d5c5c','#8b3a1a','#4a3080','#2d6a2d','#5c3a1a','#1a5c5c','#6b4226','#3a1a5c','#1a4a1a','#5c1a1a']
+const GOLD = '#d4a017'
+
+// Cor por bloco constitucional (número do artigo)
+function artColor(num) {
+  if (num<=4) return '#3d6e50'; if (num<=17) return '#b85a34'; if (num<=43) return '#3d5f8f';
+  if (num<=135) return '#6b4e96'; if (num<=144) return '#8b3a3a'; if (num<=169) return '#8b7220';
+  if (num<=192) return '#3a6e80'; if (num<=232) return '#7a6235'; return '#505050';
+}
+const NAVY = '#1a2744'
+
+function heatColor(v, max) {
+  if (!v) return '#f5f0e8'
+  const t = v/max
+  if (t < .15) return '#e8ecf4'
+  if (t < .30) return '#b5c4d9'
+  if (t < .50) return '#7a96bc'
+  if (t < .70) return '#3d679c'
+  if (t < .85) return '#1a3a6e'
+  return '#0f2244'
+}
+
+// ============================================================
+// DISPOSITIVO → ARTIGO RESOLVER
+// Como vínculos agora apontam para parágrafos/incisos/alíneas,
+// precisamos resolver cada id_dispositivo ao artigo raiz.
+// ============================================================
+let _dispToArtigo = null; // cache: id_dispositivo → artigo (número)
+let _dispToArtigoId = null; // cache: id_dispositivo → id_dispositivo do artigo
+
+async function loadDispResolver() {
+  if (_dispToArtigo) return;
+  const allDisp = await fetchAll('dispositivos_cf', 'select=id_dispositivo,artigo,tipo,pai');
+  _dispToArtigo = {};
+  _dispToArtigoId = {};
+  const byId = {}; allDisp.forEach(d => byId[d.id_dispositivo] = d);
+  allDisp.forEach(d => {
+    _dispToArtigo[d.id_dispositivo] = d.artigo;
+    // Find root artigo id
+    let cur = d;
+    while (cur && cur.tipo !== 'artigo' && cur.pai) { cur = byId[cur.pai]; }
+    _dispToArtigoId[d.id_dispositivo] = cur ? cur.id_dispositivo : d.id_dispositivo;
+  });
+}
+
+function dispArtigo(id_dispositivo) {
+  return _dispToArtigo ? (_dispToArtigo[id_dispositivo] || null) : null;
+}
+function dispArtigoId(id_dispositivo) {
+  return _dispToArtigoId ? (_dispToArtigoId[id_dispositivo] || id_dispositivo) : id_dispositivo;
+}
+
+// ============================================================
+// FETCH ALL — paginação de 1000 em loop (fetch direto, sem sel)
+// ============================================================
+async function fetchAll(table, qs = '') {
+  let all = []
+  let from = 0
+  const pageSize = 1000
+  while (true) {
+    const url = `${SUPA}/rest/v1/${table}?${qs}&limit=${pageSize}&offset=${from}`
+    const r = await fetch(url, { headers: H })
+    const data = await r.json()
+    if (!Array.isArray(data) || data.length === 0) break
+    all = all.concat(data)
+    if (data.length < pageSize) break
+    from += pageSize
+  }
+  return all
+}
+
+// ============================================================
+// LOAD STATS
+// ============================================================
+async function loadStats() {
+  try {
+    await loadDispResolver();
+    // Total decisões + súmulas
+    const dr = await fetch(`${SUPA}/rest/v1/decisoes_stf?select=id_decisao&limit=1`, { headers: {...H,'Prefer':'count=exact'} })
+    const decCount = +dr.headers.get('content-range')?.split('/')[1] || 0
+    const sr = await fetch(`${SUPA}/rest/v1/sumulas?select=id_sumula&limit=1`, { headers: {...H,'Prefer':'count=exact'} })
+    const sumCount = +sr.headers.get('content-range')?.split('/')[1] || 0
+    const totalDecisoes = decCount + sumCount
+
+    // Artigos — fixo baseado na auditoria do banco
+    // 250 artigos na CF/88, 214 com decisões, 36 sem disputas
+
+    // Classes únicas
+    const cd = await fetchAll('decisoes_stf', 'select=tipo')
+    const classCount = new Set(cd.map(d=>d.tipo)).size
+    const classDist = {}
+    cd.forEach(d => { classDist[d.tipo] = (classDist[d.tipo]||0)+1 })
+    const topClass = Object.entries(classDist).sort((a,b)=>b[1]-a[1])[0]
+
+    // Relatores — busca todos sem limite
+    const todosRelatores = await fetchAll('decisoes_stf', 'select=relator&relator=not.is.null')
+    const relSet = new Set(todosRelatores.map(d => d.relator).filter(Boolean))
+
+    // Update hero
+    document.getElementById('h-decisoes').textContent = fmt(totalDecisoes)
+    document.getElementById('h-artigos').textContent = '250'
+    document.getElementById('m-decisoes').textContent = fmt(totalDecisoes)
+    document.getElementById('m-artigos').textContent = '250'
+    document.getElementById('m-artigos-sub').textContent = '214 com decisões · 36 sem disputas'
+    document.getElementById('m-classes').textContent = classCount
+    if (topClass) document.getElementById('m-classes-sub').textContent = `${topClass[0]} lidera ${pct(topClass[1],totalDecisoes)}`
+    document.getElementById('m-relatores').textContent = relSet.size + '+'
+
+    // Store globally
+    window._classDist = classDist
+    window._relDist = {}
+    todosRelatores.forEach(d => { if(d.relator) window._relDist[d.relator] = (window._relDist[d.relator]||0)+1 })
+    window._totalVinculos = totalDecisoes
+  } catch(e) {
+    console.error('Stats error:', e)
+  }
+}
+
+// ============================================================
+// PANELS
+// ============================================================
+const panels = {
+
+// ① TEMPORAL
+temporal: async () => {
+  const data = await fetchAll('decisoes_stf', 'select=data_julgamento&data_julgamento=not.is.null')
+  const byYear = {}
+  data.forEach(d => {
+    const y = d.data_julgamento?.substring(0,4)
+    if (y && y >= '1988') byYear[y] = (byYear[y]||0)+1
+  })
+  const years = Object.keys(byYear).sort()
+  const vals  = years.map(y => byYear[y])
+
+  // Chart temporal
+  new Chart(document.getElementById('chart-temporal'), {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [{ data: vals, backgroundColor: years.map(y => +y < 2000 ? '#7a96bc' : +y < 2010 ? '#3d679c' : +y < 2020 ? '#1a3a6e' : GOLD), borderRadius: 2 }]
+    },
+    options: { plugins:{legend:{display:false}}, scales:{ x:{ticks:{font:{size:8},maxRotation:90}}, y:{ticks:{font:{size:9}}} }, responsive:true }
+  })
+
+  // Chart décadas
+  const decadas = {'1988–99':0,'2000–09':0,'2010–19':0,'2020–26':0}
+  years.forEach(y => {
+    const n = +y
+    if (n<2000) decadas['1988–99']+=byYear[y]
+    else if (n<2010) decadas['2000–09']+=byYear[y]
+    else if (n<2020) decadas['2010–19']+=byYear[y]
+    else decadas['2020–26']+=byYear[y]
+  })
+  new Chart(document.getElementById('chart-decadas'), {
+    type: 'bar',
+    data: {
+      labels: Object.keys(decadas),
+      datasets: [{ data: Object.values(decadas), backgroundColor: ['#7a96bc','#3d679c','#1a3a6e',GOLD], borderRadius: 4 }]
+    },
+    options: { plugins:{legend:{display:false}}, scales:{y:{ticks:{font:{size:9}}}}, responsive:true }
+  })
+
+  // Fases
+  const fases = document.getElementById('fases-content')
+  fases.innerHTML = `
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem">
+      <div style="border-left:3px solid #7a96bc;padding:.75rem 1rem">
+        <div style="font-family:var(--ff-mono);font-size:9px;color:var(--muted);margin-bottom:.25rem">FASE 1 · 1988–1999</div>
+        <div style="font-weight:600;font-size:12px">Consolidação</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:.25rem">${fmt(decadas['1988–99'])} decisões · Construção da nova ordem constitucional</div>
+      </div>
+      <div style="border-left:3px solid #3d679c;padding:.75rem 1rem">
+        <div style="font-family:var(--ff-mono);font-size:9px;color:var(--muted);margin-bottom:.25rem">FASE 2 · 2000–2009</div>
+        <div style="font-weight:600;font-size:12px">Expansão</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:.25rem">${fmt(decadas['2000–09'])} decisões · Crescimento do contencioso</div>
+      </div>
+      <div style="border-left:3px solid #1a3a6e;padding:.75rem 1rem">
+        <div style="font-family:var(--ff-mono);font-size:9px;color:var(--muted);margin-bottom:.25rem">FASE 3 · 2010–2019</div>
+        <div style="font-weight:600;font-size:12px">Intensificação</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:.25rem">${fmt(decadas['2010–19'])} decisões · Pico de litigiosidade</div>
+      </div>
+      <div style="border-left:3px solid ${GOLD};padding:.75rem 1rem">
+        <div style="font-family:var(--ff-mono);font-size:9px;color:var(--muted);margin-bottom:.25rem">FASE 4 · 2020–2026</div>
+        <div style="font-weight:600;font-size:12px">Contemporânea</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:.25rem">${fmt(decadas['2020–26'])} decisões · Novos vetores</div>
+      </div>
+    </div>`
+},
+
+// ② CLASSES
+classes: async () => {
+  const dist = window._classDist || {}
+  const sorted = Object.entries(dist).sort((a,b)=>b[1]-a[1])
+  const top10 = sorted.slice(0,10)
+  const total = Object.values(dist).reduce((a,b)=>a+b,0)
+
+  // Pie
+  new Chart(document.getElementById('chart-classes-pie'), {
+    type: 'doughnut',
+    data: {
+      labels: top10.map(([c])=>c),
+      datasets: [{ data: top10.map(([,n])=>n), backgroundColor: COLORS, borderWidth: 2, borderColor: '#fff' }]
+    },
+    options: { plugins:{ legend:{ position:'right', labels:{font:{size:10},padding:8} } }, responsive:true }
+  })
+
+  // Bar list
+  const el = document.getElementById('classes-bar')
+  el.innerHTML = ''
+  const max = sorted[0]?.[1]||1
+  sorted.slice(0,15).forEach(([cls,n]) => {
+    el.innerHTML += `<div class="bar-row">
+      <span class="nm" style="min-width:80px">${cls}</span>
+      <div class="bt"><div class="bf" style="width:${n/max*100}%;background:${NAVY}"></div></div>
+      <span class="ct">${fmt(n)}</span>
+      <span style="font-family:var(--ff-mono);font-size:9px;color:var(--muted);width:40px;text-align:right">${pct(n,total)}</span>
+    </div>`
+  })
+},
+
+// ③ RELATORES
+relatores: async () => {
+  const dist = window._relDist || {}
+  const sorted = Object.entries(dist).sort((a,b)=>b[1]-a[1]).slice(0,20)
+  const max = sorted[0]?.[1]||1
+
+  // Bar list
+  const el = document.getElementById('rel-bar')
+  el.innerHTML = ''
+  sorted.forEach(([rel,n],i) => {
+    el.innerHTML += `<div class="bar-row">
+      <span class="nm">${rel}</span>
+      <div class="bt"><div class="bf" style="width:${n/max*100}%;background:${COLORS[i%COLORS.length]}"></div></div>
+      <span class="ct">${fmt(n)}</span>
+    </div>`
+  })
+
+  // Chart
+  new Chart(document.getElementById('chart-relatores'), {
+    type: 'bar',
+    data: {
+      labels: sorted.map(([r])=>r.split(' ').slice(-1)[0]),
+      datasets: [{ data: sorted.map(([,n])=>n), backgroundColor: GOLD, borderRadius: 3 }]
+    },
+    options: { indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{ticks:{font:{size:9}}}, y:{ticks:{font:{size:9}}} }, responsive:true }
+  })
+},
+
+// ④ ARTIGOS
+artigos: async () => {
+  const vd = await fetchAll('vinculos', 'select=id_dispositivo')
+  const ad = await fetchAll('dispositivos_cf', 'select=id_dispositivo,artigo,codigo,tipo&tipo=eq.artigo')
+
+  const artMap = {}; ad.forEach(a => artMap[a.id_dispositivo] = a)
+  function artColor(num) {
+    if (num<=4) return '#3d6e50'; if (num<=17) return '#b85a34'; if (num<=43) return '#3d5f8f';
+    if (num<=135) return '#6b4e96'; if (num<=144) return '#8b3a3a'; if (num<=169) return '#8b7220';
+    if (num<=192) return '#3a6e80'; if (num<=232) return '#7a6235'; return '#505050';
+  }
+  const count = {}; vd.forEach(v => { const aid = dispArtigoId(v.id_dispositivo); count[aid] = (count[aid]||0)+1 })
+  const sorted = Object.entries(count).sort((a,b)=>b[1]-a[1]).slice(0,40)
+  const max = sorted[0]?.[1]||1
+
+  const el = document.getElementById('arts-bar')
+  el.innerHTML = ''
+  sorted.slice(0,20).forEach(([id,n]) => {
+    const art = artMap[+id]
+    const color = art ? artColor(art.artigo) : NAVY
+    el.innerHTML += `<div class="bar-row">
+      <span class="nm">Art. ${art?.artigo||id}</span>
+      <div class="bt"><div class="bf" style="width:${n/max*100}%;background:${color}"></div></div>
+      <span class="ct">${fmt(n)}</span>
+    </div>`
+  })
+
+  // Chart
+  new Chart(document.getElementById('chart-artigos'), {
+    type: 'bar',
+    data: {
+      labels: sorted.slice(0,20).map(([id])=>'Art.'+(artMap[+id]?.artigo||id)),
+      datasets: [{ data: sorted.slice(0,20).map(([,n])=>n), backgroundColor: sorted.slice(0,20).map(([id])=>artMap[+id]?artColor(artMap[+id].artigo):NAVY), borderRadius: 3 }]
+    },
+    options: { plugins:{legend:{display:false}}, scales:{ x:{ticks:{font:{size:8},maxRotation:45}}, y:{ticks:{font:{size:9}}} }, responsive:true }
+  })
+},
+
+// ⑤ CALOR
+calor: async () => {
+  const vd = await fetchAll('vinculos', 'select=id_decisao')
+  const dd = await fetchAll('decisoes_stf', 'select=id_decisao,relator,data_julgamento&relator=not.is.null&data_julgamento=not.is.null')
+
+  const decMap = {}; dd.forEach(d => decMap[d.id_decisao] = d)
+
+  // Top 15 relatores
+  const relCount = {}
+  dd.forEach(d => { relCount[d.relator] = (relCount[d.relator]||0)+1 })
+  const topRel = Object.entries(relCount).sort((a,b)=>b[1]-a[1]).slice(0,15).map(([r])=>r)
+
+  // Períodos
+  const periodos = ['1988','1993','1998','2003','2008','2013','2018','2023']
+
+  // Build matrix
+  const matrix = {}
+  topRel.forEach(r => { matrix[r] = {}; periodos.forEach(p => matrix[r][p] = 0) })
+
+  const decIds = new Set(vd.map(v=>v.id_decisao))
+  dd.forEach(d => {
+    if (!decIds.has(d.id_decisao) || !topRel.includes(d.relator)) return
+    const y = +d.data_julgamento.substring(0,4)
+    const p = periodos.slice().reverse().find(p => +p <= y)
+    if (p) matrix[d.relator][p]++
+  })
+
+  let maxVal = 0
+  topRel.forEach(r => periodos.forEach(p => maxVal = Math.max(maxVal, matrix[r][p])))
+
+  const container = document.getElementById('heatmap-container')
+  container.innerHTML = ''
+
+  // Header
+  const dlabels = document.createElement('div')
+  dlabels.className = 'dlabels'
+  periodos.forEach(p => {
+    const span = document.createElement('div')
+    span.className = 'dlbl'
+    span.textContent = p
+    dlabels.appendChild(span)
+  })
+  container.appendChild(dlabels)
+
+  topRel.forEach(rel => {
+    const row = document.createElement('div')
+    row.className = 'heatrow'
+    const lbl = document.createElement('div')
+    lbl.className = 'hrlbl'
+    lbl.textContent = rel.split(' ').slice(-2).join(' ')
+    lbl.title = rel
+    row.appendChild(lbl)
+    const cells = document.createElement('div')
+    cells.className = 'hcells'
+    periodos.forEach(p => {
+      const cell = document.createElement('div')
+      cell.className = 'hcell'
+      cell.style.background = heatColor(matrix[rel][p], maxVal)
+      cell.title = `${rel} · ${p}: ${matrix[rel][p]}`
+      if (matrix[rel][p]) cell.textContent = matrix[rel][p]
+      cells.appendChild(cell)
+    })
+    row.appendChild(cells)
+    container.appendChild(row)
+  })
+},
+
+// ⑥ MUDANÇAS
+mudancas: async () => {
+  const vd = await fetchAll('vinculos', 'select=id_dispositivo,id_decisao')
+  const dd = await fetchAll('decisoes_stf', 'select=id_decisao,relator,data_julgamento&data_julgamento=not.is.null')
+  const ad = await fetchAll('dispositivos_cf', 'select=id_dispositivo,artigo,codigo&tipo=eq.artigo')
+
+  const decMap = {}; dd.forEach(d => decMap[d.id_decisao] = d)
+  const artMap = {}; ad.forEach(a => artMap[a.id_dispositivo] = a)
+
+  const artStats = {}
+  vd.forEach(v => {
+    const _aid = dispArtigoId(v.id_dispositivo);
+    if (!artStats[_aid]) artStats[_aid] = { relatores: new Set(), anos: [], total: 0 }
+    const d = decMap[v.id_decisao]
+    if (d) {
+      if (d.relator) artStats[_aid].relatores.add(d.relator)
+      if (d.data_julgamento) artStats[_aid].anos.push(+d.data_julgamento.substring(0,4))
+    }
+    artStats[_aid].total++
+  })
+
+  const sorted = Object.entries(artStats)
+    .map(([id,s]) => ({
+      id, art: artMap[+id],
+      relCount: s.relatores.size,
+      amplitude: s.anos.length ? Math.max(...s.anos)-Math.min(...s.anos) : 0,
+      total: s.total
+    }))
+    .filter(s => s.relCount > 3)
+    .sort((a,b) => b.relCount - a.relCount)
+    .slice(0,20)
+
+  // List
+  const el = document.getElementById('mudancas-list')
+  el.innerHTML = ''
+  const maxRel = sorted[0]?.relCount||1
+  sorted.forEach(s => {
+    el.innerHTML += `<div class="cluster-row">
+      <span style="font-family:var(--ff-mono);font-size:10px;font-weight:500;min-width:80px">Art. ${s.art?.artigo||s.id}</span>
+      <span class="tag" style="background:var(--navy);color:var(--gold2)">${s.relCount} rel.</span>
+      <div style="flex:1;height:4px;background:var(--paper3);border-radius:2px;overflow:hidden">
+        <div style="width:${s.relCount/maxRel*100}%;height:100%;background:var(--navy);border-radius:2px"></div>
+      </div>
+      <span style="font-family:var(--ff-mono);font-size:9px;color:var(--muted)">${s.amplitude} anos · ${fmt(s.total)} dec.</span>
+    </div>`
+  })
+
+  // Chart
+  new Chart(document.getElementById('chart-mudancas'), {
+    type: 'scatter',
+    data: {
+      datasets: [{
+        data: sorted.map(s => ({ x: s.amplitude, y: s.total, label: 'Art.'+s.art?.artigo })),
+        backgroundColor: GOLD, pointRadius: 6, pointHoverRadius: 8
+      }]
+    },
+    options: {
+      plugins: { legend:{display:false}, tooltip:{ callbacks:{ label: ctx => `Art.${sorted[ctx.dataIndex]?.art?.artigo}: ${ctx.raw.x}a · ${fmt(ctx.raw.y)} dec.` } } },
+      scales: { x:{title:{display:true,text:'Amplitude (anos)',font:{size:10}}}, y:{title:{display:true,text:'Decisões',font:{size:10}}} },
+      responsive: true
+    }
+  })
+},
+
+// ⑦ ÓRGÃO
+orgao: async () => {
+  const data = await fetchAll('decisoes_stf', 'select=orgao&orgao=not.is.null')
+  const dist = {}
+  data.forEach(d => { dist[d.orgao] = (dist[d.orgao]||0)+1 })
+  const sorted = Object.entries(dist).sort((a,b)=>b[1]-a[1])
+  const total = data.length
+  const labels = { P:'Plenário', '1T':'1ª Turma', '2T':'2ª Turma', mono:'Monocrática' }
+
+  new Chart(document.getElementById('chart-orgao-pie'), {
+    type: 'doughnut',
+    data: {
+      labels: sorted.map(([o]) => labels[o]||o),
+      datasets: [{ data: sorted.map(([,n])=>n), backgroundColor: [NAVY,'#3d679c','#7a96bc','#b5c4d9'], borderWidth: 2, borderColor:'#fff' }]
+    },
+    options: { plugins:{ legend:{ position:'right', labels:{font:{size:11},padding:10} } }, responsive:true }
+  })
+
+  const el = document.getElementById('orgao-list')
+  el.innerHTML = ''
+  const maxN = sorted[0]?.[1]||1
+  sorted.forEach(([o,n]) => {
+    el.innerHTML += `<div class="bar-row">
+      <span class="nm">${labels[o]||o}</span>
+      <div class="bt"><div class="bf" style="width:${n/maxN*100}%"></div></div>
+      <span class="ct">${fmt(n)}</span>
+      <span style="font-family:var(--ff-mono);font-size:9px;color:var(--muted);width:45px;text-align:right">${pct(n,total)}</span>
+    </div>`
+  })
+},
+
+// ⑧ TEMAS
+temas: async () => {
+  const vd = await fetchAll('vinculos', 'select=id_dispositivo')
+  const ad = await fetchAll('dispositivos_cf', 'select=id_dispositivo,artigo&tipo=eq.artigo')
+
+  const TITS = [
+    {id:'I',nome:'Princípios Fundamentais',ini:1,fim:4,cor:'#3d6e50'},
+    {id:'II',nome:'Direitos e Garantias',ini:5,fim:17,cor:'#b85a34'},
+    {id:'III',nome:'Organização do Estado',ini:18,fim:43,cor:'#3d5f8f'},
+    {id:'IV',nome:'Organização dos Poderes',ini:44,fim:135,cor:'#6b4e96'},
+    {id:'V',nome:'Defesa do Estado',ini:136,fim:144,cor:'#8b3a3a'},
+    {id:'VI',nome:'Tributação e Orçamento',ini:145,fim:169,cor:'#8b7220'},
+    {id:'VII',nome:'Ordem Econômica',ini:170,fim:192,cor:'#3a6e80'},
+    {id:'VIII',nome:'Ordem Social',ini:193,fim:232,cor:'#7a6235'},
+    {id:'IX',nome:'Disposições Gerais',ini:233,fim:250,cor:'#505050'},
+  ]
+  function getTit(n) { return TITS.find(t=>n>=t.ini&&n<=t.fim) }
+  // artNum replaced by dispArtigo()
+  const titCount = {}; TITS.forEach(t => titCount[t.id] = 0)
+  vd.forEach(v => { const n = dispArtigo(v.id_dispositivo); if(n){ const t=getTit(n); if(t) titCount[t.id]++ } })
+  const sorted = TITS.map(t => ({ ...t, count: titCount[t.id]||0 })).sort((a,b)=>b.count-a.count)
+
+  new Chart(document.getElementById('chart-temas'), {
+    type: 'bar',
+    data: {
+      labels: sorted.map(t => `Tít. ${t.id}`),
+      datasets: [{ data: sorted.map(t=>t.count), backgroundColor: sorted.map(t=>t.cor), borderRadius: 4 }]
+    },
+    options: { plugins:{legend:{display:false}}, scales:{ x:{ticks:{font:{size:9}}}, y:{ticks:{font:{size:9}}} }, responsive:true }
+  })
+
+  const el = document.getElementById('temas-list')
+  el.innerHTML = ''
+  const maxN = sorted[0]?.count||1
+  sorted.forEach(t => {
+    el.innerHTML += `<div class="bar-row">
+      <span class="nm">${t.nome}</span>
+      <div class="bt"><div class="bf" style="width:${t.count/maxN*100}%;background:${t.cor}"></div></div>
+      <span class="ct">${fmt(t.count)}</span>
+    </div>`
+  })
+},
+
+// ⑨ DECIDIBILIDADE
+decidib: async () => {
+  const vd = await fetchAll('vinculos', 'select=id_dispositivo,id_decisao')
+  const dd = await fetchAll('decisoes_stf', 'select=id_decisao,tipo')
+  const decMap = {}; dd.forEach(d => decMap[d.id_decisao] = d)
+
+  const clsStats = {}
+  vd.forEach(v => {
+    const d = decMap[v.id_decisao]
+    if (!d) return
+    if (!clsStats[d.tipo]) clsStats[d.tipo] = { artigos: new Set(), total: 0 }
+    clsStats[d.tipo].artigos.add(dispArtigoId(v.id_dispositivo))
+    clsStats[d.tipo].total++
+  })
+
+  const sorted = Object.entries(clsStats)
+    .map(([cls,s]) => ({ cls, artigos: s.artigos.size, total: s.total, idi: +(s.total/s.artigos.size).toFixed(1) }))
+    .sort((a,b) => b.total-a.total)
+    .slice(0,12)
+
+  const el = document.getElementById('decidib-list')
+  el.innerHTML = `<div style="display:grid;grid-template-columns:auto 1fr auto auto;gap:6px 12px;align-items:center;font-size:11px">
+    <span style="font-family:var(--ff-mono);font-size:9px;color:var(--muted)">CLASSE</span>
+    <span></span>
+    <span style="font-family:var(--ff-mono);font-size:9px;color:var(--muted);text-align:right">VÍNCULOS</span>
+    <span style="font-family:var(--ff-mono);font-size:9px;color:var(--muted);text-align:right">IDI</span>`
+  const maxT = sorted[0]?.total||1
+  sorted.forEach(s => {
+    el.innerHTML += `
+    <span style="font-family:var(--ff-mono);font-weight:500">${s.cls}</span>
+    <div style="height:5px;background:var(--paper3);border-radius:3px;overflow:hidden"><div style="width:${s.total/maxT*100}%;height:100%;background:${NAVY};border-radius:3px"></div></div>
+    <span style="font-family:var(--ff-mono);font-size:10px;text-align:right">${fmt(s.total)}</span>
+    <span style="font-family:var(--ff-mono);font-size:10px;color:${GOLD};text-align:right;font-weight:500">${s.idi}</span>`
+  })
+  el.innerHTML += '</div>'
+
+  new Chart(document.getElementById('chart-decidib'), {
+    type: 'scatter',
+    data: {
+      datasets: [{ data: sorted.map(s=>({x:s.artigos,y:s.total,label:s.cls})), backgroundColor: GOLD, pointRadius: 7, pointHoverRadius: 9 }]
+    },
+    options: {
+      plugins: { legend:{display:false}, tooltip:{ callbacks:{ label: ctx=>sorted[ctx.dataIndex].cls+': '+fmt(ctx.raw.y)+' vínculos · '+ctx.raw.x+' artigos' } } },
+      scales: { x:{title:{display:true,text:'Artigos cobertos',font:{size:10}}}, y:{title:{display:true,text:'Total de vínculos',font:{size:10}}} },
+      responsive:true
+    }
+  })
+},
+
+// ⑩ TEMPO
+tempo: async () => {
+  const vd = await fetchAll('vinculos', 'select=id_dispositivo,id_decisao')
+  const dd = await fetchAll('decisoes_stf', 'select=id_decisao,data_julgamento&data_julgamento=not.is.null')
+  const ad = await fetchAll('dispositivos_cf', 'select=id_dispositivo,artigo,codigo&tipo=eq.artigo')
+
+  const decMap = {}; dd.forEach(d => decMap[d.id_decisao] = d)
+  const artMap = {}; ad.forEach(a => artMap[a.id_dispositivo] = a)
+  const artYears = {}
+  vd.forEach(v => {
+    const d = decMap[v.id_decisao]
+    if (!d) return
+    const _tid = dispArtigoId(v.id_dispositivo);
+    if (!artYears[_tid]) artYears[_tid] = { anos: [], total: 0 }
+    artYears[_tid].anos.push(+d.data_julgamento.substring(0,4))
+    artYears[_tid].total++
+  })
+
+  const sorted = Object.entries(artYears)
+    .map(([id,s]) => ({ id, art: artMap[+id], amplitude: Math.max(...s.anos)-Math.min(...s.anos), total: s.total }))
+    .filter(s => s.total >= 5)
+    .sort((a,b) => b.amplitude-a.amplitude)
+    .slice(0,30)
+
+  const el = document.getElementById('tempo-list')
+  el.innerHTML = ''
+  const maxA = sorted[0]?.amplitude||1
+  sorted.slice(0,15).forEach(s => {
+    el.innerHTML += `<div class="bar-row">
+      <span class="nm">Art. ${s.art?.artigo||s.id}</span>
+      <div class="bt"><div class="bf" style="width:${s.amplitude/maxA*100}%;background:${NAVY}"></div></div>
+      <span style="font-family:var(--ff-mono);font-size:10px;color:var(--muted);width:55px;text-align:right">${s.amplitude} anos</span>
+    </div>`
+  })
+
+  new Chart(document.getElementById('chart-tempo'), {
+    type: 'bar',
+    data: {
+      labels: sorted.map(s=>'Art.'+s.art?.artigo),
+      datasets: [{ data: sorted.map(s=>s.amplitude), backgroundColor: GOLD, borderRadius: 3 }]
+    },
+    options: { plugins:{legend:{display:false}}, scales:{ x:{ticks:{font:{size:8},maxRotation:45}}, y:{title:{display:true,text:'Anos',font:{size:9}}} }, responsive:true }
+  })
+},
+
+// ⑪ REDE
+rede: async () => {
+  const vd = await fetchAll('vinculos', 'select=id_dispositivo,id_decisao')
+  const ad = await fetchAll('dispositivos_cf', 'select=id_dispositivo,artigo&tipo=eq.artigo')
+  const { data: td } = await Promise.resolve({data:[]})
+
+  const artMap = {}; ad.forEach(a => artMap[a.id_dispositivo] = a)
+  
+
+  // Group by decision
+  const byDec = {}
+  vd.forEach(v => { if(!byDec[v.id_decisao]) byDec[v.id_decisao]=[]; byDec[v.id_decisao].push(dispArtigoId(v.id_dispositivo)) })
+
+  // Count co-citations
+  const coCite = {}
+  Object.values(byDec).forEach(arts => {
+    const unique = [...new Set(arts)]
+    for (let i=0;i<unique.length;i++) for (let j=i+1;j<unique.length;j++) {
+      const k = [unique[i],unique[j]].sort().join('-')
+      coCite[k] = (coCite[k]||0)+1
+    }
+  })
+
+  const sorted = Object.entries(coCite).sort((a,b)=>b[1]-a[1]).slice(0,20)
+
+  const el = document.getElementById('rede-list')
+  el.innerHTML = `<div style="display:flex;flex-direction:column;gap:6px">`
+  sorted.forEach(([k,n]) => {
+    const [a1,a2] = k.split('-')
+    const art1 = artMap[+a1]; const art2 = artMap[+a2]
+    const c1 = artColor(art1?.artigo||0)
+    const c2 = artColor(art2?.artigo||0)
+    el.innerHTML += `<div style="display:flex;align-items:center;gap:10px;font-size:11px;padding:5px 0;border-bottom:1px solid var(--border)">
+      <span style="font-family:var(--ff-mono);font-weight:500;padding:2px 8px;background:${c1};color:#fff;border-radius:3px;font-size:10px">Art.${art1?.artigo||a1}</span>
+      <span style="color:var(--muted)">↔</span>
+      <span style="font-family:var(--ff-mono);font-weight:500;padding:2px 8px;background:${c2};color:#fff;border-radius:3px;font-size:10px">Art.${art2?.artigo||a2}</span>
+      <div style="flex:1;height:4px;background:var(--paper3);border-radius:2px;overflow:hidden"><div style="width:${n/sorted[0][1]*100}%;height:100%;background:${GOLD};border-radius:2px"></div></div>
+      <span style="font-family:var(--ff-mono);font-size:10px;color:var(--muted)">${n}×</span>
+    </div>`
+  })
+  el.innerHTML += '</div>'
+},
+
+// ⑫ PERFIL
+perfil: async () => {
+  const vd = await fetchAll('vinculos', 'select=id_dispositivo,id_decisao')
+  const dd = await fetchAll('decisoes_stf', 'select=id_decisao,relator&relator=not.is.null')
+  const ad = await fetchAll('dispositivos_cf', 'select=id_dispositivo,artigo&tipo=eq.artigo')
+  const { data: td } = await Promise.resolve({data:[]})
+
+  const decMap = {}; dd.forEach(d => decMap[d.id_decisao] = d)
+  const artMap = {}; ad.forEach(a => artMap[a.id_dispositivo] = a)
+
+  const TITS2 = [
+    {id:'I',nome:'Princípios Fund.',ini:1,fim:4,cor:'#3d6e50'},
+    {id:'II',nome:'Direitos e Garantias',ini:5,fim:17,cor:'#b85a34'},
+    {id:'III',nome:'Org. do Estado',ini:18,fim:43,cor:'#3d5f8f'},
+    {id:'IV',nome:'Org. dos Poderes',ini:44,fim:135,cor:'#6b4e96'},
+    {id:'V',nome:'Defesa do Estado',ini:136,fim:144,cor:'#8b3a3a'},
+    {id:'VI',nome:'Tributação',ini:145,fim:169,cor:'#8b7220'},
+    {id:'VII',nome:'Ordem Econômica',ini:170,fim:192,cor:'#3a6e80'},
+    {id:'VIII',nome:'Ordem Social',ini:193,fim:232,cor:'#7a6235'},
+    {id:'IX',nome:'Disp. Gerais',ini:233,fim:250,cor:'#505050'},
+  ]
+  window._perfilData = { vd, decMap, artMap, TITS: TITS2 }
+
+  // Get top relatores
+  const relCount = {}
+  dd.forEach(d => { relCount[d.relator] = (relCount[d.relator]||0)+1 })
+  const topRel = Object.entries(relCount).sort((a,b)=>b[1]-a[1]).slice(0,30).map(([r])=>r)
+
+  const sel2 = document.getElementById('perfil-select')
+  topRel.forEach(r => {
+    const opt = document.createElement('option')
+    opt.value = r; opt.textContent = r
+    sel2.appendChild(opt)
+  })
+}
+}
+
+window.renderPerfil = function() {
+  const rel = document.getElementById('perfil-select').value
+  if (!rel) return
+  const { vd, decMap, artMap, TITS } = window._perfilData || {}
+  if (!vd) return
+
+  function getTit2(n) { return TITS.find(t=>n>=t.ini&&n<=t.fim) }
+  const titCount = {}; TITS.forEach(t => titCount[t.id] = 0)
+  vd.forEach(v => {
+    const d = decMap[v.id_decisao]
+    if (!d || d.relator !== rel) return
+    const _pn = dispArtigo(v.id_dispositivo); if (_pn) { const t = getTit2(_pn); if (t) titCount[t.id]++ }
+  })
+
+  const labels = TITS.map(t => `Tít. ${t.id}`)
+  const values = TITS.map(t => titCount[t.id]||0)
+  const colors = TITS.map(t => t.cor)
+
+  document.getElementById('perfil-content').style.display = 'block'
+
+  if (window._perfilChart) window._perfilChart.destroy()
+  window._perfilChart = new Chart(document.getElementById('chart-perfil'), {
+    type: 'radar',
+    data: {
+      labels,
+      datasets: [{ data: values, backgroundColor: 'rgba(212,160,23,.2)', borderColor: GOLD, borderWidth: 2, pointBackgroundColor: colors, pointRadius: 5 }]
+    },
+    options: { plugins:{ legend:{display:false}, title:{display:true,text:rel,font:{size:13,family:'Playfair Display, serif'},color:NAVY} }, scales:{ r:{ticks:{font:{size:8}},pointLabels:{font:{size:9}}} }, responsive:true }
+  })
+}
+
+// INIT
+loadStats()
+loadPanel('temporal')
+</script>
+</body>
+</html>
