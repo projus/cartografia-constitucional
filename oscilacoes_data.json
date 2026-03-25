@@ -1,0 +1,2502 @@
+[
+  {
+    "artigo": 1,
+    "id": "Art. 1º",
+    "cf_text": "Art. 1º A República Federativa do Brasil, formada pela união indissolúvel dos Estados e Municípios e do Distrito Federal, constitui-se em Estado Democrático de Direito e tem como fundamentos:",
+    "id_dispositivo": 1,
+    "total": 15,
+    "block": "fund",
+    "blockLabel": "Princípios Fundamentais",
+    "blockColor": "#3d6e50"
+  },
+  {
+    "artigo": 2,
+    "id": "Art. 2º",
+    "cf_text": "Art. 2º São Poderes da União, independentes e harmônicos entre si, o Legislativo, o Executivo e o Judiciário.",
+    "id_dispositivo": 6,
+    "total": 80,
+    "block": "fund",
+    "blockLabel": "Princípios Fundamentais",
+    "blockColor": "#3d6e50"
+  },
+  {
+    "artigo": 3,
+    "id": "Art. 3º",
+    "cf_text": "Art. 3º Constituem objetivos fundamentais da República Federativa do Brasil:",
+    "id_dispositivo": 7,
+    "total": 3,
+    "block": "fund",
+    "blockLabel": "Princípios Fundamentais",
+    "blockColor": "#3d6e50"
+  },
+  {
+    "artigo": 4,
+    "id": "Art. 4º",
+    "cf_text": "Art. 4º A República Federativa do Brasil rege-se nas suas relações internacionais pelos seguintes princípios:",
+    "id_dispositivo": 9,
+    "total": 3,
+    "block": "fund",
+    "blockLabel": "Princípios Fundamentais",
+    "blockColor": "#3d6e50"
+  },
+  {
+    "artigo": 5,
+    "id": "Art. 5º",
+    "cf_text": "Art. 5º Todos são iguais perante a lei, sem distinção de qualquer natureza, garantindo-se aos brasileiros e aos estrangeiros residentes no País a inviolabilidade do direito à vida, à liberdade, à igualdade, à segurança e à propriedade, nos termos seguintes:",
+    "id_dispositivo": 21,
+    "total": 912,
+    "block": "dir",
+    "blockLabel": "Direitos e Garantias",
+    "blockColor": "#b85a34"
+  },
+  {
+    "artigo": 6,
+    "id": "Art. 6º",
+    "cf_text": "Art. 6º São direitos sociais a educação, a saúde, a alimentação, o trabalho, a moradia, o transporte, o lazer, a segurança, a previdência social, a proteção à maternidade e à infância, a assistência aos desamparados, na forma desta Constituição. (Redação da EC n. 90/2015)",
+    "id_dispositivo": 26,
+    "total": 58,
+    "block": "dir",
+    "blockLabel": "Direitos e Garantias",
+    "blockColor": "#b85a34"
+  },
+  {
+    "artigo": 7,
+    "id": "Art. 7º",
+    "cf_text": "Art. 7º São direitos dos trabalhadores urbanos e rurais, além de outros que visem à melhoria de sua condição social:",
+    "id_dispositivo": 27,
+    "total": 467,
+    "block": "dir",
+    "blockLabel": "Direitos e Garantias",
+    "blockColor": "#b85a34"
+  },
+  {
+    "artigo": 8,
+    "id": "Art. 8º",
+    "cf_text": "Art. 8º É livre a associação profissional ou sindical, observado o seguinte:",
+    "id_dispositivo": 29,
+    "total": 184,
+    "block": "dir",
+    "blockLabel": "Direitos e Garantias",
+    "blockColor": "#b85a34"
+  },
+  {
+    "artigo": 9,
+    "id": "Art. 9º",
+    "cf_text": "Art. 9º É assegurado o direito de greve, competindo aos trabalhadores decidir sobre a oportunidade de exercê-lo e sobre os interesses que devam por meio dele defender.",
+    "id_dispositivo": 31,
+    "total": 7,
+    "block": "dir",
+    "blockLabel": "Direitos e Garantias",
+    "blockColor": "#b85a34"
+  },
+  {
+    "artigo": 10,
+    "id": "Art. 10",
+    "cf_text": "Art. 10. É assegurada a participação dos trabalhadores e empregadores nos colegiados dos órgãos públicos em que seus interesses profissionais ou previdenciários sejam objeto de discussão e deliberação.",
+    "id_dispositivo": 34,
+    "total": 0,
+    "block": "dir",
+    "blockLabel": "Direitos e Garantias",
+    "blockColor": "#b85a34"
+  },
+  {
+    "artigo": 11,
+    "id": "Art. 11",
+    "cf_text": "Art. 11. Nas empresas de mais de duzentos empregados, é assegurada a eleição de um representante destes com a finalidade exclusiva de promover-lhes o entendimento direto com os empregadores.",
+    "id_dispositivo": 35,
+    "total": 0,
+    "block": "dir",
+    "blockLabel": "Direitos e Garantias",
+    "blockColor": "#b85a34"
+  },
+  {
+    "artigo": 12,
+    "id": "Art. 12",
+    "cf_text": "Art. 12. São brasileiros:",
+    "id_dispositivo": 36,
+    "total": 0,
+    "block": "dir",
+    "blockLabel": "Direitos e Garantias",
+    "blockColor": "#b85a34"
+  },
+  {
+    "artigo": 13,
+    "id": "Art. 13",
+    "cf_text": "Art. 13. A língua portuguesa é o idioma oficial da República Federativa do Brasil.",
+    "id_dispositivo": 48,
+    "total": 0,
+    "block": "dir",
+    "blockLabel": "Direitos e Garantias",
+    "blockColor": "#b85a34"
+  },
+  {
+    "artigo": 14,
+    "id": "Art. 14",
+    "cf_text": "Art. 14. A soberania popular será exercida pelo sufrágio universal e pelo voto direto e secreto, com valor igual para todos, e, nos termos da lei, mediante:",
+    "id_dispositivo": 51,
+    "total": 0,
+    "block": "dir",
+    "blockLabel": "Direitos e Garantias",
+    "blockColor": "#b85a34"
+  },
+  {
+    "artigo": 15,
+    "id": "Art. 15",
+    "cf_text": "Art. 15. É vedada a cassação de direitos políticos, cuja perda ou suspensão só se dará nos casos de:",
+    "id_dispositivo": 63,
+    "total": 0,
+    "block": "dir",
+    "blockLabel": "Direitos e Garantias",
+    "blockColor": "#b85a34"
+  },
+  {
+    "artigo": 16,
+    "id": "Art. 16",
+    "cf_text": "Art. 16. A lei que alterar o processo eleitoral entrará em vigor na data de sua publicação, não se aplicando à eleição que ocorra até um ano da data de sua vigência. (Redação da EC n. 4/1993)",
+    "id_dispositivo": 67,
+    "total": 0,
+    "block": "dir",
+    "blockLabel": "Direitos e Garantias",
+    "blockColor": "#b85a34"
+  },
+  {
+    "artigo": 17,
+    "id": "Art. 17",
+    "cf_text": "Art. 17. É livre a criação, fusão, incorporação e extinção de partidos políticos, resguardados a soberania nacional, o regime democrático, o pluripartidarismo, os direitos fundamentais da pessoa humana e observados os seguintes preceitos:",
+    "id_dispositivo": 68,
+    "total": 0,
+    "block": "dir",
+    "blockLabel": "Direitos e Garantias",
+    "blockColor": "#b85a34"
+  },
+  {
+    "artigo": 18,
+    "id": "Art. 18",
+    "cf_text": "Art. 18. A organização político-administrativa da República Federativa do Brasil compreende a União, os Estados, o Distrito Federal e os Municípios, todos autônomos, nos termos desta Constituição.",
+    "id_dispositivo": 83,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 19,
+    "id": "Art. 19",
+    "cf_text": "Art. 19. É vedado à União, aos Estados, ao Distrito Federal e aos Municípios:",
+    "id_dispositivo": 88,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 20,
+    "id": "Art. 20",
+    "cf_text": "Art. 20. São bens da União:",
+    "id_dispositivo": 89,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 21,
+    "id": "Art. 21",
+    "cf_text": "Art. 21. Compete à União:",
+    "id_dispositivo": 92,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 22,
+    "id": "Art. 22",
+    "cf_text": "Art. 22. Compete privativamente à União legislar sobre:",
+    "id_dispositivo": 99,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 23,
+    "id": "Art. 23",
+    "cf_text": "Art. 23. É competência comum da União, dos Estados, do Distrito Federal e dos Municípios:",
+    "id_dispositivo": 101,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 24,
+    "id": "Art. 24",
+    "cf_text": "Art. 24. Compete à União, aos Estados e ao Distrito Federal legislar concorrentemente sobre:",
+    "id_dispositivo": 103,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 25,
+    "id": "Art. 25",
+    "cf_text": "Art. 25. Os Estados organizam-se e regem-se pelas Constituições e leis que adotarem, observados os princípios desta Constituição.",
+    "id_dispositivo": 108,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 26,
+    "id": "Art. 26",
+    "cf_text": "Art. 26. Incluem-se entre os bens dos Estados:",
+    "id_dispositivo": 112,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 27,
+    "id": "Art. 27",
+    "cf_text": "Art. 27. O número de Deputados à Assembleia Legislativa corresponderá ao triplo da representação do Estado na Câmara dos Deputados e, atingido o número de trinta e seis, será acrescido de tantos quantos forem os Deputados Federais acima de doze.",
+    "id_dispositivo": 117,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 28,
+    "id": "Art. 28",
+    "cf_text": "Art. 28. A eleição do Governador e do Vice-Governador de Estado, para mandato de 4 (quatro) anos, realizar-se-á no primeiro domingo de outubro, em primeiro turno, e no último domingo de outubro, em segundo turno, se houver, do ano anterior ao do término do mandato de seus antecessores, e a posse ocorrerá em 6 de janeiro do ano subsequente, observado, quanto ao mais, o disposto no art. 77 desta Constituição. (Redação dada pela EC n. 111/ 2021)",
+    "id_dispositivo": 122,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 29,
+    "id": "Art. 29",
+    "cf_text": "Art. 29. O Município reger-se-á por lei orgânica, votada em dois turnos, com o interstício mínimo de dez dias, e aprovada por dois terços dos membros da Câmara Municipal, que a promulgará, atendidos os princípios estabelecidos nesta Constituição, na Constituição do respectivo Estado e os seguintes preceitos:",
+    "id_dispositivo": 125,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 30,
+    "id": "Art. 30",
+    "cf_text": "Art. 30. Compete aos Municípios:",
+    "id_dispositivo": 132,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 31,
+    "id": "Art. 31",
+    "cf_text": "Art. 31. A fiscalização do Município será exercida pelo Poder Legislativo Municipal, mediante controle externo, e pelos sistemas de controle interno do Poder Executivo Municipal, na forma da lei.",
+    "id_dispositivo": 134,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 32,
+    "id": "Art. 32",
+    "cf_text": "Art. 32. O Distrito Federal, vedada sua divisão em Municípios, reger-se-á por lei orgânica, votada em dois turnos com interstício mínimo de dez dias, e aprovada por dois terços da Câmara Legislativa, que a promulgará, atendidos os princípios estabelecidos nesta Constituição.",
+    "id_dispositivo": 139,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 33,
+    "id": "Art. 33",
+    "cf_text": "Art. 33. A lei disporá sobre a organização administrativa e judiciária dos Territórios.",
+    "id_dispositivo": 144,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 34,
+    "id": "Art. 34",
+    "cf_text": "Art. 34. A União não intervirá nos Estados nem no Distrito Federal, exceto para:",
+    "id_dispositivo": 148,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 35,
+    "id": "Art. 35",
+    "cf_text": "Art. 35. O Estado não intervirá em seus Municípios, nem a União nos Municípios localizados em Território Federal, exceto quando:",
+    "id_dispositivo": 157,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 36,
+    "id": "Art. 36",
+    "cf_text": "Art. 36. A decretação da intervenção dependerá:",
+    "id_dispositivo": 158,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 37,
+    "id": "Art. 37",
+    "cf_text": "Art. 37. A administração pública direta e indireta de qualquer dos Poderes da União, dos Estados, do Distrito Federal e dos Municípios obedecerá aos princípios de legalidade, impessoalidade, moralidade, publicidade e eficiência e, também, ao seguinte: (Redação da EC 19/1998)",
+    "id_dispositivo": 166,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 38,
+    "id": "Art. 38",
+    "cf_text": "Art. 38. Ao servidor público da administração direta, autárquica e fundacional, no exercício de mandato eletivo, aplicam-se as seguintes disposições: (Redação da EC 19/1998)",
+    "id_dispositivo": 181,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 39,
+    "id": "Art. 39",
+    "cf_text": "Art. 39. A União, os Estados, o Distrito Federal e os Municípios instituirão, no âmbito de sua competência, regime jurídico único e planos de carreira para os servidores da administração pública direta, das autarquias e das fundações públicas. (Vide ADI 2.135-MC)",
+    "id_dispositivo": 182,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 40,
+    "id": "Art. 40",
+    "cf_text": "Art. 40. O regime próprio de previdência social dos servidores titulares de cargos efetivos terá caráter contributivo e solidário, mediante contribuição do respectivo ente federativo, de servidores ativos, de aposentados e de pensionistas, observados critérios que preservem o equilíbrio financeiro e atuarial. (Redação da EC n. 103/2019)",
+    "id_dispositivo": 191,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 41,
+    "id": "Art. 41",
+    "cf_text": "Art. 41. São estáveis após três anos de efetivo exercício os servidores nomeados para cargo de provimento efetivo em virtude de concurso público. (Redação da EC 19/1998)",
+    "id_dispositivo": 212,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 42,
+    "id": "Art. 42",
+    "cf_text": "Art. 42. Os membros das Policias Militares e Corpos de Bombeiros Militares, instituições organizadas com base na hierarquia e disciplina, são militares dos Estados, do Distrito Federal e dos Territórios. (Redação da EC 18/1998)",
+    "id_dispositivo": 219,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 43,
+    "id": "Art. 43",
+    "cf_text": "Art. 43. Para efeitos administrativos, a União poderá articular sua ação em um mesmo complexo geoeconômico e social, visando a seu desenvolvimento e à redução das desigualdades regionais.",
+    "id_dispositivo": 231,
+    "total": 0,
+    "block": "org",
+    "blockLabel": "Organização do Estado",
+    "blockColor": "#3d5f8f"
+  },
+  {
+    "artigo": 44,
+    "id": "Art. 44",
+    "cf_text": "Art. 44. O Poder Legislativo é exercido pelo Congresso Nacional, que se compõe da Câmara dos Deputados e do Senado Federal.",
+    "id_dispositivo": 287,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 45,
+    "id": "Art. 45",
+    "cf_text": "Art. 45. A Câmara dos Deputados compõe-se de representantes do povo, eleitos, pelo sistema proporcional, em cada Estado, em cada Território e no Distrito Federal.",
+    "id_dispositivo": 289,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 46,
+    "id": "Art. 46",
+    "cf_text": "Art. 46. O Senado Federal compõe-se de representantes dos Estados e do Distrito Federal, eleitos segundo o princípio majoritário.",
+    "id_dispositivo": 292,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 47,
+    "id": "Art. 47",
+    "cf_text": "Art. 47. Salvo disposição constitucional em contrário, as deliberações de cada Casa e de suas Comissões serão tomadas por maioria dos votos, presente a maioria absoluta de seus membros.",
+    "id_dispositivo": 296,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 48,
+    "id": "Art. 48",
+    "cf_text": "Art. 48. Cabe ao Congresso Nacional, com a sanção do Presidente da República, não exigida esta para o especificado nos arts. 49, 51 e 52, dispor sobre todas as matérias de competência da União, especialmente sobre:",
+    "id_dispositivo": 297,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 49,
+    "id": "Art. 49",
+    "cf_text": "Art. 49. É da competência exclusiva do Congresso Nacional:",
+    "id_dispositivo": 300,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 50,
+    "id": "Art. 50",
+    "cf_text": "Art. 50. A Câmara dos Deputados e o Senado Federal, ou qualquer de suas Comissões, poderão convocar Ministro de Estado, quaisquer titulares de órgãos diretamente subordinados à Presidência da República ou o Presidente do Comitê Gestor do Imposto sobre Bens e Serviços para prestarem, pessoalmente, informações sobre assunto previamente determinado, importando crime de responsabilidade a ausência sem justificação adequada. (Redação dada pela EC n. 132/2023)",
+    "id_dispositivo": 302,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 51,
+    "id": "Art. 51",
+    "cf_text": "Art. 51. Compete privativamente à Câmara dos Deputados:",
+    "id_dispositivo": 305,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 52,
+    "id": "Art. 52",
+    "cf_text": "Art. 52. Compete privativamente ao Senado Federal:",
+    "id_dispositivo": 307,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 53,
+    "id": "Art. 53",
+    "cf_text": "Art. 53. Os Deputados e Senadores são invioláveis, civil e penalmente, por quaisquer de suas opiniões, palavras e votos. (Redação da EC 35/2001)",
+    "id_dispositivo": 310,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 54,
+    "id": "Art. 54",
+    "cf_text": "Art. 54. Os Deputados e Senadores não poderão:",
+    "id_dispositivo": 319,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 55,
+    "id": "Art. 55",
+    "cf_text": "Art. 55. Perderá o mandato o Deputado ou Senador:",
+    "id_dispositivo": 328,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 56,
+    "id": "Art. 56",
+    "cf_text": "Art. 56. Não perderá o mandato o Deputado ou Senador:",
+    "id_dispositivo": 333,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 57,
+    "id": "Art. 57",
+    "cf_text": "Art. 57. O Congresso Nacional reunir-se-á, anualmente, na Capital Federal, de 2 de fevereiro a 17 de julho e de 1º de agosto a 22 de dezembro. (Redação da EC 50/2006)",
+    "id_dispositivo": 339,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 58,
+    "id": "Art. 58",
+    "cf_text": "Art. 58. O Congresso Nacional e suas Casas terão comissões permanentes e temporárias, constituídas na forma e com as atribuições previstas no respectivo regimento ou no ato de que resultar sua criação.",
+    "id_dispositivo": 354,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 59,
+    "id": "Art. 59",
+    "cf_text": "Art. 59. O processo legislativo compreende a elaboração de:",
+    "id_dispositivo": 359,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 60,
+    "id": "Art. 60",
+    "cf_text": "Art. 60. A Constituição poderá ser emendada mediante proposta:",
+    "id_dispositivo": 361,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 61,
+    "id": "Art. 61",
+    "cf_text": "Art. 61. A iniciativa das leis complementares e ordinárias cabe a qualquer membro ou Comissão da Câmara dos Deputados, do Senado Federal ou do Congresso Nacional, ao Presidente da República, ao Supremo Tribunal Federal, aos Tribunais Superiores, ao Procurador-Geral da República e aos cidadãos, na forma e nos casos previstos nesta Constituição.",
+    "id_dispositivo": 367,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 62,
+    "id": "Art. 62",
+    "cf_text": "Art. 62. Em caso de relevância e urgência, o Presidente da República poderá adotar medidas provisórias, com força de lei, devendo submetê-las de imediato ao Congresso Nacional. (Redação da EC 32/2001)",
+    "id_dispositivo": 370,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 63,
+    "id": "Art. 63",
+    "cf_text": "Art. 63. Não será admitido aumento da despesa prevista:",
+    "id_dispositivo": 385,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 64,
+    "id": "Art. 64",
+    "cf_text": "Art. 64. A discussão e votação dos projetos de lei de iniciativa do Presidente da República, do Supremo Tribunal Federal e dos Tribunais Superiores terão início na Câmara dos Deputados.",
+    "id_dispositivo": 387,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 65,
+    "id": "Art. 65",
+    "cf_text": "Art. 65. O projeto de lei aprovado por uma Casa será revisto pela outra, em um só turno de discussão e votação, e enviado à sanção ou promulgação, se a Casa revisora o aprovar, ou arquivado, se o rejeitar.",
+    "id_dispositivo": 392,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 66,
+    "id": "Art. 66",
+    "cf_text": "Art. 66. A Casa na qual tenha sido concluída a votação enviará o projeto de lei ao Presidente da República, que, aquiescendo, o sancionará.",
+    "id_dispositivo": 394,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 67,
+    "id": "Art. 67",
+    "cf_text": "Art. 67. A matéria constante de projeto de lei rejeitado somente poderá constituir objeto de novo projeto, na mesma sessão legislativa, mediante proposta da maioria absoluta dos membros de qualquer das Casas do Congresso Nacional.",
+    "id_dispositivo": 402,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 68,
+    "id": "Art. 68",
+    "cf_text": "Art. 68. As leis delegadas serão elaboradas pelo Presidente da República, que deverá solicitar a delegação ao Congresso Nacional.",
+    "id_dispositivo": 403,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 69,
+    "id": "Art. 69",
+    "cf_text": "Art. 69. As leis complementares serão aprovadas por maioria absoluta.",
+    "id_dispositivo": 408,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 70,
+    "id": "Art. 70",
+    "cf_text": "Art. 70. A fiscalização contábil, financeira, orçamentária, operacional e patrimonial da União e das entidades da administração direta e indireta, quanto à legalidade, legitimidade, economicidade, aplicação das subvenções e renúncia de receitas, será exercida pelo Congresso Nacional, mediante controle externo, e pelo sistema de controle interno de cada Poder.",
+    "id_dispositivo": 409,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 71,
+    "id": "Art. 71",
+    "cf_text": "Art. 71. O controle externo, a cargo do Congresso Nacional, será exercido com o auxílio do Tribunal de Contas da União, ao qual compete:",
+    "id_dispositivo": 411,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 72,
+    "id": "Art. 72",
+    "cf_text": "Art. 72. A Comissão mista permanente a que se refere o art. 166, §1º, diante de indícios de despesas não autorizadas, ainda que sob a forma de investimentos não programados ou de subsídios não aprovados, poderá solicitar à autoridade governamental responsável que, no prazo de cinco dias, preste os esclarecimentos necessários.",
+    "id_dispositivo": 416,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 73,
+    "id": "Art. 73",
+    "cf_text": "Art. 73. O Tribunal de Contas da União, integrado por nove Ministros, tem sede no Distrito Federal, quadro próprio de pessoal e jurisdição em todo o território nacional, exercendo, no que couber, as atribuições previstas no art. 96.",
+    "id_dispositivo": 419,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 74,
+    "id": "Art. 74",
+    "cf_text": "Art. 74. Os Poderes Legislativo, Executivo e Judiciário manterão, de forma integrada, sistema de controle interno com a finalidade de:",
+    "id_dispositivo": 424,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 75,
+    "id": "Art. 75",
+    "cf_text": "Art. 75. As normas estabelecidas nesta seção aplicam-se, no que couber, à organização, composição e fiscalização dos Tribunais de Contas dos Estados e do Distrito Federal, bem como dos Tribunais e Conselhos de Contas dos Municípios.",
+    "id_dispositivo": 431,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 76,
+    "id": "Art. 76",
+    "cf_text": "Art. 76. O Poder Executivo é exercido pelo Presidente da República, auxiliado pelos Ministros de Estado.",
+    "id_dispositivo": 433,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 77,
+    "id": "Art. 77",
+    "cf_text": "Art. 77. A eleição do Presidente e do Vice-Presidente da República realizar-se-á, simultaneamente, no primeiro domingo de outubro, em primeiro turno, e no último domingo de outubro, em segundo turno, se houver, do ano anterior ao do término do mandato presidencial vigente. (Redação da EC 16/1997)",
+    "id_dispositivo": 434,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 78,
+    "id": "Art. 78",
+    "cf_text": "Art. 78. O Presidente e o Vice-Presidente da República tomarão posse em sessão do Congresso Nacional, prestando o compromisso de manter, defender e cumprir a Constituição, observar as leis, promover o bem geral do povo brasileiro, sustentar a união, a integridade e a independência do Brasil.",
+    "id_dispositivo": 440,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 79,
+    "id": "Art. 79",
+    "cf_text": "Art. 79. Substituirá o Presidente, no caso de impedimento, e suceder-lhe-á, no de vaga, o Vice-Presidente.",
+    "id_dispositivo": 442,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 80,
+    "id": "Art. 80",
+    "cf_text": "Art. 80. Em caso de impedimento do Presidente e do Vice-Presidente, ou vacância dos respectivos cargos, serão sucessivamente chamados ao exercício da Presidência o Presidente da Câmara dos Deputados, o do Senado Federal e o do Supremo Tribunal Federal.",
+    "id_dispositivo": 444,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 81,
+    "id": "Art. 81",
+    "cf_text": "Art. 81. Vagando os cargos de Presidente e Vice-Presidente da República, far-se-á eleição noventa dias depois de aberta a última vaga.",
+    "id_dispositivo": 445,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 82,
+    "id": "Art. 82",
+    "cf_text": "Art. 82. O mandato do Presidente da República é de 4 (quatro) anos e terá início em 5 de janeiro do ano seguinte ao de sua eleição. (Redação dada pela EC n. 111/ 2021)",
+    "id_dispositivo": 448,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 83,
+    "id": "Art. 83",
+    "cf_text": "Art. 83. O Presidente e o Vice-Presidente da República não poderão, sem licença do Congresso Nacional, ausentar-se do País por período superior a quinze dias, sob pena de perda do cargo.",
+    "id_dispositivo": 449,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 84,
+    "id": "Art. 84",
+    "cf_text": "Art. 84. Compete privativamente ao Presidente da República:",
+    "id_dispositivo": 450,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 85,
+    "id": "Art. 85",
+    "cf_text": "Art. 85. São crimes de responsabilidade os atos do Presidente da República que atentem contra a Constituição Federal e, especialmente, contra:",
+    "id_dispositivo": 452,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 86,
+    "id": "Art. 86",
+    "cf_text": "Art. 86. Admitida a acusação contra o Presidente da República, por dois terços da Câmara dos Deputados, será ele submetido a julgamento perante o Supremo Tribunal Federal, nas infrações penais comuns, ou perante o Senado Federal, nos crimes de responsabilidade.",
+    "id_dispositivo": 461,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 87,
+    "id": "Art. 87",
+    "cf_text": "Art. 87. Os Ministros de Estado serão escolhidos dentre brasileiros maiores de vinte e um anos e no exercício dos direitos políticos.",
+    "id_dispositivo": 467,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 88,
+    "id": "Art. 88",
+    "cf_text": "Art. 88. A lei disporá sobre a criação e extinção de Ministérios e órgãos da administração pública. (Redação da EC 32/2001)",
+    "id_dispositivo": 469,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 89,
+    "id": "Art. 89",
+    "cf_text": "Art. 89. O Conselho da República é órgão superior de consulta do Presidente da República, e dele participam:",
+    "id_dispositivo": 470,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 90,
+    "id": "Art. 90",
+    "cf_text": "Art. 90. Compete ao Conselho da República pronunciar-se sobre:",
+    "id_dispositivo": 471,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 91,
+    "id": "Art. 91",
+    "cf_text": "Art. 91. O Conselho de Defesa Nacional é órgão de consulta do Presidente da República nos assuntos relacionados com a soberania nacional e a defesa do Estado democrático, e dele participam como membros natos:",
+    "id_dispositivo": 476,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 92,
+    "id": "Art. 92",
+    "cf_text": "Art. 92. São órgãos do Poder Judiciário:",
+    "id_dispositivo": 486,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 93,
+    "id": "Art. 93",
+    "cf_text": "Art. 93. Lei complementar, de iniciativa do Supremo Tribunal Federal, disporá sobre o Estatuto da Magistratura, observados os seguintes princípios:",
+    "id_dispositivo": 489,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 94,
+    "id": "Art. 94",
+    "cf_text": "Art. 94. Um quinto dos lugares dos Tribunais Regionais Federais, dos Tribunais dos Estados, e do Distrito Federal e Territórios será composto de membros, do Ministério Público, com mais de dez anos de carreira, e de advogados de notório saber jurídico e de reputação ilibada, com mais de dez anos de efetiva atividade profissional, indicados em lista sêxtupla pelos órgãos de representação das respectivas classes.",
+    "id_dispositivo": 490,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 95,
+    "id": "Art. 95",
+    "cf_text": "Art. 95. Os juízes gozam das seguintes garantias:",
+    "id_dispositivo": 492,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 96,
+    "id": "Art. 96",
+    "cf_text": "Art. 96. Compete privativamente:",
+    "id_dispositivo": 495,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 97,
+    "id": "Art. 97",
+    "cf_text": "Art. 97. Somente pelo voto da maioria absoluta de seus membros ou dos membros do respectivo órgão especial poderão os tribunais declarar a inconstitucionalidade de lei ou ato normativo do Poder Público.",
+    "id_dispositivo": 497,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 98,
+    "id": "Art. 98",
+    "cf_text": "Art. 98. A União, no Distrito Federal e nos Territórios, e os Estados criarão:",
+    "id_dispositivo": 498,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 99,
+    "id": "Art. 99",
+    "cf_text": "Art. 99. Ao Poder Judiciário é assegurada autonomia administrativa e financeira.",
+    "id_dispositivo": 502,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 100,
+    "id": "Art. 100",
+    "cf_text": "Art. 100. Os pagamentos devidos pelas Fazendas Públicas Federal, Estaduais, Distrital e Municipais, em virtude de sentença judiciária, far-se-ão exclusivamente na ordem cronológica de apresentação dos precatórios e à conta dos créditos respectivos, proibida a designação de casos ou de pessoas nas dotações orçamentárias e nos créditos adicionais abertos para este fim. (Redação da EC 62/2009) (Vide EC 62/2009)",
+    "id_dispositivo": 510,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 101,
+    "id": "Art. 101",
+    "cf_text": "Art. 101. O Supremo Tribunal Federal compõe-se de onze Ministros, escolhidos dentre cidadãos com mais de trinta e cinco e menos de setenta anos de idade, de notável saber jurídico e reputação ilibada. (Redação dada pela EC n. 122/22)",
+    "id_dispositivo": 517,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 102,
+    "id": "Art. 102",
+    "cf_text": "Art. 102. Compete ao Supremo Tribunal Federal, precipuamente, a guarda da Constituição, cabendo-lhe:",
+    "id_dispositivo": 519,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 103,
+    "id": "Art. 103",
+    "cf_text": "Art. 103. Podem propor a ação direta de inconstitucionalidade e a ação declaratória de constitucionalidade: (Redação da EC 45/2004)",
+    "id_dispositivo": 523,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 104,
+    "id": "Art. 104",
+    "cf_text": "Art. 104. O Superior Tribunal de Justiça compõe-se de, no mínimo, trinta e três Ministros.",
+    "id_dispositivo": 531,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 105,
+    "id": "Art. 105",
+    "cf_text": "Art. 105. Compete ao Superior Tribunal de Justiça:",
+    "id_dispositivo": 533,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 106,
+    "id": "Art. 106",
+    "cf_text": "Art. 106. São órgãos da Justiça Federal:",
+    "id_dispositivo": 537,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 107,
+    "id": "Art. 107",
+    "cf_text": "Art. 107. Os Tribunais Regionais Federais compõem-se de, no mínimo, sete juízes, recrutados, quando possível, na respectiva região e nomeados pelo Presidente da República dentre brasileiros com mais de trinta e menos de setenta anos de idade, sendo: (Redação dada pela EC n. 122/22)",
+    "id_dispositivo": 540,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 108,
+    "id": "Art. 108",
+    "cf_text": "Art. 108. Compete aos Tribunais Regionais Federais:",
+    "id_dispositivo": 546,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 109,
+    "id": "Art. 109",
+    "cf_text": "Art. 109. Aos juízes federais compete processar e julgar:",
+    "id_dispositivo": 548,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 110,
+    "id": "Art. 110",
+    "cf_text": "Art. 110. Cada Estado, bem como o Distrito Federal, constituirá uma seção judiciária que terá por sede a respectiva Capital, e varas localizadas segundo o estabelecido em lei.",
+    "id_dispositivo": 554,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 111,
+    "id": "Art. 111",
+    "cf_text": "Art. 111. São órgãos da Justiça do Trabalho:",
+    "id_dispositivo": 556,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 112,
+    "id": "Art. 112",
+    "cf_text": "Art. 112. A lei criará varas da Justiça do Trabalho, podendo, nas comarcas não abrangidas por sua jurisdição, atribuí-la aos juízes de direito, com recurso para o respectivo Tribunal Regional do Trabalho. (Redação da EC 45/2004)",
+    "id_dispositivo": 567,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 113,
+    "id": "Art. 113",
+    "cf_text": "Art. 113. A lei disporá sobre a constituição, investidura, jurisdição, competência, garantias e condições de exercício dos órgãos da Justiça do Trabalho. (Redação da EC 24/1999)",
+    "id_dispositivo": 568,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 114,
+    "id": "Art. 114",
+    "cf_text": "Art. 114. Compete à Justiça do Trabalho processar e julgar: (Redação da EC 45/2004)",
+    "id_dispositivo": 569,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 115,
+    "id": "Art. 115",
+    "cf_text": "Art. 115. Os Tribunais Regionais do Trabalho compõem-se de, no mínimo, sete juízes, recrutados, quando possível, na respectiva região e nomeados pelo Presidente da República dentre brasileiros com mais de trinta e menos de setenta anos de idade, sendo: (Redação dada pela EC n. 122/22)",
+    "id_dispositivo": 573,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 116,
+    "id": "Art. 116",
+    "cf_text": "Art. 116. Nas Varas do Trabalho, a jurisdição será exercida por um juiz singular. (Redação da EC 24/1999)",
+    "id_dispositivo": 577,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 117,
+    "id": "Art. 117",
+    "cf_text": "Art. 117. (Revogado pela EC 24/1999).",
+    "id_dispositivo": 578,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 118,
+    "id": "Art. 118",
+    "cf_text": "Art. 118. São órgãos da Justiça Eleitoral:",
+    "id_dispositivo": 579,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 119,
+    "id": "Art. 119",
+    "cf_text": "Art. 119. O Tribunal Superior Eleitoral compor-se-á, no mínimo, de sete membros, escolhidos:",
+    "id_dispositivo": 584,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 120,
+    "id": "Art. 120",
+    "cf_text": "Art. 120. Haverá um Tribunal Regional Eleitoral na Capital de cada Estado e no Distrito Federal.",
+    "id_dispositivo": 590,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 121,
+    "id": "Art. 121",
+    "cf_text": "Art. 121. Lei complementar disporá sobre a organização e competência dos tribunais, dos juízes de direito e das juntas eleitorais.",
+    "id_dispositivo": 598,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 122,
+    "id": "Art. 122",
+    "cf_text": "Art. 122. São órgãos da Justiça Militar:",
+    "id_dispositivo": 603,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 123,
+    "id": "Art. 123",
+    "cf_text": "Art. 123. Os Ministros civis serão escolhidos pelo Presidente da República dentre brasileiros com mais de trinta e cinco e menos de setenta anos de idade, sendo: (Redação dada pela EC n. 122/22)",
+    "id_dispositivo": 606,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 124,
+    "id": "Art. 124",
+    "cf_text": "Art. 124. À Justiça Militar compete processar e julgar os crimes militares definidos em lei.",
+    "id_dispositivo": 610,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 125,
+    "id": "Art. 125",
+    "cf_text": "Art. 125. Os Estados organizarão sua Justiça, observados os princípios estabelecidos nesta Constituição.",
+    "id_dispositivo": 612,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 126,
+    "id": "Art. 126",
+    "cf_text": "Art. 126. Para dirimir conflitos fundiários, o Tribunal de Justiça proporá a criação de varas especializadas, com competência exclusiva para questões agrárias. (Redação da EC 45/2004)",
+    "id_dispositivo": 620,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 127,
+    "id": "Art. 127",
+    "cf_text": "Art. 127. O Ministério Público é instituição permanente, essencial à função jurisdicional do Estado, incumbindo-lhe a defesa da ordem jurídica, do regime democrático e dos interesses sociais e individuais indisponíveis.",
+    "id_dispositivo": 622,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 128,
+    "id": "Art. 128",
+    "cf_text": "Art. 128. O Ministério Público abrange:",
+    "id_dispositivo": 629,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 129,
+    "id": "Art. 129",
+    "cf_text": "Art. 129. São funções institucionais do Ministério Público:",
+    "id_dispositivo": 637,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 130,
+    "id": "Art. 130",
+    "cf_text": "Art. 130. Aos membros do Ministério Público junto aos Tribunais de Contas aplicam-se as disposições desta seção pertinentes a direitos, vedações e forma de investidura.",
+    "id_dispositivo": 643,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 131,
+    "id": "Art. 131",
+    "cf_text": "Art. 131. A Advocacia-Geral da União é a instituição que, diretamente ou através de órgão vinculado, representa a União, judicial e extrajudicialmente, cabendo-lhe, nos termos da lei complementar que dispuser sobre sua organização e funcionamento, as atividades de consultoria e assessoramento jurídico do Poder Executivo.",
+    "id_dispositivo": 653,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 132,
+    "id": "Art. 132",
+    "cf_text": "Art. 132. Os Procuradores dos Estados e do Distrito Federal, organizados em carreira, na qual o ingresso dependerá de concurso público de provas e títulos, com a participação da Ordem dos Advogados do Brasil em todas as suas fases, exercerão a representação judicial e a consultoria jurídica das respectivas unidades federadas. (Redação da EC 19/1998)",
+    "id_dispositivo": 657,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 133,
+    "id": "Art. 133",
+    "cf_text": "Art. 133. O advogado é indispensável à administração da justiça, sendo inviolável por seus atos e manifestações no exercício da profissão, nos limites da lei.",
+    "id_dispositivo": 659,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 134,
+    "id": "Art. 134",
+    "cf_text": "Art. 134. A Defensoria Pública é instituição permanente, essencial à função jurisdicional do Estado, incumbindo-lhe, como expressão e instrumento do regime democrático, fundamentalmente, a orientação jurídica, a promoção dos direitos humanos e a defesa, em todos os graus, judicial e extrajudicial, dos direitos individuais e coletivos, de forma integral e gratuita, aos necessitados, na forma do inciso LXXIV do art. 5º desta Constituição Federal. (Redação da EC 80/2014)",
+    "id_dispositivo": 660,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 135,
+    "id": "Art. 135",
+    "cf_text": "Art. 135. Os servidores integrantes das carreiras disciplinadas nas Seções II e III deste Capítulo serão remunerados na forma do art. 39, § 4º. (Redação da EC 19/1998)",
+    "id_dispositivo": 663,
+    "total": 0,
+    "block": "leg",
+    "blockLabel": "Organização dos Poderes",
+    "blockColor": "#6b4e96"
+  },
+  {
+    "artigo": 136,
+    "id": "Art. 136",
+    "cf_text": "Art. 136. O Presidente da República pode, ouvidos o Conselho da República e o Conselho de Defesa Nacional, decretar estado de defesa para preservar ou prontamente restabelecer, em locais restritos e determinados, a ordem pública ou a paz social ameaçadas por grave e iminente instabilidade institucional ou atingidas por calamidades de grandes proporções na natureza.",
+    "id_dispositivo": 725,
+    "total": 0,
+    "block": "def",
+    "blockLabel": "Defesa do Estado",
+    "blockColor": "#8b3a3a"
+  },
+  {
+    "artigo": 137,
+    "id": "Art. 137",
+    "cf_text": "Art. 137. O Presidente da República pode, ouvidos o Conselho da República e o Conselho de Defesa Nacional, solicitar ao Congresso Nacional autorização para decretar o estado de sítio nos casos de:",
+    "id_dispositivo": 742,
+    "total": 0,
+    "block": "def",
+    "blockLabel": "Defesa do Estado",
+    "blockColor": "#8b3a3a"
+  },
+  {
+    "artigo": 138,
+    "id": "Art. 138",
+    "cf_text": "Art. 138. O decreto do estado de sítio indicará sua duração, as normas necessárias a sua execução e as garantias constitucionais que ficarão suspensas, e, depois de publicado, o Presidente da República designará o executor das medidas específicas e as áreas abrangidas.",
+    "id_dispositivo": 746,
+    "total": 0,
+    "block": "def",
+    "blockLabel": "Defesa do Estado",
+    "blockColor": "#8b3a3a"
+  },
+  {
+    "artigo": 139,
+    "id": "Art. 139",
+    "cf_text": "Art. 139. Na vigência do estado de sítio decretado com fundamento no art. 137, I, só poderão ser tomadas contra as pessoas as seguintes medidas:",
+    "id_dispositivo": 1866,
+    "total": 0,
+    "block": "def",
+    "blockLabel": "Defesa do Estado",
+    "blockColor": "#8b3a3a"
+  },
+  {
+    "artigo": 140,
+    "id": "Art. 140",
+    "cf_text": "Art. 140. A Mesa do Congresso Nacional, ouvidos os líderes partidários, designará Comissão composta de cinco de seus membros para acompanhar e fiscalizar a execução das medidas referentes ao estado de defesa e ao estado de sítio.",
+    "id_dispositivo": 758,
+    "total": 0,
+    "block": "def",
+    "blockLabel": "Defesa do Estado",
+    "blockColor": "#8b3a3a"
+  },
+  {
+    "artigo": 141,
+    "id": "Art. 141",
+    "cf_text": "Art. 141. Cessado o estado de defesa ou o estado de sítio, cessarão também seus efeitos, sem prejuízo da responsabilidade pelos ilícitos cometidos por seus executores ou agentes.",
+    "id_dispositivo": 759,
+    "total": 0,
+    "block": "def",
+    "blockLabel": "Defesa do Estado",
+    "blockColor": "#8b3a3a"
+  },
+  {
+    "artigo": 142,
+    "id": "Art. 142",
+    "cf_text": "Art. 142. As Forças Armadas, constituídas pela Marinha, pelo Exército e pela Aeronáutica, são instituições nacionais permanentes e regulares, organizadas com base na hierarquia e na disciplina, sob a autoridade suprema do Presidente da República, e destinam-se à defesa da Pátria, à garantia dos poderes constitucionais e, por iniciativa de qualquer destes, da lei e da ordem.",
+    "id_dispositivo": 761,
+    "total": 0,
+    "block": "def",
+    "blockLabel": "Defesa do Estado",
+    "blockColor": "#8b3a3a"
+  },
+  {
+    "artigo": 143,
+    "id": "Art. 143",
+    "cf_text": "Art. 143. O serviço militar é obrigatório nos termos da lei.",
+    "id_dispositivo": 766,
+    "total": 0,
+    "block": "def",
+    "blockLabel": "Defesa do Estado",
+    "blockColor": "#8b3a3a"
+  },
+  {
+    "artigo": 144,
+    "id": "Art. 144",
+    "cf_text": "Art. 144. A segurança pública, dever do Estado, direito e responsabilidade de todos, é exercida para a preservação da ordem pública e da incolumidade das pessoas e do patrimônio, através dos seguintes órgãos:",
+    "id_dispositivo": 769,
+    "total": 0,
+    "block": "def",
+    "blockLabel": "Defesa do Estado",
+    "blockColor": "#8b3a3a"
+  },
+  {
+    "artigo": 145,
+    "id": "Art. 145",
+    "cf_text": "Art. 145. A União, os Estados, o Distrito Federal e os Municípios poderão instituir os seguintes tributos:",
+    "id_dispositivo": 784,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 146,
+    "id": "Art. 146",
+    "cf_text": "Art. 146. Cabe à lei complementar:",
+    "id_dispositivo": 787,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 147,
+    "id": "Art. 147",
+    "cf_text": "Art. 147. Competem à União, em Território Federal, os impostos estaduais e, se o Território não for dividido em Municípios, cumulativamente, os impostos municipais; ao Distrito Federal cabem os impostos municipais.",
+    "id_dispositivo": 795,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 148,
+    "id": "Art. 148",
+    "cf_text": "Art. 148. A União, mediante lei complementar, poderá instituir empréstimos compulsórios:",
+    "id_dispositivo": 796,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 149,
+    "id": "Art. 149",
+    "cf_text": "Art. 149. Compete exclusivamente à União instituir contribuições sociais, de intervenção no domínio econômico e de interesse das categorias profissionais ou econômicas, como instrumento de sua atuação nas respectivas áreas, observado o disposto nos arts. 146, III, e 150, I e III, e sem prejuízo do previsto no art. 195, § 6º, relativamente às contribuições a que alude o dispositivo.",
+    "id_dispositivo": 798,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 150,
+    "id": "Art. 150",
+    "cf_text": "Art. 150. Sem prejuízo de outras garantias asseguradas ao contribuinte, é vedado à União, aos Estados, ao Distrito Federal e aos Municípios:",
+    "id_dispositivo": 805,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 151,
+    "id": "Art. 151",
+    "cf_text": "Art. 151. É vedado à União:",
+    "id_dispositivo": 813,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 152,
+    "id": "Art. 152",
+    "cf_text": "Art. 152. É vedado aos Estados, ao Distrito Federal e aos Municípios estabelecer diferença tributária entre bens e serviços, de qualquer natureza, em razão de sua procedência ou destino.",
+    "id_dispositivo": 814,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 153,
+    "id": "Art. 153",
+    "cf_text": "Art. 153. Compete à União instituir impostos sobre:",
+    "id_dispositivo": 815,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 154,
+    "id": "Art. 154",
+    "cf_text": "Art. 154. A União poderá instituir:",
+    "id_dispositivo": 825,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 155,
+    "id": "Art. 155",
+    "cf_text": "Art. 155. Compete aos Estados e ao Distrito Federal instituir impostos sobre: (Redação da EC 3/1993)",
+    "id_dispositivo": 826,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 156,
+    "id": "Art. 156",
+    "cf_text": "Art. 156. Compete aos Municípios instituir impostos sobre:",
+    "id_dispositivo": 838,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 157,
+    "id": "Art. 157",
+    "cf_text": "Art. 157. Pertencem aos Estados e ao Distrito Federal:",
+    "id_dispositivo": 846,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 158,
+    "id": "Art. 158",
+    "cf_text": "Art. 158. Pertencem aos Municípios:",
+    "id_dispositivo": 848,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 159,
+    "id": "Art. 159",
+    "cf_text": "Art. 159. A União entregará:",
+    "id_dispositivo": 856,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 160,
+    "id": "Art. 160",
+    "cf_text": "Art. 160. É vedada a retenção ou qualquer restrição à entrega e ao emprego dos recursos atribuídos, nesta seção, aos Estados, ao Distrito Federal e aos Municípios, neles compreendidos adicionais e acréscimos relativos a impostos.",
+    "id_dispositivo": 867,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 161,
+    "id": "Art. 161",
+    "cf_text": "Art. 161. Cabe à lei complementar:",
+    "id_dispositivo": 869,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 162,
+    "id": "Art. 162",
+    "cf_text": "Art. 162. A União, os Estados, o Distrito Federal e os Municípios divulgarão, até o último dia do mês subsequente ao da arrecadação, os montantes de cada um dos tributos arrecadados, os recursos recebidos, os valores de origem tributária entregues e a entregar e a expressão numérica dos critérios de rateio.",
+    "id_dispositivo": 874,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 163,
+    "id": "Art. 163",
+    "cf_text": "Art. 163. Lei complementar disporá sobre:",
+    "id_dispositivo": 876,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 164,
+    "id": "Art. 164",
+    "cf_text": "Art. 164. A competência da União para emitir moeda será exercida exclusivamente pelo Banco Central.",
+    "id_dispositivo": 877,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 165,
+    "id": "Art. 165",
+    "cf_text": "Art. 165. Leis de iniciativa do Poder Executivo estabelecerão:",
+    "id_dispositivo": 881,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 166,
+    "id": "Art. 166",
+    "cf_text": "Art. 166. Os projetos de lei relativos ao plano plurianual, às diretrizes orçamentárias, ao orçamento anual e aos créditos adicionais serão apreciados pelas duas Casas do Congresso Nacional, na forma do regimento comum.",
+    "id_dispositivo": 892,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 167,
+    "id": "Art. 167",
+    "cf_text": "Art. 167. São vedados:",
+    "id_dispositivo": 903,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 168,
+    "id": "Art. 168",
+    "cf_text": "Art. 168. Os recursos correspondentes às dotações orçamentárias, compreendidos os créditos suplementares e especiais, destinados aos órgãos dos Poderes Legislativo e Judiciário, do Ministério Público e da Defensoria Pública, ser-lhes-ão entregues até o dia 20 de cada mês, em duodécimos, na forma da lei complementar a que se refere o art. 165, § 9º. (Redação da EC 45/2004)",
+    "id_dispositivo": 910,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 169,
+    "id": "Art. 169",
+    "cf_text": "Art. 169. A despesa com pessoal ativo e inativo e pensionistas da União, dos Estados, do Distrito Federal e dos Municípios não pode exceder os limites estabelecidos em lei complementar. (Redação dada pela EC n. 109/2021)",
+    "id_dispositivo": 919,
+    "total": 0,
+    "block": "fin",
+    "blockLabel": "Tributação e Orçamento",
+    "blockColor": "#8b7220"
+  },
+  {
+    "artigo": 170,
+    "id": "Art. 170",
+    "cf_text": "Art. 170. A ordem econômica, fundada na valorização do trabalho humano e na livre iniciativa, tem por fim assegurar a todos existência digna, conforme os ditames da justiça social, observados os seguintes princípios:",
+    "id_dispositivo": 1040,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 171,
+    "id": "Art. 171",
+    "cf_text": "Art. 171. (Revogado pela EC 6/1995).",
+    "id_dispositivo": 1042,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 172,
+    "id": "Art. 172",
+    "cf_text": "Art. 172. A lei disciplinará, com base no interesse nacional, os investimentos de capital estrangeiro, incentivará os reinvestimentos e regulará a remessa de lucros.",
+    "id_dispositivo": 1043,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 173,
+    "id": "Art. 173",
+    "cf_text": "Art. 173. Ressalvados os casos previstos nesta Constituição, a exploração direta de atividade econômica pelo Estado só será permitida quando necessária aos imperativos da segurança nacional ou a relevante interesse coletivo, conforme definidos em lei.",
+    "id_dispositivo": 1044,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 174,
+    "id": "Art. 174",
+    "cf_text": "Art. 174. Como agente normativo e regulador da atividade econômica, o Estado exercerá, na forma da lei, as funções de fiscalização, incentivo e planejamento, sendo este determinante para o setor público e indicativo para o setor privado.",
+    "id_dispositivo": 1052,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 175,
+    "id": "Art. 175",
+    "cf_text": "Art. 175. Incumbe ao Poder Público, na forma da lei, diretamente ou sob regime de concessão ou permissão, sempre através de licitação, a prestação de serviços públicos.",
+    "id_dispositivo": 1057,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 176,
+    "id": "Art. 176",
+    "cf_text": "Art. 176. As jazidas, em lavra ou não, e demais recursos minerais e os potenciais de energia hidráulica constituem propriedade distinta da do solo, para efeito de exploração ou aproveitamento, e pertencem à União, garantida ao concessionário a propriedade do produto da lavra.",
+    "id_dispositivo": 1060,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 177,
+    "id": "Art. 177",
+    "cf_text": "Art. 177. Constituem monopólio da União:",
+    "id_dispositivo": 1065,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 178,
+    "id": "Art. 178",
+    "cf_text": "Art. 178. A lei disporá sobre a ordenação dos transportes aéreo, aquático e terrestre, devendo, quanto à ordenação do transporte internacional, observar os acordos firmados pela União, atendido o princípio da reciprocidade. (Redação da EC 7/1995)",
+    "id_dispositivo": 1079,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 179,
+    "id": "Art. 179",
+    "cf_text": "Art. 179. A União, os Estados, o Distrito Federal e os Municípios dispensarão às microempresas e às empresas de pequeno porte, assim definidas em lei, tratamento jurídico diferenciado, visando a incentivá-las pela simplificação de suas obrigações administrativas, tributárias, previdenciárias e creditícias, ou pela eliminação ou redução destas por meio de lei.",
+    "id_dispositivo": 1081,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 180,
+    "id": "Art. 180",
+    "cf_text": "Art. 180. A União, os Estados, o Distrito Federal e os Municípios promoverão e incentivarão o turismo como fator de desenvolvimento social e econômico.",
+    "id_dispositivo": 1082,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 181,
+    "id": "Art. 181",
+    "cf_text": "Art. 181. O atendimento de requisição de documento ou informação de natureza comercial, feita por autoridade administrativa ou judiciária estrangeira, a pessoa física ou jurídica residente ou domiciliada no País dependerá de autorização do Poder competente.",
+    "id_dispositivo": 1083,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 182,
+    "id": "Art. 182",
+    "cf_text": "Art. 182. A política de desenvolvimento urbano, executada pelo Poder Público municipal, conforme diretrizes gerais fixadas em lei, tem por objetivo ordenar o pleno desenvolvimento das funções sociais da cidade e garantir o bem-estar de seus habitantes.",
+    "id_dispositivo": 1084,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 183,
+    "id": "Art. 183",
+    "cf_text": "Art. 183. Aquele que possuir como sua área urbana de até duzentos e cinqüenta metros quadrados, por cinco anos, ininterruptamente e sem oposição, utilizando-a para sua moradia ou de sua família, adquirir-lhe-á o domínio, desde que não seja proprietário de outro imóvel urbano ou rural.",
+    "id_dispositivo": 1089,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 184,
+    "id": "Art. 184",
+    "cf_text": "Art. 184. Compete à União desapropriar por interesse social, para fins de reforma agrária, o imóvel rural que não esteja cumprindo sua função social, mediante prévia e justa indenização em títulos da dívida agrária, com cláusula de preservação do valor real, resgatáveis no prazo de até vinte anos, a partir do segundo ano de sua emissão, e cuja utilização será definida em lei.",
+    "id_dispositivo": 1093,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 185,
+    "id": "Art. 185",
+    "cf_text": "Art. 185. São insuscetíveis de desapropriação para fins de reforma agrária:",
+    "id_dispositivo": 1099,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 186,
+    "id": "Art. 186",
+    "cf_text": "Art. 186. A função social é cumprida quando a propriedade rural atende, simultaneamente, segundo critérios e graus de exigência estabelecidos em lei, aos seguintes requisitos:",
+    "id_dispositivo": 1103,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 187,
+    "id": "Art. 187",
+    "cf_text": "Art. 187. A política agrícola será planejada e executada na forma da lei, com a participação efetiva do setor de produção, envolvendo produtores e trabalhadores rurais, bem como dos setores de comercialização, de armazenamento e de transportes, levando em conta, especialmente:",
+    "id_dispositivo": 1108,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 188,
+    "id": "Art. 188",
+    "cf_text": "Art. 188. A destinação de terras públicas e devolutas será compatibilizada com a política agrícola e com o plano nacional de reforma agrária.",
+    "id_dispositivo": 1111,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 189,
+    "id": "Art. 189",
+    "cf_text": "Art. 189. Os beneficiários da distribuição de imóveis rurais pela reforma agrária receberão títulos de domínio ou de concessão de uso, inegociáveis pelo prazo de dez anos.",
+    "id_dispositivo": 1114,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 190,
+    "id": "Art. 190",
+    "cf_text": "Art. 190. A lei regulará e limitará a aquisição ou o arrendamento de propriedade rural por pessoa física ou jurídica estrangeira e estabelecerá os casos que dependerão de autorização do Congresso Nacional.",
+    "id_dispositivo": 1116,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 191,
+    "id": "Art. 191",
+    "cf_text": "Art. 191. Aquele que, não sendo proprietário de imóvel rural ou urbano, possua como seu, por cinco anos ininterruptos, sem oposição, área de terra, em zona rural, não superior a cinqüenta hectares, tornando-a produtiva por seu trabalho ou de sua família, tendo nela sua moradia, adquirir-lhe-á a propriedade.",
+    "id_dispositivo": 1117,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 192,
+    "id": "Art. 192",
+    "cf_text": "Art. 192. O sistema financeiro nacional, estruturado de forma a promover o desenvolvimento equilibrado do País e a servir aos interesses da coletividade, em todas as partes que o compõem, abrangendo as cooperativas de crédito, será regulado por leis complementares que disporão, inclusive, sobre a participação do capital estrangeiro nas instituições que o integram. (Redação da EC 40/2003)",
+    "id_dispositivo": 1119,
+    "total": 0,
+    "block": "eco",
+    "blockLabel": "Ordem Econômica",
+    "blockColor": "#3a6e80"
+  },
+  {
+    "artigo": 193,
+    "id": "Art. 193",
+    "cf_text": "Art. 193. A ordem social tem como base o primado do trabalho, e como objetivo o bem-estar e a justiça sociais.",
+    "id_dispositivo": 1139,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 194,
+    "id": "Art. 194",
+    "cf_text": "Art. 194. A seguridade social compreende um conjunto integrado de ações de iniciativa dos Poderes Públicos e da sociedade, destinadas a assegurar os direitos relativos à saúde, à previdência e à assistência social.",
+    "id_dispositivo": 1140,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 195,
+    "id": "Art. 195",
+    "cf_text": "Art. 195. A seguridade social será financiada por toda a sociedade, de forma direta e indireta, nos termos da lei, mediante recursos provenientes dos orçamentos da União, dos Estados, do Distrito Federal e dos Municípios, e das seguintes contribuições sociais: (Vide EC 20/1998)",
+    "id_dispositivo": 1146,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 196,
+    "id": "Art. 196",
+    "cf_text": "Art. 196. A saúde é direito de todos e dever do Estado, garantido mediante políticas sociais e econômicas que visem à redução do risco de doença e de outros agravos e ao acesso universal e igualitário às ações e serviços para sua promoção, proteção e recuperação.",
+    "id_dispositivo": 1160,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 197,
+    "id": "Art. 197",
+    "cf_text": "Art. 197. São de relevância pública as ações e serviços de saúde, cabendo ao Poder Público dispor, nos termos da lei, sobre sua regulamentação, fiscalização e controle, devendo sua execução ser feita diretamente ou através de terceiros e, também, por pessoa física ou jurídica de direito privado.",
+    "id_dispositivo": 1161,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 198,
+    "id": "Art. 198",
+    "cf_text": "Art. 198. As ações e serviços públicos de saúde integram uma rede regionalizada e hierarquizada e constituem um sistema único, organizado de acordo com as seguintes diretrizes:",
+    "id_dispositivo": 1162,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 199,
+    "id": "Art. 199",
+    "cf_text": "Art. 199. A assistência à saúde é livre à iniciativa privada.",
+    "id_dispositivo": 1167,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 200,
+    "id": "Art. 200",
+    "cf_text": "Art. 200. Ao sistema único de saúde compete, além de outras atribuições, nos termos da lei:",
+    "id_dispositivo": 1172,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 201,
+    "id": "Art. 201",
+    "cf_text": "Art. 201. A previdência social será organizada sob a forma do Regime Geral de Previdência Social, de caráter contributivo e de filiação obrigatória, observados critérios que preservem o equilíbrio financeiro e atuarial, e atenderá, na forma da lei, a: (Redação da EC 103/2019)",
+    "id_dispositivo": 1176,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 202,
+    "id": "Art. 202",
+    "cf_text": "Art. 202. O regime de previdência privada, de caráter complementar e organizado de forma autônoma em relação ao regime geral de previdência social, será facultativo, baseado na constituição de reservas que garantam o benefício contratado, e regulado por lei complementar. (Redação da EC 20/1998) (Vide EC 20/1998)",
+    "id_dispositivo": 1189,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 203,
+    "id": "Art. 203",
+    "cf_text": "Art. 203. A assistência social será prestada a quem dela necessitar, independentemente de contribuição à seguridade social, e tem por objetivos:",
+    "id_dispositivo": 1196,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 204,
+    "id": "Art. 204",
+    "cf_text": "Art. 204. As ações governamentais na área da assistência social serão realizadas com recursos do orçamento da seguridade social, previstos no art. 195, além de outras fontes, e organizadas com base nas seguintes diretrizes:",
+    "id_dispositivo": 1197,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 205,
+    "id": "Art. 205",
+    "cf_text": "Art. 205. A educação, direito de todos e dever do Estado e da família, será promovida e incentivada com a colaboração da sociedade, visando ao pleno desenvolvimento da pessoa, seu preparo para o exercício da cidadania e sua qualificação para o trabalho.",
+    "id_dispositivo": 1204,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 206,
+    "id": "Art. 206",
+    "cf_text": "Art. 206. O ensino será ministrado com base nos seguintes princípios:",
+    "id_dispositivo": 1205,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 207,
+    "id": "Art. 207",
+    "cf_text": "Art. 207. As universidades gozam de autonomia didático-científica, administrativa e de gestão financeira e patrimonial, e obedecerão ao princípio de indissociabilidade entre ensino, pesquisa e extensão.",
+    "id_dispositivo": 1207,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 208,
+    "id": "Art. 208",
+    "cf_text": "Art. 208. O dever do Estado com a educação será efetivado mediante a garantia de:",
+    "id_dispositivo": 1210,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 209,
+    "id": "Art. 209",
+    "cf_text": "Art. 209. O ensino é livre à iniciativa privada, atendidas as seguintes condições:",
+    "id_dispositivo": 1215,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 210,
+    "id": "Art. 210",
+    "cf_text": "Art. 210. Serão fixados conteúdos mínimos para o ensino fundamental, de maneira a assegurar formação básica comum e respeito aos valores culturais e artísticos, nacionais e regionais.",
+    "id_dispositivo": 1216,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 211,
+    "id": "Art. 211",
+    "cf_text": "Art. 211. A União, os Estados, o Distrito Federal e os Municípios organizarão em regime de colaboração seus sistemas de ensino.",
+    "id_dispositivo": 1219,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 212,
+    "id": "Art. 212",
+    "cf_text": "Art. 212. A União aplicará, anualmente, nunca menos de dezoito, e os Estados, o Distrito Federal e os Municípios vinte e cinco por cento, no mínimo, da receita resultante de impostos, compreendida a proveniente de transferências, na manutenção e desenvolvimento do ensino.",
+    "id_dispositivo": 1224,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 213,
+    "id": "Art. 213",
+    "cf_text": "Art. 213. Os recursos públicos serão destinados às escolas públicas, podendo ser dirigidos a escolas comunitárias, confessionais ou filantrópicas, definidas em lei, que:",
+    "id_dispositivo": 1230,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 214,
+    "id": "Art. 214",
+    "cf_text": "Art. 214 - A lei estabelecerá o plano nacional de educação, de duração decenal, com o objetivo de articular o sistema nacional de educação em regime de colaboração e definir diretrizes, objetivos, metas e estratégias de implementação para assegurar a manutenção e desenvolvimento do ensino em seus diversos níveis, etapas e modalidades por meio de ações integradas dos poderes públicos das diferentes esferas federativas que conduzam a: (Redação da EC 59/2009)",
+    "id_dispositivo": 1233,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 215,
+    "id": "Art. 215",
+    "cf_text": "Art. 215. O Estado garantirá a todos o pleno exercício dos direitos culturais e acesso às fontes da cultura nacional, e apoiará e incentivará a valorização e a difusão das manifestações culturais.",
+    "id_dispositivo": 1239,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 216,
+    "id": "Art. 216",
+    "cf_text": "Art. 216. Constituem patrimônio cultural brasileiro os bens de natureza material e imaterial, tomados individualmente ou em conjunto, portadores de referência à identidade, à ação, à memória dos diferentes grupos formadores da sociedade brasileira, nos quais se incluem:",
+    "id_dispositivo": 1242,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 217,
+    "id": "Art. 217",
+    "cf_text": "Art. 217. É dever do Estado fomentar práticas desportivas formais e não formais, como direito de cada um, observados:",
+    "id_dispositivo": 1257,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 218,
+    "id": "Art. 218",
+    "cf_text": "Art. 218. O Estado promoverá e incentivará o desenvolvimento científico, a pesquisa, a capacitação científica e tecnológica e a inovação. (Redação da EC 85/2015)",
+    "id_dispositivo": 1261,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 219,
+    "id": "Art. 219",
+    "cf_text": "Art. 219. O mercado interno integra o patrimônio nacional e será incentivado de modo a viabilizar o desenvolvimento cultural e sócioeconômico, o bem-estar da população e a autonomia tecnológica do País, nos termos de lei federal.",
+    "id_dispositivo": 1267,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 220,
+    "id": "Art. 220",
+    "cf_text": "Art. 220. A manifestação do pensamento, a criação, a expressão e a informação, sob qualquer forma, processo ou veículo não sofrerão qualquer restrição, observado o disposto nesta Constituição.",
+    "id_dispositivo": 1268,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 221,
+    "id": "Art. 221",
+    "cf_text": "Art. 221. A produção e a programação das emissoras de rádio e televisão atenderão aos seguintes princípios:",
+    "id_dispositivo": 1276,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 222,
+    "id": "Art. 222",
+    "cf_text": "Art. 222. A propriedade de empresa jornalística e de radiodifusão sonora e de sons e imagens é privativa de brasileiros natos ou naturalizados há mais de dez anos, ou de pessoas jurídicas constituídas sob as leis brasileiras e que tenham sede no País. (Redação da EC 36/2002)",
+    "id_dispositivo": 1277,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 223,
+    "id": "Art. 223",
+    "cf_text": "Art. 223. Compete ao Poder Executivo outorgar e renovar concessão, permissão e autorização para o serviço de radiodifusão sonora e de sons e imagens, observado o princípio da complementaridade dos sistemas privado, público e estatal.",
+    "id_dispositivo": 1283,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 224,
+    "id": "Art. 224",
+    "cf_text": "Art. 224. Para os efeitos do disposto neste capítulo, o Congresso Nacional instituirá, como seu órgão auxiliar, o Conselho de Comunicação Social, na forma da lei.",
+    "id_dispositivo": 1289,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 225,
+    "id": "Art. 225",
+    "cf_text": "Art. 225. Todos têm direito ao meio ambiente ecologicamente equilibrado, bem de uso comum do povo e essencial à sadia qualidade de vida, impondo-se ao Poder Público e à coletividade o dever de defendê-lo e preservá-lo para as presentes e futuras gerações.",
+    "id_dispositivo": 1290,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 226,
+    "id": "Art. 226",
+    "cf_text": "Art. 226. A família, base da sociedade, tem especial proteção do Estado.",
+    "id_dispositivo": 1297,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 227,
+    "id": "Art. 227",
+    "cf_text": "Art. 227. É dever da família, da sociedade e do Estado assegurar à criança, ao adolescente e ao jovem, com absoluta prioridade, o direito à vida, à saúde, à alimentação, à educação, ao lazer, à profissionalização, à cultura, à dignidade, ao respeito, à liberdade e à convivência familiar e comunitária, além de colocá-los a salvo de toda forma de negligência, discriminação, exploração, violência, crueldade e opressão. (Redação da EC 65/2010)",
+    "id_dispositivo": 1306,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 228,
+    "id": "Art. 228",
+    "cf_text": "Art. 228. São penalmente inimputáveis os menores de dezoito anos, sujeitos às normas da legislação especial.",
+    "id_dispositivo": 1316,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 229,
+    "id": "Art. 229",
+    "cf_text": "Art. 229. Os pais têm o dever de assistir, criar e educar os filhos menores, e os filhos maiores têm o dever de ajudar e amparar os pais na velhice, carência ou enfermidade.",
+    "id_dispositivo": 1317,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 230,
+    "id": "Art. 230",
+    "cf_text": "Art. 230. A família, a sociedade e o Estado têm o dever de amparar as pessoas idosas, assegurando sua participação na comunidade, defendendo sua dignidade e bem-estar e garantindo-lhes o direito à vida.",
+    "id_dispositivo": 1318,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 231,
+    "id": "Art. 231",
+    "cf_text": "Art. 231. São reconhecidos aos índios sua organização social, costumes, línguas, crenças e tradições, e os direitos originários sobre as terras que tradicionalmente ocupam, competindo à União demarcá-las, proteger e fazer respeitar todos os seus bens.",
+    "id_dispositivo": 1321,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 232,
+    "id": "Art. 232",
+    "cf_text": "Art. 232. Os índios, suas comunidades e organizações são partes legítimas para ingressar em juízo em defesa de seus direitos e interesses, intervindo o Ministério Público em todos os atos do processo.",
+    "id_dispositivo": 1329,
+    "total": 0,
+    "block": "soc",
+    "blockLabel": "Ordem Social",
+    "blockColor": "#7a6235"
+  },
+  {
+    "artigo": 233,
+    "id": "Art. 233",
+    "cf_text": "Art. 233. (Revogado pela EC 28/2000).",
+    "id_dispositivo": 1439,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 234,
+    "id": "Art. 234",
+    "cf_text": "Art. 234. É vedado à União, direta ou indiretamente, assumir, em decorrência da criação de Estado, encargos referentes a despesas com pessoal inativo e com encargos e amortizações da dívida interna ou externa da administração pública, inclusive da indireta.",
+    "id_dispositivo": 1411,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 235,
+    "id": "Art. 235",
+    "cf_text": "Art. 235. Nos dez primeiros anos da criação de Estado, serão observadas as seguintes normas básicas:",
+    "id_dispositivo": 1412,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 236,
+    "id": "Art. 236",
+    "cf_text": "Art. 236. Os serviços notariais e de registro são exercidos em caráter privado, por delegação do Poder Público.",
+    "id_dispositivo": 1413,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 237,
+    "id": "Art. 237",
+    "cf_text": "Art. 237. A fiscalização e o controle sobre o comércio exterior, essenciais à defesa dos interesses fazendários nacionais, serão exercidos pelo Ministério da Fazenda.",
+    "id_dispositivo": 1417,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 238,
+    "id": "Art. 238",
+    "cf_text": "Art. 238. A lei ordenará a venda e revenda de combustíveis de petróleo, álcool carburante e outros combustíveis derivados de matérias-primas renováveis, respeitados os princípios desta Constituição.",
+    "id_dispositivo": 1418,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 239,
+    "id": "Art. 239",
+    "cf_text": "Art. 239. A arrecadação decorrente das contribuições para o Programa de Integração Social, criado pela Lei Complementar nº 7, de 7 de setembro de 1970, e para o Programa de Formação do Patrimônio do Servidor Público, criado pela Lei Complementar nº 8, de 3 de dezembro de 1970, passa, a partir da promulgação desta Constituição, a financiar, nos termos que a lei dispuser, o programa do seguro-desemprego, outras ações da previdência social e o abono de que trata o § 3º deste artigo. (Redação da EC 103/2019)",
+    "id_dispositivo": 1419,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 240,
+    "id": "Art. 240",
+    "cf_text": "Art. 240. Ficam ressalvadas do disposto no art. 195 as atuais contribuições compulsórias dos empregadores sobre a folha de salários, destinadas às entidades privadas de serviço social e de formação profissional vinculadas ao sistema sindical.",
+    "id_dispositivo": 1424,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 241,
+    "id": "Art. 241",
+    "cf_text": "Art. 241. A União, os Estados, o Distrito Federal e os Municípios disciplinarão por meio de lei os consórcios públicos e os convênios de cooperação entre os entes federados, autorizando a gestão associada de serviços públicos, bem como a transferência total ou parcial de encargos, serviços, pessoal e bens essenciais à continuidade dos serviços transferidos. (Redação da EC 19/1998)",
+    "id_dispositivo": 1425,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 242,
+    "id": "Art. 242",
+    "cf_text": "Art. 242. O princípio do art. 206, IV, não se aplica às instituições educacionais oficiais criadas por lei estadual ou municipal e existentes na data da promulgação desta Constituição, que não sejam total ou preponderantemente mantidas com recursos públicos.",
+    "id_dispositivo": 1426,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 243,
+    "id": "Art. 243",
+    "cf_text": "Art. 243. As propriedades rurais e urbanas de qualquer região do País onde forem localizadas culturas ilegais de plantas psicotrópicas ou a exploração de trabalho escravo na forma da lei serão expropriadas e destinadas à reforma agrária e a programas de habitação popular, sem qualquer indenização ao proprietário e sem prejuízo de outras sanções previstas em lei, observado, no que couber, o disposto no art. 5º. (Redação da EC 81/2014)",
+    "id_dispositivo": 1429,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 244,
+    "id": "Art. 244",
+    "cf_text": "Art. 244. A lei disporá sobre a adaptação dos logradouros, dos edifícios de uso público e dos veículos de transporte coletivo atualmente existentes a fim de garantir acesso adequado às pessoas portadoras de deficiência, conforme o disposto no art. 227, § 2º.",
+    "id_dispositivo": 1431,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 245,
+    "id": "Art. 245",
+    "cf_text": "Art. 245. A lei disporá sobre as hipóteses e condições em que o Poder Público dará assistência aos herdeiros e dependentes carentes de pessoas vitimadas por crime doloso, sem prejuízo da responsabilidade civil do autor do ilícito.",
+    "id_dispositivo": 1432,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 246,
+    "id": "Art. 246",
+    "cf_text": "Art. 246. É vedada a adoção de medida provisória na regulamentação de artigo da Constituição cuja redação tenha sido alterada por meio de emenda promulgada entre 1º de janeiro de 1995 até a promulgação desta emenda, inclusive. (Redação da EC 32/2001)",
+    "id_dispositivo": 1433,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 247,
+    "id": "Art. 247",
+    "cf_text": "Art. 247. As leis previstas no inciso III do § 1º do art. 41 e no § 7º do art. 169 estabelecerão critérios e garantias especiais para a perda do cargo pelo servidor público estável que, em decorrência das atribuições de seu cargo efetivo, desenvolva atividades exclusivas de Estado. (Incluído pela EC 19/1998)",
+    "id_dispositivo": 1434,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 248,
+    "id": "Art. 248",
+    "cf_text": "Art. 248. Os benefícios pagos, a qualquer título, pelo órgão responsável pelo regime geral de previdência social, ainda que à conta do Tesouro Nacional, e os não sujeitos ao limite máximo de valor fixado para os benefícios concedidos por esse regime observarão os limites fixados no art. 37, XI. (Incluído pela EC 20/1998)",
+    "id_dispositivo": 1436,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 249,
+    "id": "Art. 249",
+    "cf_text": "Art. 249. Com o objetivo de assegurar recursos para o pagamento de proventos de aposentadoria e pensões concedidas aos respectivos servidores e seus dependentes, em adição aos recursos dos respectivos tesouros, a União, os Estados, o Distrito Federal e os Municípios poderão constituir fundos integrados pelos recursos provenientes de contribuições e por bens, direitos e ativos de qualquer natureza, mediante lei que disporá sobre a natureza e administração desses fundos. (Incluído pela EC 20/1998)",
+    "id_dispositivo": 1437,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  },
+  {
+    "artigo": 250,
+    "id": "Art. 250",
+    "cf_text": "Art. 250. Com o objetivo de assegurar recursos para o pagamento dos benefícios concedidos pelo regime geral de previdência social, em adição aos recursos de sua arrecadação, a União poderá constituir fundo integrado por bens, direitos e ativos de qualquer natureza, mediante lei que disporá sobre a natureza e administração desse fundo. (Incluído pela EC 20/1998)",
+    "id_dispositivo": 1438,
+    "total": 0,
+    "block": "disp",
+    "blockLabel": "Disposições Gerais",
+    "blockColor": "#505050"
+  }
+]

@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root {
   --ink: #0f0e0d; --paper: #f5f0e8; --paper2: #ede7d9; --paper3: #e2d9c8;
@@ -342,8 +341,390 @@ footer { background: var(--navy); color: rgba(245,240,232,.5); text-align: cente
 </footer>
 
 <script>
-const SUPA = '%%SUPABASE_URL%%'
-const KEY  = '%%SUPABASE_ANON_KEY%%'
+let D = null;
+const COLORS = ['#1a2744','#b8860b','#0d5c5c','#8b3a1a','#4a3080','#2d6a2d','#5c3a1a','#1a5c5c','#6b4226','#3a1a5c','#1a4a1a','#5c1a1a'];
+const GOLD = '#d4a017', NAVY = '#1a2744';
+function fmt(n){return n?n.toLocaleString('pt-BR'):'—'}
+function pct(a,b){return b?(a/b*100).toFixed(1)+'%':'—'}
+function heatColor(v,max){if(!v)return'#f5f0e8';const t=v/max;if(t<.15)return'#e8ecf4';if(t<.3)return'#b5c4d9';if(t<.5)return'#7a96bc';if(t<.7)return'#3d679c';if(t<.85)return'#1a3a6e';return'#0f2244'}
+
+function showPanel(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.hnav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('panel-'+id).classList.add('active');event.target.classList.add('active');loadPanel(id)}
+const loaded=new Set();
+function loadPanel(id){if(loaded.has(id))return;loaded.add(id);const fn=panels[id];if(fn)fn()}
+
+function renderKPIs(){
+  document.getElementById('h-decisoes').textContent='7.695';
+  document.getElementById('h-artigos').textContent='250';
+  document.getElementById('m-decisoes').textContent='7.695';
+  document.getElementById('m-artigos').textContent='250';
+  document.getElementById('m-artigos-sub').textContent='214 com decisões · 36 sem disputas';
+  if(D){document.getElementById('m-classes').textContent=D.kpis.classes_distintas;const tc=D.kpis.top_classe;if(tc)document.getElementById('m-classes-sub').textContent=tc[0]+' lidera '+pct(tc[1],D.kpis.total_decisoes);document.getElementById('m-relatores').textContent=D.kpis.relatores_distintos+'+'}
+}
+
+const panels={
+temporal:()=>{const by=D.por_ano;const yrs=Object.keys(by).sort();const vals=yrs.map(y=>by[y]);new Chart(document.getElementById('chart-temporal'),{type:'bar',data:{labels:yrs,datasets:[{data:vals,backgroundColor:yrs.map(y=>+y<2000?'#7a96bc':+y<2010?'#3d679c':+y<2020?'#1a3a6e':GOLD),borderRadius:2}]},options:{plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:8},maxRotation:90}},y:{ticks:{font:{size:9}}}},responsive:true}});const dec={'1988–99':0,'2000–09':0,'2010–19':0,'2020–26':0};yrs.forEach(y=>{const n=+y;if(n<2000)dec['1988–99']+=by[y];else if(n<2010)dec['2000–09']+=by[y];else if(n<2020)dec['2010–19']+=by[y];else dec['2020–26']+=by[y]});new Chart(document.getElementById('chart-decadas'),{type:'bar',data:{labels:Object.keys(dec),datasets:[{data:Object.values(dec),backgroundColor:['#7a96bc','#3d679c','#1a3a6e',GOLD],borderRadius:4}]},options:{plugins:{legend:{display:false}},scales:{y:{ticks:{font:{size:9}}}},responsive:true}});const nomes=['Consolidação','Expansão','Intensificação','Contemporânea'];const cols=['#7a96bc','#3d679c','#1a3a6e',GOLD];document.getElementById('fases-content').innerHTML='<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem">'+Object.entries(dec).map(([k,v],i)=>'<div style="border-left:3px solid '+cols[i]+';padding:.75rem 1rem"><div style="font-family:var(--ff-mono);font-size:9px;color:var(--muted);margin-bottom:.25rem">FASE '+(i+1)+'</div><div style="font-weight:600;font-size:12px">'+nomes[i]+'</div><div style="font-size:11px;color:var(--muted);margin-top:.25rem">'+fmt(v)+' decisões</div></div>').join('')+'</div>'},
+
+classes:()=>{const s=Object.entries(D.por_classe).sort((a,b)=>b[1]-a[1]);const t10=s.slice(0,10);const tot=s.reduce((a,e)=>a+e[1],0);new Chart(document.getElementById('chart-classes-pie'),{type:'doughnut',data:{labels:t10.map(([c])=>c),datasets:[{data:t10.map(([,n])=>n),backgroundColor:COLORS,borderWidth:2,borderColor:'#fff'}]},options:{plugins:{legend:{position:'right',labels:{font:{size:10},padding:8}}},responsive:true}});const el=document.getElementById('classes-bar');el.innerHTML='';const mx=s[0]?.[1]||1;s.slice(0,15).forEach(([cls,n])=>{el.innerHTML+='<div class="bar-row"><span class="nm" style="min-width:80px">'+cls+'</span><div class="bt"><div class="bf" style="width:'+n/mx*100+'%;background:'+NAVY+'"></div></div><span class="ct">'+fmt(n)+'</span><span style="font-family:var(--ff-mono);font-size:9px;color:var(--muted);width:40px;text-align:right">'+pct(n,tot)+'</span></div>'})},
+
+relatores:()=>{const s=Object.entries(D.por_relator).sort((a,b)=>b[1]-a[1]).slice(0,20);const mx=s[0]?.[1]||1;const el=document.getElementById('rel-bar');el.innerHTML='';s.forEach(([r,n],i)=>{el.innerHTML+='<div class="bar-row"><span class="nm">'+r+'</span><div class="bt"><div class="bf" style="width:'+n/mx*100+'%;background:'+COLORS[i%COLORS.length]+'"></div></div><span class="ct">'+fmt(n)+'</span></div>'});new Chart(document.getElementById('chart-relatores'),{type:'bar',data:{labels:s.map(([r])=>r),datasets:[{data:s.map(([,n])=>n),backgroundColor:GOLD,borderRadius:3}]},options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9}}},y:{ticks:{font:{size:9}}}},responsive:true}})},
+
+artigos:()=>{const s=D.por_artigo;const mx=s[0]?.total||1;const el=document.getElementById('arts-bar');el.innerHTML='';s.slice(0,20).forEach(a=>{el.innerHTML+='<div class="bar-row"><span class="nm">Art. '+a.artigo+'</span><div class="bt"><div class="bf" style="width:'+a.total/mx*100+'%;background:'+a.blockColor+'"></div></div><span class="ct">'+fmt(a.total)+'</span></div>'});new Chart(document.getElementById('chart-artigos'),{type:'bar',data:{labels:s.slice(0,20).map(a=>'Art.'+a.artigo),datasets:[{data:s.slice(0,20).map(a=>a.total),backgroundColor:s.slice(0,20).map(a=>a.blockColor),borderRadius:3}]},options:{plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:8},maxRotation:45}},y:{ticks:{font:{size:9}}}},responsive:true}})},
+
+calor:()=>{const c=D.calor;const ps=c.periodos;const rs=Object.keys(c.relatores);let mx=0;rs.forEach(r=>ps.forEach(p=>mx=Math.max(mx,c.relatores[r][p]||0)));const ct=document.getElementById('heatmap-container');ct.innerHTML='';const dl=document.createElement('div');dl.className='dlabels';ps.forEach(p=>{const s=document.createElement('div');s.className='dlbl';s.textContent=p;dl.appendChild(s)});ct.appendChild(dl);rs.forEach(rel=>{const row=document.createElement('div');row.className='heatrow';const lbl=document.createElement('div');lbl.className='hrlbl';lbl.textContent=rel;lbl.title=rel;row.appendChild(lbl);const cells=document.createElement('div');cells.className='hcells';ps.forEach(p=>{const cell=document.createElement('div');cell.className='hcell';const v=c.relatores[rel][p]||0;cell.style.background=heatColor(v,mx);cell.title=rel+' · '+p+': '+v;if(v)cell.textContent=v;cells.appendChild(cell)});row.appendChild(cells);ct.appendChild(row)})},
+
+mudancas:()=>{const s=D.amplitude.sort((a,b)=>b.amplitude-a.amplitude);const el=document.getElementById('mudancas-list');el.innerHTML='';const mx=s[0]?.amplitude||1;s.slice(0,15).forEach(a=>{el.innerHTML+='<div class="cluster-row"><span style="font-family:var(--ff-mono);font-size:10px;font-weight:500;min-width:80px">Art. '+a.artigo+'</span><div style="flex:1;height:4px;background:var(--paper3);border-radius:2px;overflow:hidden"><div style="width:'+a.amplitude/mx*100+'%;height:100%;background:var(--navy);border-radius:2px"></div></div><span style="font-family:var(--ff-mono);font-size:9px;color:var(--muted)">'+a.amplitude+' anos · '+fmt(a.total)+' dec.</span></div>'});new Chart(document.getElementById('chart-mudancas'),{type:'scatter',data:{datasets:[{data:s.map(a=>({x:a.amplitude,y:a.total})),backgroundColor:GOLD,pointRadius:6,pointHoverRadius:8}]},options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'Art.'+s[ctx.dataIndex]?.artigo+': '+ctx.raw.x+'a · '+fmt(ctx.raw.y)+' dec.'}}},scales:{x:{title:{display:true,text:'Amplitude (anos)',font:{size:10}}},y:{title:{display:true,text:'Decisões',font:{size:10}}}},responsive:true}})},
+
+orgao:()=>{const s=Object.entries(D.por_orgao).sort((a,b)=>b[1]-a[1]);const tot=s.reduce((a,e)=>a+e[1],0);const lb={P:'Plenário','1T':'1ª Turma','2T':'2ª Turma',mono:'Monocrática'};new Chart(document.getElementById('chart-orgao-pie'),{type:'doughnut',data:{labels:s.map(([o])=>lb[o]||o),datasets:[{data:s.map(([,n])=>n),backgroundColor:[NAVY,'#3d679c','#7a96bc','#b5c4d9'],borderWidth:2,borderColor:'#fff'}]},options:{plugins:{legend:{position:'right',labels:{font:{size:11},padding:10}}},responsive:true}});const el=document.getElementById('orgao-list');el.innerHTML='';const mx=s[0]?.[1]||1;s.forEach(([o,n])=>{el.innerHTML+='<div class="bar-row"><span class="nm">'+(lb[o]||o)+'</span><div class="bt"><div class="bf" style="width:'+n/mx*100+'%"></div></div><span class="ct">'+fmt(n)+'</span><span style="font-family:var(--ff-mono);font-size:9px;color:var(--muted);width:45px;text-align:right">'+pct(n,tot)+'</span></div>'})},
+
+temas:()=>{const s=Object.entries(D.por_bloco).sort((a,b)=>b[1]-a[1]);const bc={};D.blocos.forEach(b=>bc[b.label]=b.cor);new Chart(document.getElementById('chart-temas'),{type:'bar',data:{labels:s.map(([b])=>b),datasets:[{data:s.map(([,n])=>n),backgroundColor:s.map(([b])=>bc[b]||NAVY),borderRadius:4}]},options:{plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9}}},y:{ticks:{font:{size:9}}}},responsive:true}});const el=document.getElementById('temas-list');el.innerHTML='';const mx=s[0]?.[1]||1;s.forEach(([b,n])=>{el.innerHTML+='<div class="bar-row"><span class="nm">'+b+'</span><div class="bt"><div class="bf" style="width:'+n/mx*100+'%;background:'+(bc[b]||NAVY)+'"></div></div><span class="ct">'+fmt(n)+'</span></div>'})},
+
+decidib:()=>{const s=D.decidibilidade;const el=document.getElementById('decidib-list');el.innerHTML='';const mx=s[0]?.total||1;s.slice(0,15).forEach(a=>{el.innerHTML+='<div class="bar-row"><span class="nm" style="min-width:60px">'+a.classe+'</span><div class="bt"><div class="bf" style="width:'+a.total/mx*100+'%;background:'+NAVY+'"></div></div><span class="ct">'+fmt(a.total)+' · '+a.artigos+' arts</span></div>'});new Chart(document.getElementById('chart-decidib'),{type:'scatter',data:{datasets:[{data:s.map(a=>({x:a.artigos,y:a.total,label:a.classe})),backgroundColor:GOLD,pointRadius:7,pointHoverRadius:9}]},options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>s[ctx.dataIndex].classe+': '+fmt(ctx.raw.y)+' vínculos · '+ctx.raw.x+' artigos'}}},scales:{x:{title:{display:true,text:'Artigos cobertos',font:{size:10}}},y:{title:{display:true,text:'Total de vínculos',font:{size:10}}}},responsive:true}})},
+
+tempo:()=>{const s=D.amplitude.sort((a,b)=>b.amplitude-a.amplitude);const el=document.getElementById('tempo-list');el.innerHTML='';const mx=s[0]?.amplitude||1;s.slice(0,15).forEach(a=>{el.innerHTML+='<div class="bar-row"><span class="nm">Art. '+a.artigo+'</span><div class="bt"><div class="bf" style="width:'+a.amplitude/mx*100+'%;background:'+NAVY+'"></div></div><span style="font-family:var(--ff-mono);font-size:10px;color:var(--muted);width:55px;text-align:right">'+a.amplitude+' anos</span></div>'});new Chart(document.getElementById('chart-tempo'),{type:'bar',data:{labels:s.map(a=>'Art.'+a.artigo),datasets:[{data:s.map(a=>a.amplitude),backgroundColor:GOLD,borderRadius:3}]},options:{plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:8},maxRotation:45}},y:{title:{display:true,text:'Anos',font:{size:9}}}},responsive:true}})},
+
+rede:()=>{const s=D.co_citacao;const el=document.getElementById('rede-list');const mx=s[0]?.total||1;el.innerHTML='<div style="display:flex;flex-direction:column;gap:6px">'+s.map(a=>'<div style="display:flex;align-items:center;gap:10px;font-size:11px;padding:5px 0;border-bottom:1px solid var(--border)"><span style="font-family:var(--ff-mono);font-weight:500;padding:2px 8px;background:'+a.cor1+';color:#fff;border-radius:3px;font-size:10px">Art.'+a.art1+'</span><span style="color:var(--muted)">↔</span><span style="font-family:var(--ff-mono);font-weight:500;padding:2px 8px;background:'+a.cor2+';color:#fff;border-radius:3px;font-size:10px">Art.'+a.art2+'</span><div style="flex:1;height:4px;background:var(--paper3);border-radius:2px;overflow:hidden"><div style="width:'+a.total/mx*100+'%;height:100%;background:'+GOLD+';border-radius:2px"></div></div><span style="font-family:var(--ff-mono);font-size:10px;color:var(--muted)">'+a.total+'×</span></div>').join('')+'</div>'},
+
+perfil:()=>{const topRel=Object.entries(D.por_relator).sort((a,b)=>b[1]-a[1]).slice(0,30).map(([r])=>r);const sel2=document.getElementById('perfil-select');topRel.forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=r;sel2.appendChild(o)});window._prb=D.por_relator_bloco;window._pbl=D.blocos}
+};
+
+window.renderPerfil=function(){const rel=document.getElementById('perfil-select').value;if(!rel)return;const data=window._prb[rel]||{};const bl=window._pbl||[];const labels=bl.map(b=>b.label.split(' ')[0]);const values=bl.map(b=>data[b.label]||0);const colors=bl.map(b=>b.cor);document.getElementById('perfil-content').style.display='block';if(window._pc)window._pc.destroy();window._pc=new Chart(document.getElementById('chart-perfil'),{type:'radar',data:{labels,datasets:[{data:values,backgroundColor:'rgba(212,160,23,.2)',borderColor:GOLD,borderWidth:2,pointBackgroundColor:colors,pointRadius:5}]},options:{responsive:true,scales:{r:{ticks:{font:{size:8}},grid:{color:'rgba(0,0,0,.08)'}}},plugins:{legend:{display:false}}}})};
+
+fetch('cartografia_data.json').then(r=>r.json()).then(data=>{D=data;renderKPIs();loadPanel('temporal')}).catch(e=>console.error('Erro:',e));
+</script>
+<style>
+:root {
+  --ink: #0f0e0d; --paper: #f5f0e8; --paper2: #ede7d9; --paper3: #e2d9c8;
+  --gold: #b8860b; --gold2: #d4a017; --rust: #8b3a1a;
+  --navy: #1a2744; --navy2: #243058; --teal: #0d5c5c;
+  --muted: #6b6355; --border: rgba(15,14,13,0.12); --border2: rgba(15,14,13,0.22);
+  --ff-display: 'Playfair Display', serif;
+  --ff-mono: 'DM Mono', monospace;
+  --ff-body: 'DM Sans', sans-serif;
+  --shadow: 0 2px 24px rgba(15,14,13,0.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--ff-body); background: var(--paper); color: var(--ink); font-size: 14px; line-height: 1.6; min-height: 100vh; }
+
+/* HEADER */
+.site-header { background: var(--navy); color: var(--paper); padding: 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,.3); }
+.header-inner { max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; gap: 2rem; height: 56px; }
+.logo { font-family: var(--ff-display); font-size: 15px; font-weight: 700; letter-spacing: .01em; color: var(--gold2); white-space: nowrap; flex-shrink: 0; text-decoration: none; }
+.logo span { color: rgba(245,240,232,.5); font-weight: 400; font-family: var(--ff-mono); font-size: 10px; display: block; letter-spacing: .08em; }
+.header-badge { margin-left: auto; flex-shrink: 0; font-family: var(--ff-mono); font-size: 9px; color: rgba(245,240,232,.4); letter-spacing: .08em; text-transform: uppercase; }
+.header-back { font-family: var(--ff-mono); font-size: 10px; color: rgba(245,240,232,.5); text-decoration: none; letter-spacing: .05em; transition: color .15s; }
+.header-back:hover { color: var(--gold2); }
+
+/* EIXOS NAV */
+.eixos-bar { background: #fff; border: 1px solid var(--border); border-radius: 6px; box-shadow: var(--shadow); padding: .65rem .9rem; margin-bottom: 1.25rem; display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+.eixos-label { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding-right: 8px; border-right: 1px solid var(--border); margin-right: 4px; white-space: nowrap; flex-shrink: 0; }
+.hnav-btn { font-family: var(--ff-mono); font-size: 10px; font-weight: 400; padding: 4px 10px; border: 1px solid var(--border); background: var(--paper); color: var(--muted); cursor: pointer; border-radius: 4px; transition: all .15s; white-space: nowrap; letter-spacing: .02em; }
+.hnav-btn:hover { background: var(--paper2); color: var(--ink); border-color: var(--border2); }
+.hnav-btn.active { background: var(--navy); color: var(--gold2); border-color: var(--navy); font-weight: 500; }
+
+/* HERO */
+.hero { background: var(--navy); color: var(--paper); padding: 2.5rem 2rem 2rem; border-bottom: 1px solid rgba(184,134,11,.3); }
+.hero-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end; }
+.hero-eyebrow { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--gold2); margin-bottom: .75rem; }
+.hero-title { font-family: var(--ff-display); font-size: clamp(24px, 3.5vw, 42px); font-weight: 900; line-height: 1.1; margin-bottom: .75rem; }
+.hero-title em { color: var(--gold2); font-style: italic; }
+.hero-sub { font-size: 12px; color: rgba(245,240,232,.6); max-width: 520px; line-height: 1.6; }
+.hero-link { display: inline-block; margin-top: .75rem; font-family: var(--ff-mono); font-size: 10px; color: var(--gold2); text-decoration: none; letter-spacing: .05em; }
+.hero-link:hover { text-decoration: underline; }
+.hero-stats { display: flex; flex-direction: column; gap: .75rem; align-items: flex-end; }
+.hero-stat { text-align: right; }
+.hero-stat .n { font-family: var(--ff-display); font-size: 32px; font-weight: 900; color: var(--gold2); line-height: 1; }
+.hero-stat .l { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: rgba(245,240,232,.4); margin-top: 2px; }
+
+/* MAIN LAYOUT */
+.main { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* METRIC CARDS */
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+.mb { margin-bottom: 1.25rem; }
+
+.metric-card { background: var(--navy); color: var(--paper); border-radius: 6px; padding: 1.25rem 1.5rem; position: relative; overflow: hidden; }
+.metric-card::after { content: ''; position: absolute; bottom: 0; right: 0; width: 60px; height: 60px; background: var(--gold); opacity: .08; border-radius: 50% 0 0 0; }
+.metric-card .lbl { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: rgba(245,240,232,.45); margin-bottom: .4rem; }
+.metric-card .val { font-family: var(--ff-display); font-size: 28px; font-weight: 900; color: var(--gold2); line-height: 1; }
+.metric-card .sub { font-size: 10px; color: rgba(245,240,232,.4); margin-top: .3rem; font-family: var(--ff-mono); }
+
+/* CARD */
+.card { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem 1.5rem; box-shadow: var(--shadow); }
+.card-title { font-family: var(--ff-mono); font-size: 9px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
+
+/* BAR LIST */
+.bar-list { display: flex; flex-direction: column; gap: 6px; }
+.bar-row { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+.bar-row .nm { flex-shrink: 0; color: var(--ink); min-width: 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-row .bt { flex: 1; height: 5px; background: var(--paper3); border-radius: 3px; overflow: hidden; }
+.bar-row .bf { height: 100%; border-radius: 3px; background: var(--navy); }
+.bar-row .ct { width: 48px; text-align: right; color: var(--muted); flex-shrink: 0; font-family: var(--ff-mono); font-size: 10px; }
+
+/* HEATMAP */
+.heatrow { display: flex; align-items: center; gap: 3px; margin-bottom: 3px; }
+.hrlbl { width: 120px; flex-shrink: 0; font-size: 9px; color: var(--muted); text-align: right; font-family: var(--ff-mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hcells { display: flex; gap: 2px; }
+.hcell { width: 36px; height: 20px; border-radius: 2px; cursor: pointer; transition: opacity .15s; display: flex; align-items: center; justify-content: center; font-size: 8px; color: rgba(255,255,255,.7); font-family: var(--ff-mono); }
+.hcell:hover { opacity: .75; }
+.dlabels { display: flex; gap: 2px; margin-left: 123px; margin-bottom: 4px; }
+.dlbl { width: 36px; font-size: 8px; color: var(--muted); text-align: center; font-family: var(--ff-mono); }
+
+/* CLUSTER */
+.cluster-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 11px; }
+.cluster-row:last-child { border-bottom: none; }
+.tag { font-size: 9px; padding: 2px 6px; border-radius: 3px; font-family: var(--ff-mono); }
+
+/* INFO NOTE */
+.info-note { background: var(--paper2); border: 1px solid var(--border); border-radius: 6px; padding: 1rem 1.25rem; font-size: 11px; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.5; }
+
+/* LOADING */
+.loading { display: flex; align-items: center; justify-content: center; padding: 3rem; color: var(--muted); font-family: var(--ff-mono); font-size: 12px; gap: .75rem; }
+.spinner { width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--navy); border-radius: 50%; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* NETWORK */
+.network-node { cursor: pointer; transition: r .2s; }
+.network-node:hover circle { opacity: .8; }
+
+/* RADAR */
+.radar-container { position: relative; }
+
+/* PERFIL SELECT */
+.perfil-select { font-family: var(--ff-mono); font-size: 11px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 4px; background: var(--paper); color: var(--ink); cursor: pointer; margin-bottom: 1rem; width: 100%; max-width: 300px; }
+
+footer { background: var(--navy); color: rgba(245,240,232,.5); text-align: center; padding: 1.5rem; font-family: var(--ff-mono); font-size: 10px; line-height: 2; margin-top: 3rem; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">ICONS <span>Instituto Constituição Aberta</span></a>
+    <a href="https://cartografia-constitucional.vercel.app/" class="header-back">← Início</a>
+    <span class="header-badge">ICONS · STF · 1988–2026</span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">ICONS · Instituto Constituição Aberta · Projeto Justiça Aberta</div>
+      <h1 class="hero-title">Cartografia do <em>Contencioso Constitucional</em></h1>
+      <p class="hero-sub">Mapeamento jurisprudencial das decisões do Supremo Tribunal Federal desde a promulgação da Constituição Federal de 1988 até 2026. Padrões de decidibilidade, linhas decisórias, relatores, classes processuais e mudanças de entendimento.</p>
+      <a href="oscilacoes.html" class="hero-link">⤷ Oscilações jurisprudenciais — instabilidade decisória por artigo</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="n" id="h-decisoes">—</span><span class="l">decisões mapeadas</span></div>
+      <div class="hero-stat"><span class="n" id="h-artigos">—</span><span class="l">artigos comentados</span></div>
+      <div class="hero-stat"><span class="n" id="h-anos">37 anos</span><span class="l">amplitude máxima</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <!-- METRICS TOP -->
+  <div class="grid4 mb">
+    <div class="metric-card"><div class="lbl">Decisões mapeadas</div><div class="val" id="m-decisoes">—</div><div class="sub">1988–2026</div></div>
+    <div class="metric-card"><div class="lbl">Artigos da CF/88</div><div class="val" id="m-artigos">250</div><div class="sub" id="m-artigos-sub">214 com decisões · 36 sem disputas</div></div>
+    <div class="metric-card"><div class="lbl">Classes processuais</div><div class="val" id="m-classes">—</div><div class="sub" id="m-classes-sub">ADI lidera</div></div>
+    <div class="metric-card"><div class="lbl">Relatores</div><div class="val" id="m-relatores">—</div><div class="sub">ministros e ex-ministros</div></div>
+  </div>
+
+  <!-- EIXOS NAV -->
+  <div class="eixos-bar">
+    <span class="eixos-label">Eixos analíticos</span>
+    <button class="hnav-btn active" onclick="showPanel('temporal')">① Temporal</button>
+    <button class="hnav-btn" onclick="showPanel('classes')">② Classes</button>
+    <button class="hnav-btn" onclick="showPanel('relatores')">③ Relatores</button>
+    <button class="hnav-btn" onclick="showPanel('artigos')">④ Artigos</button>
+    <button class="hnav-btn" onclick="showPanel('calor')">⑤ Calor</button>
+    <button class="hnav-btn" onclick="showPanel('mudancas')">⑥ Mudanças</button>
+    <button class="hnav-btn" onclick="showPanel('orgao')">⑦ Órgão</button>
+    <button class="hnav-btn" onclick="showPanel('temas')">⑧ Temas</button>
+    <button class="hnav-btn" onclick="showPanel('decidib')">⑨ Decidib.</button>
+    <button class="hnav-btn" onclick="showPanel('tempo')">⑩ Tempo</button>
+    <button class="hnav-btn" onclick="showPanel('rede')">⑪ Rede</button>
+    <button class="hnav-btn" onclick="showPanel('perfil')">⑫ Perfil</button>
+  </div>
+
+  <!-- ① TEMPORAL -->
+  <div id="panel-temporal" class="panel active">
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Decisões por ano · 1988–2026</div>
+        <canvas id="chart-temporal" height="220"></canvas>
+      </div>
+      <div class="card">
+        <div class="card-title">Por década</div>
+        <canvas id="chart-decadas" height="220"></canvas>
+      </div>
+    </div>
+    <div class="card mb">
+      <div class="card-title">Fases do contencioso constitucional</div>
+      <div id="fases-content" class="loading"><div class="spinner"></div> carregando...</div>
+    </div>
+  </div>
+
+  <!-- ② CLASSES -->
+  <div id="panel-classes" class="panel">
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Distribuição por classe processual</div>
+        <canvas id="chart-classes-pie" height="260"></canvas>
+      </div>
+      <div class="card">
+        <div class="card-title">Volume por classe</div>
+        <div id="classes-bar" class="bar-list loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ RELATORES -->
+  <div id="panel-relatores" class="panel">
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Top 20 relatores por volume</div>
+        <div id="rel-bar" class="bar-list loading"><div class="spinner"></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Distribuição por ministro</div>
+        <canvas id="chart-relatores" height="300"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ ARTIGOS -->
+  <div id="panel-artigos" class="panel">
+    <div class="info-note">Artigos ordenados pelo índice de decidibilidade — número de vínculos com decisões do STF. Cada vínculo representa uma citação em um dispositivo constitucional específico.</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">40 artigos mais litigados</div>
+        <div id="arts-bar" class="bar-list loading"><div class="spinner"></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Litigiosidade por artigo</div>
+        <canvas id="chart-artigos" height="320"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ CALOR -->
+  <div id="panel-calor" class="panel">
+    <div class="card mb">
+      <div class="card-title">Mapa de calor · Relator × Período de 5 anos</div>
+      <div id="heatmap-container" class="loading"><div class="spinner"></div> carregando...</div>
+    </div>
+  </div>
+
+  <!-- ⑥ MUDANÇAS -->
+  <div id="panel-mudancas" class="panel">
+    <div class="info-note">Artigos com maior diversidade de relatores ao longo do tempo — indicador proxy de mudança de entendimento. Quanto mais relatores distintos, maior a probabilidade de oscilação jurisprudencial.</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Artigos com maior amplitude temporal</div>
+        <div id="mudancas-list" class="loading"><div class="spinner"></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Amplitude × Volume de decisões</div>
+        <canvas id="chart-mudancas" height="280"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑦ ÓRGÃO -->
+  <div id="panel-orgao" class="panel">
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Distribuição por órgão julgador</div>
+        <canvas id="chart-orgao-pie" height="260"></canvas>
+      </div>
+      <div class="card">
+        <div class="card-title">Plenário vs Turmas</div>
+        <div id="orgao-list" class="loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑧ TEMAS -->
+  <div id="panel-temas" class="panel">
+    <div class="info-note">Os 9 Títulos da CF/88 como blocos temáticos — cada um é uma placa tectônica. O volume de decisões revela onde a litigiosidade constitucional se concentra.</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Blocos constitucionais · Títulos da CF/88</div>
+        <canvas id="chart-temas" height="280"></canvas>
+      </div>
+      <div class="card">
+        <div class="card-title">Volume por bloco</div>
+        <div id="temas-list" class="loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑨ DECIDIBILIDADE -->
+  <div id="panel-decidib" class="panel">
+    <div class="info-note">Índice de decidibilidade: razão entre total de vínculos e artigos cobertos por classe processual. Quanto maior, mais concentrada é a atuação da classe em poucos artigos.</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Decidibilidade por classe processual</div>
+        <div id="decidib-list" class="loading"><div class="spinner"></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Artigos cobertos vs. Volume total</div>
+        <canvas id="chart-decidib" height="280"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑩ TEMPO -->
+  <div id="panel-tempo" class="panel">
+    <div class="info-note">Amplitude temporal: diferença em anos entre a primeira e a última decisão sobre cada artigo. Indica contencioso crônico (amplitude alta) vs. pontual (amplitude baixa).</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">30 artigos com maior amplitude temporal</div>
+        <div id="tempo-list" class="loading"><div class="spinner"></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Amplitude temporal por artigo</div>
+        <canvas id="chart-tempo" height="280"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑪ REDE -->
+  <div id="panel-rede" class="panel">
+    <div class="info-note">Co-citação: artigos frequentemente citados na mesma decisão. Indica conexões temáticas na jurisprudência constitucional.</div>
+    <div class="card mb">
+      <div class="card-title">Artigos mais co-citados</div>
+      <div id="rede-list" class="loading"><div class="spinner"></div></div>
+    </div>
+  </div>
+
+  <!-- ⑫ PERFIL -->
+  <div id="panel-perfil" class="panel">
+    <div class="info-note">Perfil decisório por ministro: distribuição das decisões pelos blocos constitucionais da CF/88. Revela especialização temática de cada relator.</div>
+    <div class="card mb">
+      <select class="perfil-select" id="perfil-select" onchange="renderPerfil()">
+        <option value="">Selecione um ministro...</option>
+      </select>
+      <div id="perfil-content" style="display:none">
+        <canvas id="chart-perfil" height="300"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div><strong style="color:rgba(245,240,232,.8)">ICONS · Instituto Constituição Aberta</strong> · Projeto Justiça Aberta · Coord. Damares Medina</div>
+  <div>Dados extraídos da Constituição Federal Comentada pelas decisões do STF · 1988–2026</div>
+</footer>
+
+<script>
+// Carrega dados pré-calculados — zero queries em tempo real
 
 const H = { 'apikey': KEY, 'Authorization': `Bearer ${KEY}`, 'Content-Type': 'application/json' }
 
