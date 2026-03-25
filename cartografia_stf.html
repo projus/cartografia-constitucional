@@ -460,15 +460,7 @@ async function fetchAll(table, qs = '') {
 async function loadStats() {
   try {
     await loadDispResolver();
-    // Total decisões + súmulas
-    const dr = await fetch(`${SUPA}/rest/v1/decisoes_stf?select=id_decisao&limit=1`, { headers: {...H,'Prefer':'count=exact'} })
-    const decCount = +dr.headers.get('content-range')?.split('/')[1] || 0
-    const sr = await fetch(`${SUPA}/rest/v1/sumulas?select=id_sumula&limit=1`, { headers: {...H,'Prefer':'count=exact'} })
-    const sumCount = +sr.headers.get('content-range')?.split('/')[1] || 0
-    const totalDecisoes = decCount + sumCount
-
-    // Artigos — fixo baseado na auditoria do banco
-    // 250 artigos na CF/88, 214 com decisões, 36 sem disputas
+    const totalDecisoes = 7695
 
     // Classes únicas
     const cd = await fetchAll('decisoes_stf', 'select=tipo')
@@ -481,10 +473,10 @@ async function loadStats() {
     const todosRelatores = await fetchAll('decisoes_stf', 'select=relator&relator=not.is.null')
     const relSet = new Set(todosRelatores.map(d => d.relator).filter(Boolean))
 
-    // Update hero
-    document.getElementById('h-decisoes').textContent = fmt(totalDecisoes)
+    // Update hero — KPIs fixos
+    document.getElementById('h-decisoes').textContent = '7.695'
     document.getElementById('h-artigos').textContent = '250'
-    document.getElementById('m-decisoes').textContent = fmt(totalDecisoes)
+    document.getElementById('m-decisoes').textContent = '7.695'
     document.getElementById('m-artigos').textContent = '250'
     document.getElementById('m-artigos-sub').textContent = '214 com decisões · 36 sem disputas'
     document.getElementById('m-classes').textContent = classCount
@@ -624,7 +616,7 @@ relatores: async () => {
   new Chart(document.getElementById('chart-relatores'), {
     type: 'bar',
     data: {
-      labels: sorted.map(([r])=>r.split(' ').slice(-1)[0]),
+      labels: sorted.map(([r])=>r),
       datasets: [{ data: sorted.map(([,n])=>n), backgroundColor: GOLD, borderRadius: 3 }]
     },
     options: { indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{ticks:{font:{size:9}}}, y:{ticks:{font:{size:9}}} }, responsive:true }
@@ -718,7 +710,7 @@ calor: async () => {
     row.className = 'heatrow'
     const lbl = document.createElement('div')
     lbl.className = 'hrlbl'
-    lbl.textContent = rel.split(' ').slice(-2).join(' ')
+    lbl.textContent = rel
     lbl.title = rel
     row.appendChild(lbl)
     const cells = document.createElement('div')
